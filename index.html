@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Ryu Gym — Elite Strength, Conditioning, and Athletic Transformation. Strictly monochrome, uncompromising training.">
+  <title>Ryu Gym — Train Hard. Transform Yourself.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
+        <span class="brand-symbol"></span>
+        <span>Ryu Gym</span>
+      </a>
+
+      <!-- Primary Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="programs.html" class="nav-link">Programs</a></li>
+          <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+          <li><a href="membership.html" class="nav-link">Membership</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Theme Switcher & Mobile Menu Trigger -->
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Monochrome Dark/Light Mode"
+          title="Toggle Mode">
+          <!-- Populated dynamically by script.js with clean line-art SVG -->
+        </button>
+        <button class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-spotlight" aria-hidden="true"></div>
+      <div class="container hero-grid" style="position: relative; z-index: 2;">
+        <div class="hero-content reveal">
+          <div class="hero-tag">Forged In Iron &bull; Est. 2026</div>
+          <h1 class="hero-title scramble-text" data-original="Ryu Gym — Train Hard. Transform Yourself.">Ryu Gym
+            &mdash;<br>Train Hard.<br>Transform Yourself.</h1>
+          <p class="hero-lead">An uncompromising strength sanctuary built for serious athletes. Pure discipline,
+            high-output conditioning, and zero corporate fluff.</p>
+          <div class="hero-cta-group">
+            <a href="programs.html" class="btn btn-primary btn-magnetic" id="hero-cta-primary">Explore Programs</a>
+            <a href="membership.html" class="btn btn-secondary btn-magnetic" id="hero-cta-secondary">View
+              Memberships</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal reveal-stagger-1">
+          <div class="hero-image-frame">
+            <img src="assets/gym cat.jpg" alt="Ryu Gym Training Atmosphere" width="600" height="750">
+          </div>
+          <div class="hero-badge-overlay">
+            <div class="badge-num">100%</div>
+            <div class="badge-lbl">Discipline &bull; Zero Fluff</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== MARQUEE / SCROLLING SLOGAN TICKER ==================== -->
+    <div class="ticker-wrap" aria-label="Gym Mottos">
+      <div class="ticker-move">
+        <span class="ticker-item">NO EXCUSES</span>
+        <span class="ticker-item">NO SHORTCUTS</span>
+        <span class="ticker-item">NO LIMITS</span>
+        <span class="ticker-item">PURE DISCIPLINE</span>
+        <span class="ticker-item">FORGED IN IRON</span>
+        <span class="ticker-item">CONTINUOUS REFINEMENT</span>
+        <span class="ticker-item">NIgga</span>
+        <!-- Duplicated for seamless continuous loop -->
+        <span class="ticker-item">NO EXCUSES</span>
+        <span class="ticker-item">NO SHORTCUTS</span>
+        <span class="ticker-item">NO LIMITS</span>
+        <span class="ticker-item">PURE DISCIPLINE</span>
+        <span class="ticker-item">FORGED IN IRON</span>
+        <span class="ticker-item">CONTINUOUS REFINEMENT</span>
+        <span class="ticker-item">Nigga</span>
+      </div>
+    </div>
+
+    <!-- ==================== ANIMATED STATS COUNTER STRIP ==================== -->
+    <section class="stats-strip" aria-label="Gym Key Statistics">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal reveal-stagger-1">
+            <div class="stat-number" data-target="500" data-suffix="+">0</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat-item reveal reveal-stagger-2">
+            <div class="stat-number" data-target="10" data-suffix="+">0</div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+          <div class="stat-item reveal reveal-stagger-3">
+            <div class="stat-number" data-target="18" data-suffix="+">0</div>
+            <div class="stat-label">Master Trainers</div>
+          </div>
+          <div class="stat-item reveal reveal-stagger-4">
+            <div class="stat-number" data-target="99" data-suffix="%">0</div>
+            <div class="stat-label">Goal Completion</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHY CHOOSE US ==================== -->
+    <section class="section" id="why-choose-us">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">The Ryu Standard</span>
+          <h2 class="section-title">Why Athletes Choose Ryu Gym</h2>
+          <p class="section-subtitle">We strip away commercial fitness gimmicks to deliver precision coaching, elite
+            calibrated iron, and raw accountability.</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="card feature-card reveal reveal-stagger-1">
+            <div class="feature-index">01</div>
+            <h3 class="card-title">Calibrated Iron &amp; Platforms</h3>
+            <p class="card-body">Eleiko powerlifting bars, competition benches, rubberized deadlift stations, and
+              precision dumbbells up to 70kg for uncompromising progress.</p>
+          </article>
+
+          <article class="card feature-card reveal reveal-stagger-2">
+            <div class="feature-index">02</div>
+            <h3 class="card-title">Elite Veteran Coaches</h3>
+            <p class="card-body">Every trainer holds international CSCS and combat certifications. No cookie-cutter
+              routines &mdash; only biomechanically sound programming.</p>
+          </article>
+
+          <article class="card feature-card reveal reveal-stagger-3">
+            <div class="feature-index">03</div>
+            <h3 class="card-title">24/7 Keycard Access</h3>
+            <p class="card-body">Train at your peak hour. Secure round-the-clock biometrics allow members uninterrupted
+              training 365 days a year without peak crowds.</p>
+          </article>
+
+          <article class="card feature-card reveal reveal-stagger-4">
+            <div class="feature-index">04</div>
+            <h3 class="card-title">Dedicated Recovery Suites</h3>
+            <p class="card-body">Finnish dry saunas, cold plunge tubs, and percussive therapy zones designed to
+              accelerate muscular repair and CNS rejuvenation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================== PROGRAM PREVIEW STRIP ==================== -->
+    <section class="section" id="program-preview">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Disciplines</span>
+          <h2 class="section-title">Featured Training Programs</h2>
+          <p class="section-subtitle">Tailored protocols engineered for functional strength, rapid conditioning, and
+            aesthetic symmetry.</p>
+        </div>
+
+        <div class="program-grid">
+          <!-- Card 1 -->
+          <article class="card reveal reveal-stagger-1">
+            <div class="card-media fit-contain" style="background-color: #000000;">
+              <img src="assets/heavy metal.jpg" alt="Heavy Iron Strength Program" width="400" height="250">
+              <div class="trainer-expand-hint">[+] Click Video To Expand Dossier</div>
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Strength</span>
+              <span>12 Weeks &bull; Advanced</span>
+            </div>
+            <h3 class="card-title">Heavy Iron Strength</h3>
+            <p class="card-body">Systematic barbell progression focusing on the squat, bench press, deadlift, and
+              overhead press to build unyielding strength.</p>
+            <div class="card-footer">
+              <a href="programs.html" class="btn btn-secondary btn-sm">Learn More</a>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card reveal reveal-stagger-2">
+            <div class="card-media fit-contain" style="background-color: #ffffff;">
+              <img src="assets/high ocatne hiit.jpg" alt="High-Octane HIIT Cardio" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Cardio</span>
+              <span>8 Weeks &bull; Intermediate</span>
+            </div>
+            <h3 class="card-title">High-Octane HIIT</h3>
+            <p class="card-body">Metabolic conditioning cycles utilizing curved treadmills, air bikes, kettlebells, and
+              battle ropes for explosive cardiovascular stamina.</p>
+            <div class="card-footer">
+              <a href="programs.html" class="btn btn-secondary btn-sm">Learn More</a>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card reveal reveal-stagger-3">
+            <div class="card-media">
+              <img src="assets/act fight.jpg" alt="Combat Conditioning" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Cardio / Power</span>
+              <span>10 Weeks &bull; All Levels</span>
+            </div>
+            <h3 class="card-title">Combat Conditioning</h3>
+            <p class="card-body">High-intensity heavy-bag striking, footwork agility, and core stability inspired by
+              authentic combat sport training camps.</p>
+            <div class="card-footer">
+              <a href="programs.html" class="btn btn-secondary btn-sm">Learn More</a>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+          <a href="programs.html" class="btn btn-primary" id="view-all-programs-btn">View All 6 Programs &amp; BMI
+            Calculator &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ==================== TRAINER PREVIEW STRIP ==================== -->
+    <section class="section" id="trainers-preview">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">Faculty</span>
+          <h2 class="section-title">Meet Our Lead Instructors</h2>
+          <p class="section-subtitle">Battle-tested coaches dedicated to pushing your limits with precise technique and
+            relentless motivation.</p>
+        </div>
+
+        <div class="trainers-grid">
+          <!-- Trainer 1 -->
+          <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
+            <div class="trainer-photo-wrap">
+              <video src="assets/walking.mp4" autoplay loop muted playsinline width="350" height="450"></video>
+              <div class="trainer-expand-hint">View Profile On Trainers Page &rarr;</div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-specialty">Head Strength Coach</div>
+              <h3 class="trainer-name">Patrick The Aura Farmer</h3>
+              <p class="trainer-exp">12+ Years Experience &bull; Former National Powerlifting Recordholder</p>
+            </div>
+          </article>
+
+          <!-- Trainer 2 -->
+          <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
+            <div class="trainer-photo-wrap">
+              <video src="assets/gym boii.mp4" autoplay loop muted playsinline width="350" height="450"></video>
+              <div class="trainer-expand-hint">View Profile On Trainers Page &rarr;</div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-specialty">Head Strength Coach</div>
+              <h3 class="trainer-name">THe Rock Body Double</h3>
+              <p class="trainer-exp">12+ Years Experience &bull; Former National Powerlifting Recordholder</p>
+            </div>
+          </article>
+
+          <!-- Trainer 3 -->
+          <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
+            <div class="trainer-photo-wrap">
+              <video src="assets/giga chad.mp4" autoplay loop muted playsinline width="350" height="450"></video>
+              <div class="trainer-expand-hint">View Profile On Trainers Page &rarr;</div>
+            </div>
+            <div class="trainer-info">
+              <div class="trainer-specialty">Head Strength Coach</div>
+              <h3 class="trainer-name">Giga Chad</h3>
+              <p class="trainer-exp">12+ Years Experience &bull; Former National Powerlifting Recordholder</p>
+            </div>
+          </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+          <a href="trainers.html" class="btn btn-secondary btn-magnetic" id="view-all-trainers-btn">Explore Full
+            Coaching Staff &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BEFORE / AFTER TRANSFORMATION SLIDER ==================== -->
+    <section class="comparison-section" id="transformation">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">Proof of Discipline</span>
+          <h2 class="section-title">The Transformation Standard</h2>
+          <p class="section-subtitle">Drag the interactive vertical divider to inspect the physical adaptation achieved
+            through 16 weeks of structured Ryu Gym protocols.</p>
+        </div>
+
+        <div class="comparison-wrapper reveal reveal-stagger-1"
+          aria-label="Before and After Transformation Comparison Slider">
+          <!-- Background Image: After (Conditioned) -->
+          <div class="comparison-image image-before">
+            <img src="assets/Cute-Cat.jpg" alt="Conditioned Athlete Output" width="960" height="540">
+            <span class="comparison-badge badge-right"></span>
+          </div>
+
+          <!-- Foreground Overlay Image: Before (Baseline) -->
+          <div class="comparison-image image-after">
+            <img src="assets/fatcat.jpg" alt="Day 1 Baseline Foundation" width="960" height="540">
+            <span class="comparison-badge badge-left">Day 1 &bull; Baseline</span>
+          </div>
+
+          <!-- Draggable Divider Handle -->
+          <div class="comparison-slider-handle" aria-hidden="true">
+            <div class="handle-circle">&#8644;</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TRIAL PASS CALLOUT ==================== -->
+    <section class="section section-tight"
+      style="background-color: var(--bg-surface); border-top: 1px solid var(--border-subtle);">
+      <div class="container text-center reveal">
+        <span class="section-tag">Begin Today</span>
+        <h2 style="margin-bottom: 1.25rem;">Step Onto The Floor</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem auto;">Experience Ryu Gym with a complimentary 1-day pass. Test
+          the equipment, meet the coaches, and feel the standard.</p>
+        <a href="contact.html" class="btn btn-primary" id="claim-trial-btn">Claim Free Day Pass</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SITE FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Ryu Gym</h2>
+          <p>Uncompromising strength, athletic conditioning, and physical discipline. Strictly monochrome,
+            professionally crafted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About &amp; Facilities</a></li>
+            <li><a href="programs.html">Training Programs</a></li>
+            <li><a href="trainers.html">Our Trainers</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Training Hours</h4>
+          <ul class="footer-links">
+            <li>Mon &ndash; Fri: 05:00 &ndash; 23:00</li>
+            <li>Saturday: 06:00 &ndash; 21:00</li>
+            <li>Sunday: 07:00 &ndash; 19:00</li>
+            <li>Keycard Access: 24/7/365</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Location</h4>
+          <ul class="footer-links">
+            <li>Biratnagar-2</li>
+            <li>Near Chapri Mall</li>
+            <li>Phone: 980-0000000</li>
+            <li>Email: Ryugym@gmail.com</li>
+          </ul>
+          <div class="social-links-row footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Follow Ryu Gym on Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Follow Ryu Gym on Facebook">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Follow Ryu Gym on YouTube">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect>
+                <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"></polygon>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link"
+              aria-label="Follow Ryu Gym on X (Twitter)">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l16 16M20 4L4 20"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ryu Gym. College Web Development Project. All rights reserved.</div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

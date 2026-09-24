@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Ryu Gym — Schedule an orientation, join a program, or visit our facility in New York.">
+  <title>Contact &amp; Orientation — Ryu Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
+        <span class="brand-symbol"></span>
+        <span>Ryu Gym</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="programs.html" class="nav-link">Programs</a></li>
+          <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+          <li><a href="membership.html" class="nav-link">Membership</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Monochrome Dark/Light Mode" title="Toggle Mode"></button>
+        <button class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== CONTACT HERO / TITLE ==================== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">Direct Line</span>
+          <h1 class="section-title">Initiate Contact</h1>
+          <p class="section-subtitle">Whether you are scheduling a walkthrough, inquiring about a specialized training block, or registering for membership.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Column 1: Contact Form Card & Success Banner -->
+          <div class="contact-form-card reveal reveal-stagger-1">
+            
+            <!-- Animated Thank You / Inscription Confirmation -->
+            <div class="form-success-banner" id="form-success-banner" role="status" aria-live="polite">
+              <h3>Submission Confirmed</h3>
+              <p>Your enrollment request has been logged in our system. A Ryu Gym head coach will contact you within 24 hours to schedule your biometric baseline and gym walkthrough.</p>
+              <button class="btn btn-secondary btn-sm" onclick="location.reload();" style="background-color: transparent; border-color: var(--bg-primary); color: var(--bg-primary);">
+                Submit Another Request
+              </button>
+            </div>
+
+            <!-- Main Interactive Form -->
+            <form id="contact-form" novalidate>
+              <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Athlete Orientation Form</h2>
+              <p style="font-size: 0.88rem; margin-bottom: 1.75rem;">Complete the fields below. All items are verified by client-side JavaScript.</p>
+
+              <!-- Name Field -->
+              <div class="form-group" style="margin-bottom: 1.25rem;">
+                <label for="contact-name" class="form-label">Full Legal Name *</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Hunter" required>
+                <span class="form-field-error">Please enter your full name.</span>
+              </div>
+
+              <!-- Email & Phone in Responsive Row -->
+              <div class="form-row" style="margin-bottom: 1.25rem;">
+                <div class="form-group">
+                  <label for="contact-email" class="form-label">Email Address *</label>
+                  <input type="email" id="contact-email" class="form-input" placeholder="e.g. alex@domain.com" required>
+                  <span class="form-field-error">Please enter a valid email address.</span>
+                </div>
+                <div class="form-group">
+                  <label for="contact-phone" class="form-label">Contact Number *</label>
+                  <input type="tel" id="contact-phone" class="form-input" placeholder="e.g. (555) 019-2831" required>
+                  <span class="form-field-error">Please provide a valid phone number.</span>
+                </div>
+              </div>
+
+
+
+              <!-- Message Field -->
+              <div class="form-group" style="margin-bottom: 1.75rem;">
+                <label for="contact-message" class="form-label">Your Goals / Background / Notes *</label>
+                <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Briefly describe your training background, current lifts, or key objectives..." required></textarea>
+                <span class="form-field-error">Please provide a brief note or goal.</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-block btn-magnetic" id="submit-contact-btn">
+                Transmit Registration
+              </button>
+            </form>
+          </div>
+
+          <!-- Column 2: Plain Text Details & Grayscale Map -->
+          <div class="contact-info-panel reveal reveal-stagger-2">
+            <div class="contact-info-block">
+              <h3>Facility Coordinates</h3>
+              <p><strong>Physical Address:</strong>Biratnagar-2,Near Chapri Mall</p>
+              <p><strong>Direct Telephone:</strong>  019-8392</p>
+              <p><strong>Direct Inquiries:</strong> Ryugym@gmail.com</p>
+              <p><strong>Direct Coaching Desk:</strong> Ryugym@gmail.com</p>
+            </div>
+
+            <div class="contact-info-block">
+              <h3>Facility Schedule</h3>
+              <p><strong>Staffed Coaching:</strong> Mon &ndash; Fri: 05:00 &ndash; 23:00</p>
+              <p><strong>Weekend Staffed:</strong> Sat: 06:00 &ndash; 21:00 | Sun: 07:00 &ndash; 19:00</p>
+              <p><strong>Keycard Access:</strong> 24 Hours / 7 Days / 365 Days a Year</p>
+            </div>
+
+            <!-- Follow Ryu Gym Block -->
+            <div class="contact-info-block">
+              <h3>Follow Ryu Gym</h3>
+              <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--text-secondary);">Connect with our athletic collective and stream daily conditioning breakdowns.</p>
+              <div class="social-links-row">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Instagram">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Facebook">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on YouTube">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect>
+                    <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"></polygon>
+                  </svg>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on X (Twitter)">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4l16 16M20 4L4 20"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Grayscale Embedded Map -->
+            <div class="contact-info-block">
+              <h3>Location Map</h3>
+              <div class="map-frame-wrap">
+                <iframe
+                  title="Ryu Gym Location Map"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-74.0090%2C40.7420%2C-73.9890%2C40.7550&amp;layer=mapnik"
+                  loading="lazy">
+                </iframe>
+              </div>
+              <small style="display: block; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">
+                High-contrast monochrome map filtered via CSS grayscale matrix.
+              </small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SITE FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Ryu Gym</h2>
+          <p>Uncompromising strength, athletic conditioning, and physical discipline. Strictly monochrome, professionally crafted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About &amp; Facilities</a></li>
+            <li><a href="programs.html">Training Programs</a></li>
+            <li><a href="trainers.html">Our Trainers</a></li>
+            <li><a href="membership.html">Membership &amp; Join</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Training Hours</h4>
+          <ul class="footer-links">
+            <li>Mon &ndash; Fri: 05:00 &ndash; 23:00</li>
+            <li>Saturday: 06:00 &ndash; 21:00</li>
+            <li>Sunday: 07:00 &ndash; 19:00</li>
+            <li>Keycard Access: 24/7/365</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Location</h4>
+          <ul class="footer-links">
+            <li>Biratnagar-2</li>
+            <li>Near Chapri Mall</li>
+            <li>Phone: 980-0000000</li>
+            <li>Email: Ryugym@gmail.com</li>
+          </ul>
+          <div class="social-links-row footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Facebook">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on YouTube">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect>
+                <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"></polygon>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on X (Twitter)">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l16 16M20 4L4 20"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ryu Gym. College Web Development Project. All rights reserved.</div>
+        
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ryu Gym Training Programs — Heavy Iron Strength, Bodybuilding, HIIT Cardio, Mobility, and Combat Conditioning.">
+  <title>Programs &amp; BMI Analysis — Ryu Gym</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
+        <span class="brand-symbol"></span>
+        <span>Ryu Gym</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="programs.html" class="nav-link active">Programs</a></li>
+          <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Monochrome Dark/Light Mode" title="Toggle Mode"></button>
+        <button class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== PROGRAMS HEADER & FILTER ==================== -->
+    <section class="section" id="programs">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">Systematic Protocols</span>
+          <h1 class="section-title">Training Programs</h1>
+          <p class="section-subtitle">Scientifically structured training blocks designed to force physiological adaptation without wasted effort.</p>
+        </div>
+
+        <!-- JS Dynamic Filter Bar -->
+        <div class="filter-bar reveal">
+          <button class="filter-btn active" data-filter="all">All Programs</button>
+          <button class="filter-btn" data-filter="strength">Strength</button>
+          <button class="filter-btn" data-filter="bodybuilding">Bodybuilding</button>
+          <button class="filter-btn" data-filter="cardio">Cardio &amp; Fat Loss</button>
+          <button class="filter-btn" data-filter="flexibility">Flexibility &amp; Mobility</button>
+        </div>
+
+        <!-- Filterable Program Grid -->
+        <div class="program-grid" id="program-container">
+
+          <!-- Program 1: Strength -->
+          <article class="card program-item reveal reveal-stagger-1" data-category="strength">
+            <div class="card-media">
+              <img src="assets/heavy metal.jpg" alt="Heavy Iron Strength" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Strength</span>
+              <span>12 Weeks &bull; Advanced</span>
+            </div>
+            <h3 class="card-title">Heavy Iron Strength</h3>
+            <p class="card-body">Periodized linear progression targeting compound lifts (Squat, Bench, Deadlift, Press). Focuses on central nervous system recruitment and maximum mechanical tension.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">4 Days / Week</span>
+              <a href="contact.html?program=HeavyIronStrength" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+          <!-- Program 2: Bodybuilding -->
+          <article class="card program-item reveal reveal-stagger-2" data-category="bodybuilding">
+            <div class="card-media">
+              <img src="assets/hyoertrophy.jpg" alt="Hypertrophy Architecture" width="380" height="100">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Bodybuilding</span>
+              <span>10 Weeks &bull; Intermediate</span>
+            </div>
+            <h3 class="card-title">Hypertrophy Architecture</h3>
+            <p class="card-body">High-volume muscle fiber stimulus focusing on localized metabolic stress and eccentric control. Designed to build dense, balanced, and aesthetic muscular proportions.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">5 Days / Week</span>
+              <a href="contact.html?program=HypertrophyArchitecture" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+          <!-- Program 3: Cardio -->
+          <article class="card program-item reveal reveal-stagger-3" data-category="cardio">
+            <div class="card-media">
+              <img src="assets/high ocatne hiit.jpg" alt="High-Octane HIIT Cardio" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Cardio</span>
+              <span>8 Weeks &bull; All Levels</span>
+            </div>
+            <h3 class="card-title">High-Octane HIIT</h3>
+            <p class="card-body">Sustained anaerobic intervals with curved treadmills, air bikes, and kettlebell complexes to maximize post-exercise oxygen consumption (EPOC) and fat loss.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">3 Days / Week</span>
+              <a href="contact.html?program=HIITCardio" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+          <!-- Program 4: Flexibility -->
+          <article class="card program-item reveal reveal-stagger-1" data-category="flexibility">
+            <div class="card-media">
+              <img src="assets/yoga and mobility.jpg" alt="Athletic Mobility & Yoga" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Flexibility</span>
+              <span>Ongoing &bull; All Levels</span>
+            </div>
+            <h3 class="card-title">Athletic Mobility &amp; Yoga</h3>
+            <p class="card-body">Active end-range joint articulation, thoracic spine mobility, and deep fascia release. Removes posture imbalances, relieves joint stiffness, and prevents injuries.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">3 Days / Week</span>
+              <a href="contact.html?program=AthleticMobility" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+          <!-- Program 5: Cardio -->
+          <article class="card program-item reveal reveal-stagger-2" data-category="cardio">
+            <div class="card-media">
+              <img src="assets/act fight.jpg" alt="Combat Conditioning" width="400" height="250">
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Cardio</span>
+              <span>8 Weeks &bull; Intermediate</span>
+            </div>
+            <h3 class="card-title">Combat Conditioning</h3>
+            <p class="card-body">Striking fundamentals, heavy bag intervals, rotational core power, and footwork drills derived from professional boxing and martial arts fight camps.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">4 Days / Week</span>
+              <a href="contact.html?program=CombatConditioning" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+          <!-- Program 6: Strength -->
+          <article class="card program-item reveal reveal-stagger-3" data-category="strength">
+            <div class="card-media">
+               <video src="assets/deadkift.mp4" autoplay loop muted playsinline width="380" height="450"></video>
+            </div>
+            <div class="program-card-meta">
+              <span class="program-badge">Strength</span>
+              <span>16 Weeks &bull; Advanced</span>
+            </div>
+            <h3 class="card-title">Powerlifting Fundamentals</h3>
+            <p class="card-body">Biomechanical video review, bar-speed feedback, and competition peaking protocols strictly aligned with IPF powerlifting standards.</p>
+            <div class="card-footer">
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;">4 Days / Week</span>
+              <a href="contact.html?program=PowerliftingPeaking" class="btn btn-secondary btn-sm">Inquire</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- ==================== BMI CALCULATOR WIDGET ==================== -->
+        <div class="bmi-calculator-wrapper reveal" id="bmi-widget">
+          <div class="bmi-grid">
+            <div>
+              <span class="section-tag">Interactive Analysis</span>
+              <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">Body Mass Index (BMI) &amp; Training Matcher</h2>
+              <p>Calculate your current body mass index to receive an immediate programmatic recommendation tailored to your physical profile.</p>
+
+              <form id="bmi-form" class="calculator-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="bmi-height" class="form-label">Height (cm)</label>
+                    <input type="number" id="bmi-height" class="form-input" placeholder="e.g. 178" min="100" max="240" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="bmi-weight" class="form-label">Weight (kg)</label>
+                    <input type="number" id="bmi-weight" class="form-input" placeholder="e.g. 75" min="30" max="250" step="0.1" required>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="calculate-bmi-btn">
+                  Compute BMI &amp; Match Program
+                </button>
+              </form>
+            </div>
+
+            <!-- Dynamic Result Card with Animated SVG Progress Ring -->
+            <div class="bmi-result-panel" id="bmi-result-panel">
+              <div style="font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Calculated Result</div>
+              
+              <div class="progress-ring-wrap">
+                <svg class="progress-ring" width="140" height="140" viewBox="0 0 140 140">
+                  <circle class="progress-ring-bg" cx="70" cy="70" r="60"></circle>
+                  <circle class="progress-ring-circle" id="bmi-ring-circle" cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="progress-ring-text">
+                  <div class="bmi-score" id="bmi-score" style="font-size: 2.2rem; margin-bottom: 0;">--.-</div>
+                  <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">Index</span>
+                </div>
+              </div>
+
+              <div class="bmi-category-badge" id="bmi-badge">Awaiting Input</div>
+              <p class="bmi-rec-text" id="bmi-recommendation">Enter your height in centimeters and weight in kilograms above, then click compute to generate your suggested training protocol.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== LIVE WORKOUT TIMER / TABATA CLOCK ==================== -->
+        <div class="tabata-widget reveal" id="tabata-clock">
+          <span class="section-tag">Functional Tool</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Live HIIT / Tabata Conditioning Clock</h2>
+          <p style="max-width: 600px; margin: 0 auto 1.75rem auto;">A real, working interval training clock built for conditioning rounds: 20 seconds maximum output work followed by 10 seconds active recovery across 8 continuous rounds.</p>
+
+          <div class="tabata-status-badge" id="tabata-badge">Ready &bull; Standard Tabata Protocol</div>
+          <div class="tabata-timer-display" id="tabata-time">00:20</div>
+          <div class="tabata-round-display" id="tabata-round">Round 1 of 8</div>
+
+          <div class="tabata-controls">
+            <button class="btn btn-primary btn-magnetic" id="tabata-start">Start Interval</button>
+            <button class="btn btn-secondary btn-magnetic" id="tabata-pause">Pause</button>
+            <button class="btn btn-secondary btn-sm" id="tabata-reset">Reset Timer</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== SITE FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Ryu Gym</h2>
+          <p>Uncompromising strength, athletic conditioning, and physical discipline. Strictly monochrome, professionally crafted.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About &amp; Facilities</a></li>
+            <li><a href="programs.html">Training Programs</a></li>
+            <li><a href="trainers.html">Our Trainers</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Training Hours</h4>
+          <ul class="footer-links">
+            <li>Mon &ndash; Fri: 05:00 &ndash; 23:00</li>
+            <li>Saturday: 06:00 &ndash; 21:00</li>
+            <li>Sunday: 07:00 &ndash; 19:00</li>
+            <li>Keycard Access: 24/7/365</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Location</h4>
+          <ul class="footer-links">
+            <li>Biratnagar-2</li>
+            <li>Near Chapri Mall</li>
+            <li>Phone: 980-0000000</li>
+            <li>Email: Ryugym@gmail.com</li>
+          </ul>
+          <div class="social-links-row footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Facebook">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on YouTube">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect>
+                <polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"></polygon>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on X (Twitter)">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l16 16M20 4L4 20"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ryu Gym. College Web Development Project. All rights reserved.</div>
+        <div>Hand-built with semantic HTML5, CSS3, and Vanilla JavaScript.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

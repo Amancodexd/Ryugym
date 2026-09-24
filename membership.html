@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ryu Gym Membership — Join, select your tier, and pay online. Instant barcode membership voucher issued on successful payment.">
+  <title>Join Ryu Gym — Membership Plans &amp; Instant Pay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Print Header (Visible ONLY when printing) -->
+  <div class="print-header">
+    <h1>RYU GYM &mdash; OFFICIAL MEMBERSHIP SPECIFICATIONS</h1>
+    <p>Biratnagar-2 &bull; Near Chapri Mall &bull; Tel: 980-0000000 &bull; Ryugym@gmail.com</p>
+  </div>
+
+  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
+        <span class="brand-symbol"></span>
+        <span>Ryu Gym</span>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="programs.html" class="nav-link">Programs</a></li>
+          <li><a href="trainers.html" class="nav-link">Trainers</a></li>
+          <li><a href="membership.html" class="nav-link active">Membership</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Monochrome Dark/Light Mode" title="Toggle Mode"></button>
+        <button class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== PAGE HERO ==================== -->
+    <section class="section section-tight" id="membership-hero"
+      style="background-color: var(--bg-primary); color: var(--text-on-primary); border-bottom: 1px solid var(--border-strong);">
+      <div class="container text-center reveal">
+        <span class="section-tag" style="border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.75);">Join Ryu Gym</span>
+        <h1 class="section-title" style="color: var(--text-on-primary); margin-top: 0.5rem;">Membership Plans &amp; Instant Enrollment</h1>
+        <p class="section-subtitle" style="color: var(--text-on-primary); opacity: 0.78; max-width: 600px; margin: 0 auto;">
+          Select your tier, pay online or reserve a desk voucher &mdash; no page redirects, no friction. Your official barcode pass is generated immediately.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== MEMBERSHIP PRICING SECTION ==================== -->
+    <section class="section pricing-section" id="pricing">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-tag">Transparent Investment</span>
+          <h2 class="section-title">Choose Your Tier</h2>
+          <p class="section-subtitle">No signup fees. No cancellation penalties. Just honest access to premier strength facilities.</p>
+        </div>
+
+        <!-- Monthly / Yearly Switcher -->
+        <div class="pricing-toggle-wrap reveal">
+          <span class="pricing-toggle-label active" id="label-monthly">Billed Monthly</span>
+          <button class="toggle-switch" id="pricing-toggle" role="switch" aria-checked="false" aria-label="Toggle Monthly or Annual Billing">
+            <span class="toggle-switch-thumb"></span>
+          </button>
+          <span class="pricing-toggle-label" id="label-yearly">Billed Annually <small style="font-size: 0.75rem; border: 1px solid var(--border-strong); padding: 2px 6px; margin-left: 4px;">Save 20%</small></span>
+        </div>
+
+        <!-- 3 Pricing Cards -->
+        <div class="pricing-grid">
+
+          <!-- Plan 1: Iron Pass -->
+          <article class="pricing-card reveal reveal-stagger-1">
+            <h3 class="plan-tier">Iron Pass</h3>
+            <p class="plan-desc">For dedicated independent lifters requiring uncompromised equipment access.</p>
+            <div class="plan-price-wrap">
+              <span class="currency">Rs</span>
+              <span class="price-number" data-price-monthly="49" data-price-yearly="470">49</span>
+              <span class="billing-period">/ Month</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Full Weight Room &amp; Cardio Access</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Locker Rooms &amp; Showers</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Standard Hours Access (06:00 &ndash; 22:00)</span></li>
+              <li class="feature-item disabled"><span class="feature-check disabled">&#10005;</span><span>24/7 Keycard Entry</span></li>
+              <li class="feature-item disabled"><span class="feature-check disabled">&#10005;</span><span>Recovery Suite &amp; Sauna Access</span></li>
+            </ul>
+            <button type="button" class="btn btn-secondary btn-block btn-open-payment" data-plan="IronPass">Select Iron Pass &amp; Pay</button>
+          </article>
+
+          <!-- Plan 2: Black Tier -->
+          <article class="pricing-card featured reveal reveal-stagger-2">
+            <div class="popular-badge">Most Popular</div>
+            <h3 class="plan-tier">Black Tier</h3>
+            <p class="plan-desc">The complete Ryu Gym experience with 24/7 access and recovery suites.</p>
+            <div class="plan-price-wrap">
+              <span class="currency">Rs</span>
+              <span class="price-number" data-price-monthly="79" data-price-yearly="750">79</span>
+              <span class="billing-period">/ Month</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Unlimited 24/7 Keycard Access</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Full Access to All Facilities &amp; Platforms</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Sauna &amp; Cold Plunge Recovery Suite</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>2 Monthly Group Workshops Included</span></li>
+              <li class="feature-item disabled"><span class="feature-check disabled">&#10005;</span><span>Dedicated 1-on-1 Master Coach</span></li>
+            </ul>
+            <button type="button" class="btn btn-primary btn-block btn-open-payment" data-plan="BlackTier">Select Black Tier &amp; Pay</button>
+          </article>
+
+          <!-- Plan 3: Elite Athlete -->
+          <article class="pricing-card reveal reveal-stagger-3">
+            <h3 class="plan-tier">Elite Athlete</h3>
+            <p class="plan-desc">Comprehensive one-on-one coaching, biomechanics profiling, and nutrition.</p>
+            <div class="plan-price-wrap">
+              <span class="currency">Rs</span>
+              <span class="price-number" data-price-monthly="129" data-price-yearly="1230">129</span>
+              <span class="billing-period">/ Month</span>
+            </div>
+            <ul class="plan-features">
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>All Black Tier Benefits Included</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>4 Private 1-on-1 Coaching Sessions / mo</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Quarterly Biomechanics &amp; Force Plate Profiling</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Custom Nutrition &amp; Recovery Plan</span></li>
+              <li class="feature-item"><span class="feature-check">&#10003;</span><span>Permanent Dedicated Locker &amp; Towel Service</span></li>
+            </ul>
+            <button type="button" class="btn btn-secondary btn-block btn-open-payment" data-plan="EliteAthlete">Select Elite Athlete &amp; Pay</button>
+          </article>
+
+        </div>
+
+        <!-- Print & Retrieve -->
+        <div class="pricing-print-cta reveal">
+          <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Need an official copy for verification, or already have an active pass?</p>
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm print-trigger" aria-label="Print Membership Plan Details">Print Membership Sheet</button>
+            <button class="btn btn-secondary btn-sm" id="btn-lookup-existing-pass" aria-label="Retrieve Generated Barcode Voucher">Retrieve My Barcode Pass</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== INLINE CHECKOUT SECTION ==================== -->
+    <section class="section" id="checkout-section" style="background-color: var(--bg-surface); border-top: 2px solid var(--border-strong); display: none;">
+      <div class="container">
+        <div class="section-header text-center reveal" style="margin-bottom: 2rem;">
+          <span class="section-tag">Direct Enrollment &bull; Instant Pass</span>
+          <h2 class="section-title">Membership Checkout</h2>
+        </div>
+
+        <div style="max-width: 780px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 2rem;">
+
+          <!-- === CHECKOUT FORM VIEW === -->
+          <div id="checkout-form-view">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle);">
+              <div>
+                <div class="summary-plan-badge" style="margin: 0; padding: 0.4rem 0.85rem; display: inline-flex;">
+                  <span class="summary-plan-name" id="summary-plan-title" style="font-size: 1rem;">Black Tier</span>
+                  <span class="summary-plan-cycle" id="summary-cycle-title" style="margin-left: 6px;">(Monthly)</span>
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-back-to-plans">&larr; Change Plan</button>
+            </div>
+
+            <form id="membership-checkout-form" novalidate>
+
+              <!-- Tier & Interval Selector -->
+              <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label class="form-label" style="font-size: 0.85rem;">Selected Membership Tier &amp; Billing</label>
+                <div class="tier-selection-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 0.75rem;">
+                  <label class="tier-option-card active" for="plan-iron">
+                    <input type="radio" name="membership-plan" id="plan-iron" value="IronPass">
+                    <div class="tier-info">
+                      <span class="tier-name" style="font-size: 0.95rem;">Iron Pass</span>
+                      <div class="tier-price-display"><span class="tier-amount" data-plan="IronPass" style="font-size: 1.15rem;">Rs 49</span><span class="tier-frequency">/mo</span></div>
+                    </div>
+                  </label>
+                  <label class="tier-option-card" for="plan-black">
+                    <input type="radio" name="membership-plan" id="plan-black" value="BlackTier" checked>
+                    <div class="tier-info">
+                      <span class="tier-name" style="font-size: 0.95rem;">Black Tier</span>
+                      <div class="tier-price-display"><span class="tier-amount" data-plan="BlackTier" style="font-size: 1.15rem;">Rs 79</span><span class="tier-frequency">/mo</span></div>
+                    </div>
+                  </label>
+                  <label class="tier-option-card" for="plan-elite">
+                    <input type="radio" name="membership-plan" id="plan-elite" value="EliteAthlete">
+                    <div class="tier-info">
+                      <span class="tier-name" style="font-size: 0.95rem;">Elite Athlete</span>
+                      <div class="tier-price-display"><span class="tier-amount" data-plan="EliteAthlete" style="font-size: 1.15rem;">Rs 129</span><span class="tier-frequency">/mo</span></div>
+                    </div>
+                  </label>
+                </div>
+
+                <div class="billing-switcher-wrap" style="margin-bottom: 0;">
+                  <button type="button" class="billing-opt active" data-cycle="monthly" id="cycle-monthly-btn" style="padding: 0.65rem 1rem;">
+                    <span style="font-size: 0.9rem;">Monthly Rate</span>
+                    <small>Standard Billing</small>
+                  </button>
+                  <button type="button" class="billing-opt" data-cycle="annual" id="cycle-annual-btn" style="padding: 0.65rem 1rem;">
+                    <span style="font-size: 0.9rem;">Annual Pass</span>
+                    <small class="save-badge">Save 20% on 12 Months</small>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Athlete Information -->
+              <div style="margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle);">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem;">1. Athlete Information</h3>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                  <label for="member-name" class="form-label">Full Legal Name *</label>
+                  <input type="text" id="member-name" class="form-input" placeholder="e.g. Alex Hunter" required autocomplete="name">
+                  <span class="form-field-error">Please enter your full name.</span>
+                </div>
+                <div class="form-row" style="margin-bottom: 1rem;">
+                  <div class="form-group">
+                    <label for="member-email" class="form-label">Email Address *</label>
+                    <input type="email" id="member-email" class="form-input" placeholder="e.g. alex@domain.com" required autocomplete="email">
+                    <span class="form-field-error">Please enter a valid email address.</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="member-phone" class="form-label">Contact Number *</label>
+                    <input type="tel" id="member-phone" class="form-input" placeholder="e.g. 98..." required autocomplete="tel">
+                    <span class="form-field-error">Please provide a valid contact number.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="member-student-id" class="form-label">College / Student Roll ID (Optional &bull; 15% Off)</label>
+                  <input type="text" id="member-student-id" class="form-input" placeholder="e.g. STU-2026-891">
+                  <span class="field-hint">Entering a college roll ID automatically grants an additional 15% student rebate.</span>
+                </div>
+              </div>
+
+              <!-- Payment Method -->
+              <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem;">2. Payment Method</h3>
+
+                <div class="pay-method-tabs" role="tablist">
+                  <button type="button" class="pay-tab active" data-method="card" role="tab" aria-selected="true" id="tab-method-card">
+                    <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                    <span>Card Payment</span>
+                  </button>
+                  <button type="button" class="pay-tab" data-method="qr" role="tab" aria-selected="false" id="tab-method-qr">
+                    <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span>Digital QR Pay</span>
+                  </button>
+                  <button type="button" class="pay-tab" data-method="cash" role="tab" aria-selected="false" id="tab-method-cash">
+                    <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/>
+                    </svg>
+                    <span>Desk Cash Voucher</span>
+                  </button>
+                </div>
+
+                <!-- Card Panel -->
+                <div class="pay-panel active" id="panel-method-card">
+                  <div class="card-visual-preview" aria-hidden="true" style="margin-bottom: 1.25rem; padding: 1.25rem;">
+                    <div class="card-chip"></div>
+                    <div class="card-brand-logo" id="card-preview-brand">VISA / MC</div>
+                    <div class="card-number-display" id="card-preview-num" style="font-size: 1.15rem;">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242</div>
+                    <div class="card-meta-row">
+                      <div class="card-holder-info"><span class="card-meta-lbl">ATHLETE</span><span class="card-meta-val" id="card-preview-holder">YOUR NAME</span></div>
+                      <div class="card-expiry-info"><span class="card-meta-lbl">EXPIRES</span><span class="card-meta-val" id="card-preview-exp">12/28</span></div>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 1rem;">
+                    <label for="card-number-input" class="form-label">Card Number *</label>
+                    <div class="input-with-icon">
+                      <input type="text" id="card-number-input" class="form-input" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" maxlength="19" inputmode="numeric">
+                      <span class="card-type-indicator" id="card-brand-icon">💳</span>
+                    </div>
+                    <span class="form-field-error">Please enter a valid 16-digit card number.</span>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="card-holder-input" class="form-label">Name on Card *</label>
+                      <input type="text" id="card-holder-input" class="form-input" placeholder="e.g. ALEX HUNTER" autocomplete="cc-name">
+                      <span class="form-field-error">Please enter name on card.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="card-expiry-input" class="form-label">Expiry (MM/YY) *</label>
+                      <input type="text" id="card-expiry-input" class="form-input" placeholder="MM/YY" maxlength="5" inputmode="numeric">
+                      <span class="form-field-error">MM/YY required.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="card-cvv-input" class="form-label">CVV *</label>
+                      <input type="password" id="card-cvv-input" class="form-input" placeholder="&bull;&bull;&bull;" maxlength="4" inputmode="numeric">
+                      <span class="form-field-error">CVV required.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- QR Panel -->
+                <div class="pay-panel" id="panel-method-qr">
+                  <div class="qr-payment-box" style="padding: 1.5rem;">
+                    <div class="qr-code-frame">
+                      <svg class="qr-svg-graphic" id="checkout-dynamic-qr" viewBox="0 0 160 160" width="140" height="140" aria-label="Simulated QR Code"></svg>
+                      <div class="qr-scan-line" aria-hidden="true"></div>
+                    </div>
+                    <div class="qr-instructions">
+                      <h4 style="margin-bottom: 0.35rem;">Scan &amp; Authorize via Mobile App</h4>
+                      <p style="font-size: 0.82rem; margin-bottom: 0.75rem;">Compatible with <strong>eSewa, Khalti, Fonepay, UPI &amp; Apple Pay</strong>.</p>
+                      <div class="qr-wallet-badges">
+                        <span class="wallet-badge">eSewa</span>
+                        <span class="wallet-badge">Khalti</span>
+                        <span class="wallet-badge">Fonepay</span>
+                        <span class="wallet-badge">Apple Pay</span>
+                      </div>
+                      <button type="button" class="btn btn-secondary btn-sm" id="sim-qr-auth-btn">Simulate Mobile Wallet Approval &rarr;</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cash Panel -->
+                <div class="pay-panel" id="panel-method-cash">
+                  <div class="cash-reservation-box" style="padding: 1.5rem;">
+                    <div class="cash-notice-icon">🏛️</div>
+                    <div class="cash-notice-text">
+                      <h4 style="margin-bottom: 0.35rem;">Front Desk Cashier Voucher</h4>
+                      <p style="font-size: 0.82rem; margin-bottom: 0.5rem;">Reserve your membership tier online and receive your official barcode voucher immediately. Present this barcode at our front desk (Biratnagar-2) to pay cash and enter the gym.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Price Summary -->
+              <div style="background-color: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.5rem;">
+                <div class="summary-row" style="margin-bottom: 0.5rem;">
+                  <span class="summary-label">Membership Subtotal</span>
+                  <span class="summary-val" id="summary-base-price">Rs 79.00</span>
+                </div>
+                <div class="summary-row discount-row" id="summary-annual-discount-row" style="display: none;">
+                  <span class="summary-label">Annual Commitment (20% Off)</span>
+                  <span class="summary-val" id="summary-annual-discount">-Rs 0.00</span>
+                </div>
+                <div class="summary-row discount-row" id="summary-student-discount-row" style="display: none;">
+                  <span class="summary-label">Student / College Rebate (15%)</span>
+                  <span class="summary-val" id="summary-student-discount">-Rs 0.00</span>
+                </div>
+                <div class="summary-row discount-row" id="summary-promo-discount-row" style="display: none;">
+                  <span class="summary-label">Promo Discount (<span id="summary-applied-code"></span>)</span>
+                  <span class="summary-val" id="summary-promo-discount">-Rs 0.00</span>
+                </div>
+                <hr class="summary-divider" style="margin: 0.75rem 0;">
+                <div class="summary-row total-row" style="align-items: baseline;">
+                  <span class="summary-total-label" style="font-size: 1.1rem;">Total Due Today:</span>
+                  <div style="text-align: right;">
+                    <span class="summary-total-val" id="summary-total-price" style="font-size: 1.5rem;">Rs 79.00</span>
+                    <span class="summary-currency-note">All Taxes Included</span>
+                  </div>
+                </div>
+                <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle);">
+                  <div class="promo-input-group">
+                    <input type="text" id="promo-input" class="form-input promo-input" placeholder="Promo code (e.g. RYU2026)" style="font-size: 0.85rem;">
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-apply-promo">Apply</button>
+                  </div>
+                  <span class="promo-feedback" id="promo-feedback-msg"></span>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" class="btn btn-primary btn-block btn-lg btn-magnetic" id="btn-process-payment">
+                <span class="btn-text-default">Authorize Payment &amp; Generate Barcode Voucher</span>
+                <span class="btn-text-loading" style="display: none;">
+                  <span class="spinner-inline"></span>
+                  Processing Payment &amp; Minting Pass...
+                </span>
+              </button>
+              <p class="checkout-terms-note" style="margin-top: 0.5rem; font-size: 0.75rem;">Instant Turnstile Activation &bull; 256-Bit TLS Security &bull; Simulation Ready</p>
+            </form>
+          </div>
+
+          <!-- === VOUCHER SUCCESS VIEW === -->
+          <div id="voucher-success-view" style="display: none;">
+            <div class="voucher-success-banner text-center" style="margin-bottom: 1.5rem;">
+              <div class="success-check-badge" style="width: 52px; height: 52px;">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+              </div>
+              <span class="section-tag" style="margin-top: 0.5rem;">Payment Confirmed &bull; Pass Minted</span>
+              <h2 class="voucher-congrats-title" style="font-size: 1.6rem; margin: 0.5rem 0 0.25rem;">Official Membership Voucher</h2>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Present the Barcode or QR Code at the turnstile gate for entrance clearance.</p>
+            </div>
+
+            <!-- THE PASS CARD -->
+            <div class="official-voucher-card" id="printable-voucher-card">
+              <div class="voucher-header">
+                <div class="voucher-brand">
+                  <svg class="brand-glyph" viewBox="0 0 40 40" fill="currentColor" width="26" height="26" aria-hidden="true">
+                    <rect x="2" y="2" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M12 12 L28 28 M28 12 L12 28" stroke="currentColor" stroke-width="3" stroke-linecap="square"/>
+                    <circle cx="20" cy="20" r="4" fill="currentColor"/>
+                  </svg>
+                  <div class="brand-text-block">
+                    <span class="voucher-brand-name">RYU GYM</span>
+                    <span class="voucher-brand-sub">Official Admission &bull; Athletic Division</span>
+                  </div>
+                </div>
+                <div class="voucher-status-wrap">
+                  <span class="voucher-status-pill">
+                    <span class="status-pulse-dot"></span>
+                    ACTIVE &bull; VERIFIED
+                  </span>
+                  <span class="voucher-id-badge" id="v-code-badge">RYU-2026-X0000</span>
+                </div>
+              </div>
+
+              <div class="voucher-body">
+                <div class="voucher-details-col">
+                  <div class="v-detail-group">
+                    <span class="v-label">ATHLETE NAME</span>
+                    <span class="v-value name-emphasis" id="v-member-name">Alex Hunter</span>
+                  </div>
+                  <div class="v-detail-grid">
+                    <div class="v-detail-group"><span class="v-label">MEMBERSHIP TIER</span><span class="v-value" id="v-tier-title">Black Tier Membership</span></div>
+                    <div class="v-detail-group"><span class="v-label">ACCESS DURATION</span><span class="v-value" id="v-billing-duration">Monthly Pass (30 Days)</span></div>
+                    <div class="v-detail-group"><span class="v-label">ISSUED DATE</span><span class="v-value" id="v-issue-date">Sep 22, 2026</span></div>
+                    <div class="v-detail-group"><span class="v-label">EXPIRATION DATE</span><span class="v-value highlight-expiry" id="v-expiry-date">Oct 22, 2026</span></div>
+                    <div class="v-detail-group"><span class="v-label">AMOUNT SETTLED</span><span class="v-value" id="v-amount-paid">Rs 79.00</span></div>
+                    <div class="v-detail-group"><span class="v-label">PAYMENT METHOD</span><span class="v-value" id="v-payment-method">Credit Card (&bull;&bull;&bull;&bull; 4242)</span></div>
+                  </div>
+                  <div class="v-privileges-box">
+                    <span class="v-label">ACCESS PRIVILEGES:</span>
+                    <p id="v-privileges-summary">Turnstile Gate 1 &amp; 2 &bull; 24/7 Keycard Clearance &bull; Full Facility Access &bull; Sauna &amp; Recovery Suites</p>
+                  </div>
+                </div>
+
+                <div class="voucher-codes-col">
+                  <div class="v-qr-box">
+                    <div class="v-qr-inner" id="voucher-qr-render"></div>
+                    <span class="v-code-caption">SCAN AT TURNSTILE GATE</span>
+                  </div>
+                  <div class="v-barcode-box">
+                    <div class="v-barcode-svg-wrap" id="voucher-barcode-render"></div>
+                    <div class="v-barcode-numeric" id="v-barcode-numeric-display">RYU 2026 0984 1120</div>
+                    <span class="v-code-caption">CODE 39 SCANNER BARCODE</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="voucher-perforation" aria-hidden="true">
+                <span class="perf-circle left"></span>
+                <span class="perf-line"></span>
+                <span class="perf-circle right"></span>
+              </div>
+
+              <div class="voucher-footer">
+                <div class="v-security-note">
+                  <span class="hologram-symbol">&#9881;</span>
+                  <span>Biratnagar-2, Near Chapri Mall &bull; Ryugym@gmail.com &bull; NON-TRANSFERABLE</span>
+                </div>
+                <div class="v-trans-id">TXN REF: <code id="v-trans-id-display">TXN-98427192</code></div>
+              </div>
+            </div>
+
+            <div class="voucher-action-bar" style="margin-top: 1.5rem;">
+              <button type="button" class="btn btn-primary" id="btn-print-voucher">🖨️ Print Voucher / Save PDF</button>
+              <button type="button" class="btn btn-secondary" id="btn-copy-voucher-code">📋 Copy Pass Code</button>
+              <button type="button" class="btn btn-secondary" id="btn-new-checkout">&larr; Enroll Another Member</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Saved Pass Lookup Modal -->
+    <div class="modal-backdrop" id="lookup-modal" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lookup-modal-title" style="max-width: 540px;">
+        <button class="modal-close" id="close-lookup-modal" aria-label="Close Pass Lookup">&times;</button>
+        <div class="modal-header" style="padding: 1.5rem 1.5rem 0.75rem; border-bottom: 1px solid var(--border-subtle);">
+          <h3 id="lookup-modal-title">Retrieve Stored Barcode Passes</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 4px 0 0;">Previously issued vouchers on this device.</p>
+        </div>
+        <div class="modal-body" style="padding: 1.5rem;">
+          <div id="saved-vouchers-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================== SITE FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h2>Ryu Gym</h2>
+          <p>Uncompromising strength, athletic conditioning, and physical discipline. Strictly monochrome, professionally crafted.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About &amp; Facilities</a></li>
+            <li><a href="programs.html">Training Programs</a></li>
+            <li><a href="trainers.html">Our Trainers</a></li>
+            <li><a href="membership.html">Membership &amp; Join</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Training Hours</h4>
+          <ul class="footer-links">
+            <li>Mon &ndash; Fri: 05:00 &ndash; 23:00</li>
+            <li>Saturday: 06:00 &ndash; 21:00</li>
+            <li>Sunday: 07:00 &ndash; 19:00</li>
+            <li>Keycard Access: 24/7/365</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Location</h4>
+          <ul class="footer-links">
+            <li>Biratnagar-2</li>
+            <li>Near Chapri Mall</li>
+            <li>Phone: 980-0000000</li>
+            <li>Email: Ryugym@gmail.com</li>
+          </ul>
+          <div class="social-links-row footer-socials">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Instagram">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on Facebook">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on YouTube">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" ry="4"></rect><polygon points="10 9 15 12 10 15 10 9" fill="currentColor" stroke="none"></polygon></svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow Ryu Gym on X (Twitter)">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Ryu Gym. College Web Development Project. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
