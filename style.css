@@ -1987,6 +1987,15 @@ textarea:focus-visible {
     padding-bottom: 0.75rem;
   }
 
+  .nav-highlight-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: none !important;
+    padding: 0 0 0.75rem 0 !important;
+  }
+
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;

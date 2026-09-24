@@ -311,3 +311,13 @@ Used extensively to store metadata in HTML elements — trainer bios (`data-bio`
 ---
 
 > **© 2026 Ryu Gym — College Web Development Project. Hand-built with semantic HTML5, CSS3, and Vanilla JavaScript.**
+
+
+# Stage all changed files
+git add -A
+
+# Commit with a message
+git commit -m "Your message here"
+
+# Push to GitHub
+git push
