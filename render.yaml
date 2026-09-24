@@ -11,7 +11,7 @@ services:
       - key: PORT
         value: 3001
       - key: FRONTEND_ORIGIN
-        value: https://amancodexd.github.io
+        value: https://amancodexd.github.io,https://ryugym-chi.vercel.app
       - key: ESEWA_PRODUCT_CODE
         value: EPAYTEST
       - key: ESEWA_SECRET_KEY
