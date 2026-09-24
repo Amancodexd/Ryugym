@@ -1234,12 +1234,32 @@ function initCheckoutSystem() {
     });
   }
 
-  // eSewa QR pay button — redirects to real eSewa payment page via backend
-  const simQrAuthBtn = document.getElementById('sim-qr-auth-btn');
-  if (simQrAuthBtn) {
-    simQrAuthBtn.textContent = '🔁 Pay Now with eSewa';
-    simQrAuthBtn.addEventListener('click', () => {
-      executeCheckout();
+  // Wallet tab switcher — toggles between eSewa and Khalti QR panes
+  const walletTabs = document.querySelectorAll('.qr-wallet-tab');
+  if (walletTabs.length) {
+    walletTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const wallet = tab.dataset.wallet;
+
+        // update tab button styles
+        walletTabs.forEach(t => {
+          const isActive = t.dataset.wallet === wallet;
+          if (t.dataset.wallet === 'esewa') {
+            t.style.border = isActive ? '2px solid #4caf50' : '2px solid var(--border-subtle)';
+            t.style.background = isActive ? '#0d2e0d' : 'transparent';
+            t.style.color = isActive ? '#4caf50' : 'var(--text-secondary)';
+          } else {
+            t.style.border = isActive ? '2px solid #7c3aed' : '2px solid var(--border-subtle)';
+            t.style.background = isActive ? '#1a0a2e' : 'transparent';
+            t.style.color = isActive ? '#7c3aed' : 'var(--text-secondary)';
+          }
+        });
+
+        // show the matching QR pane
+        document.querySelectorAll('.qr-pane').forEach(pane => {
+          pane.style.display = pane.id === `pane-${wallet}` ? 'block' : 'none';
+        });
+      });
     });
   }
 
