@@ -7,11 +7,12 @@ const paymentRoutes = require('./routes/payment');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// only allow requests from the frontend origin
-app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN || 'http://127.0.0.1:5500',
-  methods: ['GET', 'POST'],
-}));
+// allow all origins in dev, restrict to frontend domain in production
+const corsOptions = process.env.NODE_ENV === 'production'
+  ? { origin: process.env.FRONTEND_ORIGIN, methods: ['GET', 'POST'] }
+  : { origin: true, methods: ['GET', 'POST'] };
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
