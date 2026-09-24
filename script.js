@@ -1767,7 +1767,6 @@ function initCheckoutSystem() {
   // Backend redirects to: membership.html?payment=success&txn=UUID&ref=REF&amount=AMT
   //                     or: membership.html?payment=failed
   //                     or: membership.html?payment=error&reason=...
-  const urlParams = new URLSearchParams(window.location.search);
   const paymentResult = urlParams.get('payment');
 
   if (paymentResult === 'success') {
