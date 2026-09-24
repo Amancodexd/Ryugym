@@ -1,4 +1,4 @@
-/**
+﻿/**
  * ============================================================================
  * RYU GYM — FITNESS & TRAINING WEBSITE
  * Core Client-Side Logic (Vanilla JavaScript)
@@ -28,10 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCheckoutSystem();
 });
 
-/* ==========================================================================
-   0. GRACEFUL IMAGE PLACEHOLDER FALLBACK
-   Displays sleek monochrome wireframe if user hasn't added custom photo yet.
-   ========================================================================== */
+
 function initImagePlaceholders() {
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
@@ -43,10 +40,7 @@ function initImagePlaceholders() {
   });
 }
 
-/* ==========================================================================
-   1. DARK / LIGHT MODE CONTROLLER
-   Persists user preference to localStorage without third-party libraries.
-   ========================================================================== */
+
 function initThemeToggle() {
   const toggleBtn = document.getElementById('theme-toggle');
   if (!toggleBtn) return;
@@ -69,7 +63,7 @@ function updateThemeIcon(theme) {
   const toggleBtn = document.getElementById('theme-toggle');
   if (!toggleBtn) return;
 
-  // Render clean line-art SVG: Sun for dark mode (to switch to light), Moon for light mode
+  // draw the right icon based on current theme
   if (theme === 'dark') {
     toggleBtn.innerHTML = `
       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -97,10 +91,7 @@ function updateThemeIcon(theme) {
   }
 }
 
-/* ==========================================================================
-   2. STICKY HEADER & SCROLL SHADOW
-   Adds compact styling and crisp border on scroll.
-   ========================================================================== */
+
 function initStickyHeader() {
   const header = document.querySelector('.site-header');
   if (!header) return;
@@ -117,10 +108,7 @@ function initStickyHeader() {
   onScroll();
 }
 
-/* ==========================================================================
-   3. MOBILE RESPONSIVE NAVIGATION DRAWER
-   Smooth accessible drawer toggle with hamburger animation.
-   ========================================================================== */
+
 function initMobileNav() {
   const toggleBtn = document.querySelector('.mobile-toggle-btn');
   const navLinks = document.querySelector('.nav-links');
@@ -132,7 +120,7 @@ function initMobileNav() {
     toggleBtn.setAttribute('aria-expanded', isOpen);
   });
 
-  // Close nav drawer when clicking any link
+  // close the mobile menu when a link is clicked
   navLinks.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('is-open');
@@ -142,10 +130,7 @@ function initMobileNav() {
   });
 }
 
-/* ==========================================================================
-   4. SCROLL REVEAL (INTERSECTION OBSERVER)
-   Smoothly reveals elements as they enter the viewport.
-   ========================================================================== */
+
 function initScrollReveal() {
   const revealElements = document.querySelectorAll('.reveal');
   if (!revealElements.length) return;
@@ -171,10 +156,7 @@ function initScrollReveal() {
   }
 }
 
-/* ==========================================================================
-   5. ANIMATED STATS COUNTER
-   Smooth count-up effect triggered when scrolled into view.
-   ========================================================================== */
+
 function initStatsCounter() {
   const statNumbers = document.querySelectorAll('.stat-number');
   if (!statNumbers.length) return;
@@ -185,13 +167,13 @@ function initStatsCounter() {
     statNumbers.forEach(stat => {
       const target = parseInt(stat.getAttribute('data-target'), 10);
       const suffix = stat.getAttribute('data-suffix') || '';
-      const duration = 1600; // milliseconds
+      const duration = 1600; // how long the count animation takes
       const startTime = performance.now();
 
       const updateCount = (currentTime) => {
         const elapsedTime = currentTime - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
-        // Ease-out cubic formula for natural deceleration
+        // slows down near the end so it looks smooth
         const easeOutProgress = 1 - Math.pow(1 - progress, 3);
         const currentCount = Math.floor(easeOutProgress * target);
 
@@ -227,10 +209,7 @@ function initStatsCounter() {
   }
 }
 
-/* ==========================================================================
-   6. MEMBERSHIP PRICING SECTION (MONTHLY / YEARLY TOGGLE)
-   Smoothly recalculates and animates prices between billing cycles.
-   ========================================================================== */
+
 function initPricingToggle() {
   const toggleSwitch = document.getElementById('pricing-toggle');
   const labelMonthly = document.getElementById('label-monthly');
@@ -292,7 +271,7 @@ function initPricingToggle() {
     });
   }
 
-  // Initial Price count-up on scroll entrance for Pricing Cards
+  // animate prices when they come into view
   const pricingSection = document.querySelector('.pricing-section');
   if (pricingSection && 'IntersectionObserver' in window) {
     let pricesInitialized = false;
@@ -322,10 +301,7 @@ function initPricingToggle() {
   }
 }
 
-/* ==========================================================================
-   7. PROGRAM FILTER ENGINE (PROGRAMS PAGE)
-   Smoothly filters program cards with fade and scale animation.
-   ========================================================================== */
+
 function initProgramFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const programItems = document.querySelectorAll('.program-item');
@@ -360,10 +336,7 @@ function initProgramFilter() {
   });
 }
 
-/* ==========================================================================
-   8. BMI CALCULATOR WIDGET (PROGRAMS PAGE)
-   Calculates BMI and displays animated recommendation for Ryu Gym programs.
-   ========================================================================== */
+
 function initBmiCalculator() {
   const form = document.getElementById('bmi-form');
   if (!form) return;
@@ -385,7 +358,7 @@ function initBmiCalculator() {
       return;
     }
 
-    // BMI Formula: weight (kg) / (height in meters)^2
+    // standard BMI formula
     const heightInMeters = height / 100;
     const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
 
@@ -406,15 +379,15 @@ function initBmiCalculator() {
       recommendation = 'Suggested Plan: Structured Low-Impact Conditioning & Personal Strength Mentorship for progressive transformation.';
     }
 
-    // Smooth reveal animation
+    // fade in the result
     if (scoreDisplay) scoreDisplay.textContent = bmi;
     if (badgeDisplay) badgeDisplay.textContent = category;
     if (recDisplay) recDisplay.textContent = recommendation;
 
-    // Animate SVG Progress Ring (circumference = 2 * PI * r = 2 * 3.14159 * 60 = 377)
+    // draw the ring around the BMI number
     const ringCircle = document.getElementById('bmi-ring-circle');
     if (ringCircle) {
-      // Map BMI roughly from 15 to 35 -> 0% to 100%
+      // convert BMI to a percentage for the ring fill
       const minBmi = 15;
       const maxBmi = 35;
       const clamped = Math.min(Math.max(parseFloat(bmi), minBmi), maxBmi);
@@ -426,10 +399,7 @@ function initBmiCalculator() {
   });
 }
 
-/* ==========================================================================
-   9. TRAINER EXPAND LIGHTBOX MODAL (TRAINERS PAGE)
-   Smooth full-screen expansion from card, dark backdrop, Esc/backdrop dismissal.
-   ========================================================================== */
+
 function initTrainerLightbox() {
   const trainerCards = document.querySelectorAll('.trainer-card');
   const modal = document.getElementById('trainer-modal');
@@ -496,7 +466,7 @@ function initTrainerLightbox() {
 
   trainerCards.forEach(card => {
     card.addEventListener('click', () => openModal(card));
-    // Keyboard accessibility for card
+    // let keyboard users open cards too
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
     card.addEventListener('keydown', (e) => {
@@ -524,10 +494,7 @@ function initTrainerLightbox() {
   });
 }
 
-/* ==========================================================================
-   10. CONTACT FORM VALIDATION & CONFIRMATION
-   Real-time validation, valid email check, animated thank you message.
-   ========================================================================== */
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   const successBanner = document.getElementById('form-success-banner');
@@ -558,35 +525,35 @@ function initContactForm() {
 
     let isValid = true;
 
-    // Validate Name
+    // check name field
     if (!validateField(nameInput, val => val.length >= 2, 'Please enter your full name (minimum 2 characters).')) {
       isValid = false;
     }
 
-    // Validate Email with regex
+    // check email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!validateField(emailInput, val => emailRegex.test(val), 'Please enter a valid email address.')) {
       isValid = false;
     }
 
-    // Validate Phone (digits & basic phone symbols)
+    // check phone number
     const phoneRegex = /^[0-9+()-\s]{7,20}$/;
     if (!validateField(phoneInput, val => phoneRegex.test(val), 'Please provide a valid contact number.')) {
       isValid = false;
     }
 
-    // Validate Program Selection (if present)
+    // check program dropdown if it exists
     if (programInput && !validateField(programInput, val => val !== '', 'Please select a preferred training program.')) {
       isValid = false;
     }
 
-    // Validate Message
+    // check message field
     if (!validateField(messageInput, val => val.length >= 5, 'Please provide brief details or training goals.')) {
       isValid = false;
     }
 
     if (isValid) {
-      // Simulate form submission with clean monochrome confirmation
+      // show thank you message
       form.style.display = 'none';
       if (successBanner) {
         successBanner.classList.add('is-visible');
@@ -595,7 +562,7 @@ function initContactForm() {
     }
   });
 
-  // Pre-fill dropdown if redirected with ?program= or ?plan=
+  // auto-fill program if URL has query string
   const urlParams = new URLSearchParams(window.location.search);
   const requestedProgram = urlParams.get('program') || urlParams.get('plan');
   if (requestedProgram) {
@@ -610,7 +577,7 @@ function initContactForm() {
     }
   }
 
-  // Clear error state on user typing
+  // remove error when user starts typing
   form.querySelectorAll('input, select, textarea').forEach(field => {
     field.addEventListener('input', () => {
       const parent = field.closest('.form-group');
@@ -621,10 +588,7 @@ function initContactForm() {
   });
 }
 
-/* ==========================================================================
-   11. PRINT MEMBERSHIP SPECIFICATION TRIGGER
-   Window print handler with styled media query.
-   ========================================================================== */
+
 function initPrintTrigger() {
   const printButtons = document.querySelectorAll('.print-trigger');
   printButtons.forEach(btn => {
@@ -635,10 +599,7 @@ function initPrintTrigger() {
   });
 }
 
-/* ==========================================================================
-   12. CURSOR-FOLLOWING SPOTLIGHT EFFECT (HERO)
-   Soft circular gray glow following the mouse across the hero section.
-   ========================================================================== */
+
 function initSpotlight() {
   const hero = document.querySelector('.hero-section');
   if (!hero) return;
@@ -652,10 +613,7 @@ function initSpotlight() {
   });
 }
 
-/* ==========================================================================
-   13. TEXT SCRAMBLE / DECODE EFFECT (HERO HEADLINE)
-   Glitches briefly through random letters before settling on page load.
-   ========================================================================== */
+
 function initTextScramble() {
   const targets = document.querySelectorAll('.scramble-text');
   if (!targets.length) return;
@@ -690,15 +648,12 @@ function initTextScramble() {
     };
 
     runScramble();
-    // Allow re-triggering on hover
+    // reset so animation plays again on next hover
     el.addEventListener('mouseenter', runScramble);
   });
 }
 
-/* ==========================================================================
-   14. MAGNETIC BUTTONS
-   Subtly pulls button toward cursor when hovering near.
-   ========================================================================== */
+
 function initMagneticButtons() {
   const magneticBtns = document.querySelectorAll('.btn-magnetic');
   if (!magneticBtns.length) return;
@@ -708,7 +663,7 @@ function initMagneticButtons() {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - (rect.left + rect.width / 2);
       const y = e.clientY - (rect.top + rect.height / 2);
-      // Subtle magnetic pull (max 8px offset)
+      // move button slightly towards cursor, max 8px
       btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.04)`;
     });
 
@@ -718,10 +673,7 @@ function initMagneticButtons() {
   });
 }
 
-/* ==========================================================================
-   15. BEFORE / AFTER COMPARISON SLIDER
-   Interactive draggable divider comparing untrained baseline to conditioned athlete.
-   ========================================================================== */
+
 function initBeforeAfterSlider() {
   const wrapper = document.querySelector('.comparison-wrapper');
   if (!wrapper) return;
@@ -759,16 +711,13 @@ function initBeforeAfterSlider() {
   window.addEventListener('mouseup', stopDrag);
   window.addEventListener('mousemove', onMove);
 
-  // Touch Support
+  // support for touch screens
   wrapper.addEventListener('touchstart', startDrag, { passive: true });
   window.addEventListener('touchend', stopDrag);
   window.addEventListener('touchmove', onMove, { passive: true });
 }
 
-/* ==========================================================================
-   16. LIVE WORKOUT TIMER / TABATA CLOCK (PROGRAMS PAGE)
-   Functional 20s Work / 10s Rest x 8 Rounds interval timer.
-   ========================================================================== */
+
 function initTabataTimer() {
   const display = document.getElementById('tabata-time');
   const badge = document.getElementById('tabata-badge');
@@ -805,7 +754,7 @@ function initTabataTimer() {
       timeLeft--;
       updateDisplay();
     } else {
-      // Transition phase
+      // switch between work and rest
       if (phase === 'WORK') {
         phase = 'REST';
         timeLeft = 10;
@@ -815,7 +764,7 @@ function initTabataTimer() {
           phase = 'WORK';
           timeLeft = 20;
         } else {
-          // Completed all 8 rounds
+          // all rounds done
           clearInterval(timer);
           isRunning = false;
           if (badge) badge.textContent = 'TABATA CYCLE COMPLETE!';
@@ -851,11 +800,9 @@ function initTabataTimer() {
   updateDisplay();
 }
 
-/* ==========================================================================
-   17. KEYBOARD SHORTCUTS (PRESS 'D' FOR DARK MODE)
-   ========================================================================== */
+
 function initKeyboardShortcuts() {
-  // Create toast notification element
+  // build the little popup notification
   const toast = document.createElement('div');
   toast.className = 'toast-notice';
   toast.id = 'shortcut-toast';
@@ -870,7 +817,7 @@ function initKeyboardShortcuts() {
   };
 
   document.addEventListener('keydown', (e) => {
-    // Avoid triggering when user is typing inside an input/textarea
+    // skip shortcuts when user is typing in a field
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') {
       return;
     }
@@ -886,16 +833,12 @@ function initKeyboardShortcuts() {
   });
 }
 
-/* ==========================================================================
-   18. MEMBERSHIP PAYMENT & INSTANT VOUCHER / BARCODE SYSTEM
-   Complete client-side checkout engine with dynamic Code 39/128 barcode,
-   scannable QR matrix, live calculation, and offline pass persistence.
-   ========================================================================== */
+
 function initCheckoutSystem() {
   const form = document.getElementById('membership-checkout-form');
   if (!form) return;
 
-  // Plan catalog with pricing, perks, and access parameters
+  // all membership plans and their details
   const plansCatalog = {
     IronPass: {
       name: 'Iron Pass',
@@ -952,7 +895,7 @@ function initCheckoutSystem() {
     }
   };
 
-  // State management
+  // track what the user has selected
   let currentPlan = 'IronPass';
   let currentCycle = 'monthly'; // 'monthly' | 'annual'
   let currentMethod = 'card';   // 'card' | 'qr' | 'cash'
@@ -1768,10 +1711,7 @@ function initCheckoutSystem() {
   recalculateOrder();
 }
 
-/* ==========================================================================
-   19. SVG BARCODE GENERATOR (CODE 39 STANDARD)
-   Generates authentic vector bars with precision widths and zero dependencies.
-   ========================================================================== */
+
 function generateCode39BarcodeSVG(text, width = 280, height = 50) {
   // Code 39 Patterns: 9 bits per character (5 bars, 4 spaces). 1 = Wide (3 units), 0 = Narrow (1 unit)
   const code39Patterns = {
@@ -1832,10 +1772,7 @@ function generateCode39BarcodeSVG(text, width = 280, height = 50) {
   return `<svg viewBox="0 0 ${totalModules} ${height}" preserveAspectRatio="none" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Barcode: ${text}">${svgBars}</svg>`;
 }
 
-/* ==========================================================================
-   20. SVG SCANNABLE QR MATRIX GENERATOR
-   Generates standard QR structure with finder patterns, timing tracks, and bits.
-   ========================================================================== */
+
 function generateCrispQRSVG(data, size = 120) {
   const matrixSize = 25; // Standard 25x25 grid
   const grid = Array.from({ length: matrixSize }, () => Array(matrixSize).fill(0));
@@ -1932,9 +1869,7 @@ function renderPreviewQR(payload) {
   qrElem.innerHTML = generateCrispQRSVG(payload, 160).replace(/<svg[^>]*>|<\/svg>/g, '');
 }
 
-/* ==========================================================================
-   21. LOCALSTORAGE PASS PERSISTENCE
-   ========================================================================== */
+
 function saveVoucherToStorage(voucherData) {
   try {
     const existing = JSON.parse(localStorage.getItem('ryu_membership_vouchers') || '[]');

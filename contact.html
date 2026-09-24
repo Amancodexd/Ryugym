@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <!-- header with nav links -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
@@ -40,7 +40,7 @@
   </header>
 
   <main>
-    <!-- ==================== CONTACT HERO / TITLE ==================== -->
+    <!-- contact page heading -->
     <section class="section" id="contact">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -50,10 +50,10 @@
         </div>
 
         <div class="contact-grid">
-          <!-- Column 1: Contact Form Card & Success Banner -->
+          <!-- left column: the form -->
           <div class="contact-form-card reveal reveal-stagger-1">
             
-            <!-- Animated Thank You / Inscription Confirmation -->
+            <!-- thank you message that appears after submit -->
             <div class="form-success-banner" id="form-success-banner" role="status" aria-live="polite">
               <h3>Submission Confirmed</h3>
               <p>Your enrollment request has been logged in our system. A Ryu Gym head coach will contact you within 24 hours to schedule your biometric baseline and gym walkthrough.</p>
@@ -62,19 +62,19 @@
               </button>
             </div>
 
-            <!-- Main Interactive Form -->
+            <!-- the contact form -->
             <form id="contact-form" novalidate>
               <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Athlete Orientation Form</h2>
               <p style="font-size: 0.88rem; margin-bottom: 1.75rem;">Complete the fields below. All items are verified by client-side JavaScript.</p>
 
-              <!-- Name Field -->
+              <!-- name input -->
               <div class="form-group" style="margin-bottom: 1.25rem;">
                 <label for="contact-name" class="form-label">Full Legal Name *</label>
                 <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Hunter" required>
                 <span class="form-field-error">Please enter your full name.</span>
               </div>
 
-              <!-- Email & Phone in Responsive Row -->
+              <!-- email and phone side by side -->
               <div class="form-row" style="margin-bottom: 1.25rem;">
                 <div class="form-group">
                   <label for="contact-email" class="form-label">Email Address *</label>
@@ -90,21 +90,21 @@
 
 
 
-              <!-- Message Field -->
+              <!-- message textarea -->
               <div class="form-group" style="margin-bottom: 1.75rem;">
                 <label for="contact-message" class="form-label">Your Goals / Background / Notes *</label>
                 <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Briefly describe your training background, current lifts, or key objectives..." required></textarea>
                 <span class="form-field-error">Please provide a brief note or goal.</span>
               </div>
 
-              <!-- Submit Button -->
+              <!-- submit button -->
               <button type="submit" class="btn btn-primary btn-block btn-magnetic" id="submit-contact-btn">
                 Transmit Registration
               </button>
             </form>
           </div>
 
-          <!-- Column 2: Plain Text Details & Grayscale Map -->
+          <!-- right column: address and map -->
           <div class="contact-info-panel reveal reveal-stagger-2">
             <div class="contact-info-block">
               <h3>Facility Coordinates</h3>
@@ -121,7 +121,7 @@
               <p><strong>Keycard Access:</strong> 24 Hours / 7 Days / 365 Days a Year</p>
             </div>
 
-            <!-- Follow Ryu Gym Block -->
+            <!-- social media links -->
             <div class="contact-info-block">
               <h3>Follow Ryu Gym</h3>
               <p style="margin-bottom: 0.85rem; font-size: 0.9rem; color: var(--text-secondary);">Connect with our athletic collective and stream daily conditioning breakdowns.</p>
@@ -152,7 +152,7 @@
               </div>
             </div>
 
-            <!-- Grayscale Embedded Map -->
+            <!-- google maps embed -->
             <div class="contact-info-block">
               <h3>Location Map</h3>
               <div class="map-frame-wrap">
@@ -173,7 +173,7 @@
     </section>
   </main>
 
-  <!-- ==================== SITE FOOTER ==================== -->
+  <!-- footer section -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">

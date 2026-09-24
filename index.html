@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 
 <head>
@@ -12,7 +12,7 @@
 
 <body>
 
-  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <!-- header with nav links -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
@@ -20,7 +20,7 @@
         <span>Ryu Gym</span>
       </a>
 
-      <!-- Primary Navigation Links -->
+      <!-- main nav links -->
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link active">Home</a></li>
@@ -32,11 +32,11 @@
         </ul>
       </nav>
 
-      <!-- Theme Switcher & Mobile Menu Trigger -->
+      <!-- dark mode toggle and hamburger button -->
       <div class="nav-actions">
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Monochrome Dark/Light Mode"
           title="Toggle Mode">
-          <!-- Populated dynamically by script.js with clean line-art SVG -->
+          <!-- icon set by JS depending on current theme -->
         </button>
         <button class="mobile-toggle-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
           <span></span>
@@ -48,7 +48,7 @@
   </header>
 
   <main>
-    <!-- ==================== HERO SECTION ==================== -->
+    <!-- hero banner at the top of the page -->
     <section class="hero-section" id="hero">
       <div class="hero-spotlight" aria-hidden="true"></div>
       <div class="container hero-grid" style="position: relative; z-index: 2;">
@@ -77,7 +77,7 @@
       </div>
     </section>
 
-    <!-- ==================== MARQUEE / SCROLLING SLOGAN TICKER ==================== -->
+    <!-- scrolling text strip -->
     <div class="ticker-wrap" aria-label="Gym Mottos">
       <div class="ticker-move">
         <span class="ticker-item">NO EXCUSES</span>
@@ -87,7 +87,7 @@
         <span class="ticker-item">FORGED IN IRON</span>
         <span class="ticker-item">CONTINUOUS REFINEMENT</span>
         <span class="ticker-item">NIgga</span>
-        <!-- Duplicated for seamless continuous loop -->
+        <!-- copy pasted twice so the scroll looks endless -->
         <span class="ticker-item">NO EXCUSES</span>
         <span class="ticker-item">NO SHORTCUTS</span>
         <span class="ticker-item">NO LIMITS</span>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <!-- ==================== ANIMATED STATS COUNTER STRIP ==================== -->
+    <!-- the numbers section that counts up -->
     <section class="stats-strip" aria-label="Gym Key Statistics">
       <div class="container">
         <div class="stats-grid">
@@ -122,7 +122,7 @@
       </div>
     </section>
 
-    <!-- ==================== WHY CHOOSE US ==================== -->
+    <!-- features / why choose us section -->
     <section class="section" id="why-choose-us">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -166,7 +166,7 @@
 
     <div class="section-divider"></div>
 
-    <!-- ==================== PROGRAM PREVIEW STRIP ==================== -->
+    <!-- quick look at what programs we offer -->
     <section class="section" id="program-preview">
       <div class="container">
         <div class="section-header reveal">
@@ -177,7 +177,7 @@
         </div>
 
         <div class="program-grid">
-          <!-- Card 1 -->
+          <!-- strength program card -->
           <article class="card reveal reveal-stagger-1">
             <div class="card-media fit-contain" style="background-color: #000000;">
               <img src="assets/heavy metal.jpg" alt="Heavy Iron Strength Program" width="400" height="250">
@@ -195,7 +195,7 @@
             </div>
           </article>
 
-          <!-- Card 2 -->
+          <!-- bodybuilding program card -->
           <article class="card reveal reveal-stagger-2">
             <div class="card-media fit-contain" style="background-color: #ffffff;">
               <img src="assets/high ocatne hiit.jpg" alt="High-Octane HIIT Cardio" width="400" height="250">
@@ -212,7 +212,7 @@
             </div>
           </article>
 
-          <!-- Card 3 -->
+          <!-- cardio program card -->
           <article class="card reveal reveal-stagger-3">
             <div class="card-media">
               <img src="assets/act fight.jpg" alt="Combat Conditioning" width="400" height="250">
@@ -239,7 +239,7 @@
 
     <div class="section-divider"></div>
 
-    <!-- ==================== TRAINER PREVIEW STRIP ==================== -->
+    <!-- trainer highlights section -->
     <section class="section" id="trainers-preview">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -250,7 +250,7 @@
         </div>
 
         <div class="trainers-grid">
-          <!-- Trainer 1 -->
+          <!-- first trainer preview -->
           <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
             <div class="trainer-photo-wrap">
               <video src="assets/walking.mp4" autoplay loop muted playsinline width="350" height="450"></video>
@@ -263,7 +263,7 @@
             </div>
           </article>
 
-          <!-- Trainer 2 -->
+          <!-- second trainer preview -->
           <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
             <div class="trainer-photo-wrap">
               <video src="assets/gym boii.mp4" autoplay loop muted playsinline width="350" height="450"></video>
@@ -276,7 +276,7 @@
             </div>
           </article>
 
-          <!-- Trainer 3 -->
+          <!-- third trainer preview -->
           <article class="card trainer-card reveal reveal-stagger-1" onclick="window.location.href='trainers.html'">
             <div class="trainer-photo-wrap">
               <video src="assets/giga chad.mp4" autoplay loop muted playsinline width="350" height="450"></video>
@@ -297,7 +297,7 @@
       </div>
     </section>
 
-    <!-- ==================== BEFORE / AFTER TRANSFORMATION SLIDER ==================== -->
+    <!-- before and after comparison slider -->
     <section class="comparison-section" id="transformation">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -309,19 +309,19 @@
 
         <div class="comparison-wrapper reveal reveal-stagger-1"
           aria-label="Before and After Transformation Comparison Slider">
-          <!-- Background Image: After (Conditioned) -->
+          <!-- after photo in the background -->
           <div class="comparison-image image-before">
             <img src="assets/Cute-Cat.jpg" alt="Conditioned Athlete Output" width="960" height="540">
             <span class="comparison-badge badge-right"></span>
           </div>
 
-          <!-- Foreground Overlay Image: Before (Baseline) -->
+          <!-- before photo layered on top -->
           <div class="comparison-image image-after">
             <img src="assets/fatcat.jpg" alt="Day 1 Baseline Foundation" width="960" height="540">
             <span class="comparison-badge badge-left">Day 1 &bull; Baseline</span>
           </div>
 
-          <!-- Draggable Divider Handle -->
+          <!-- the handle you drag to compare -->
           <div class="comparison-slider-handle" aria-hidden="true">
             <div class="handle-circle">&#8644;</div>
           </div>
@@ -329,7 +329,7 @@
       </div>
     </section>
 
-    <!-- ==================== TRIAL PASS CALLOUT ==================== -->
+    <!-- call to action at the bottom -->
     <section class="section section-tight"
       style="background-color: var(--bg-surface); border-top: 1px solid var(--border-subtle);">
       <div class="container text-center reveal">
@@ -342,7 +342,7 @@
     </section>
   </main>
 
-  <!-- ==================== SITE FOOTER ==================== -->
+  <!-- footer section -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">

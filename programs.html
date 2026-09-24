@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <!-- header with nav links -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
@@ -39,7 +39,7 @@
   </header>
 
   <main>
-    <!-- ==================== PROGRAMS HEADER & FILTER ==================== -->
+    <!-- programs heading and filter buttons -->
     <section class="section" id="programs">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -48,7 +48,7 @@
           <p class="section-subtitle">Scientifically structured training blocks designed to force physiological adaptation without wasted effort.</p>
         </div>
 
-        <!-- JS Dynamic Filter Bar -->
+        <!-- filter bar gets built by JS -->
         <div class="filter-bar reveal">
           <button class="filter-btn active" data-filter="all">All Programs</button>
           <button class="filter-btn" data-filter="strength">Strength</button>
@@ -57,10 +57,10 @@
           <button class="filter-btn" data-filter="flexibility">Flexibility &amp; Mobility</button>
         </div>
 
-        <!-- Filterable Program Grid -->
+        <!-- program cards grid -->
         <div class="program-grid" id="program-container">
 
-          <!-- Program 1: Strength -->
+          <!-- strength program -->
           <article class="card program-item reveal reveal-stagger-1" data-category="strength">
             <div class="card-media">
               <img src="assets/heavy metal.jpg" alt="Heavy Iron Strength" width="400" height="250">
@@ -77,7 +77,7 @@
             </div>
           </article>
 
-          <!-- Program 2: Bodybuilding -->
+          <!-- bodybuilding program -->
           <article class="card program-item reveal reveal-stagger-2" data-category="bodybuilding">
             <div class="card-media">
               <img src="assets/hyoertrophy.jpg" alt="Hypertrophy Architecture" width="380" height="100">
@@ -94,7 +94,7 @@
             </div>
           </article>
 
-          <!-- Program 3: Cardio -->
+          <!-- cardio program -->
           <article class="card program-item reveal reveal-stagger-3" data-category="cardio">
             <div class="card-media">
               <img src="assets/high ocatne hiit.jpg" alt="High-Octane HIIT Cardio" width="400" height="250">
@@ -111,7 +111,7 @@
             </div>
           </article>
 
-          <!-- Program 4: Flexibility -->
+          <!-- flexibility program -->
           <article class="card program-item reveal reveal-stagger-1" data-category="flexibility">
             <div class="card-media">
               <img src="assets/yoga and mobility.jpg" alt="Athletic Mobility & Yoga" width="400" height="250">
@@ -128,7 +128,7 @@
             </div>
           </article>
 
-          <!-- Program 5: Cardio -->
+          <!-- second cardio program -->
           <article class="card program-item reveal reveal-stagger-2" data-category="cardio">
             <div class="card-media">
               <img src="assets/act fight.jpg" alt="Combat Conditioning" width="400" height="250">
@@ -145,7 +145,7 @@
             </div>
           </article>
 
-          <!-- Program 6: Strength -->
+          <!-- second strength program -->
           <article class="card program-item reveal reveal-stagger-3" data-category="strength">
             <div class="card-media">
                <video src="assets/deadkift.mp4" autoplay loop muted playsinline width="380" height="450"></video>
@@ -164,7 +164,7 @@
 
         </div>
 
-        <!-- ==================== BMI CALCULATOR WIDGET ==================== -->
+        <!-- BMI calculator section -->
         <div class="bmi-calculator-wrapper reveal" id="bmi-widget">
           <div class="bmi-grid">
             <div>
@@ -190,7 +190,7 @@
               </form>
             </div>
 
-            <!-- Dynamic Result Card with Animated SVG Progress Ring -->
+            <!-- result shows here after calculating -->
             <div class="bmi-result-panel" id="bmi-result-panel">
               <div style="font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Calculated Result</div>
               
@@ -211,7 +211,7 @@
           </div>
         </div>
 
-        <!-- ==================== LIVE WORKOUT TIMER / TABATA CLOCK ==================== -->
+        <!-- tabata interval timer -->
         <div class="tabata-widget reveal" id="tabata-clock">
           <span class="section-tag">Functional Tool</span>
           <h2 style="font-size: 2.2rem; margin-bottom: 0.5rem;">Live HIIT / Tabata Conditioning Clock</h2>
@@ -232,7 +232,7 @@
     </section>
   </main>
 
-  <!-- ==================== SITE FOOTER ==================== -->
+  <!-- footer section -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">

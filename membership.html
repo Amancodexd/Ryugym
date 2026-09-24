@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
@@ -9,13 +9,13 @@
 </head>
 <body>
 
-  <!-- Print Header (Visible ONLY when printing) -->
+  <!-- only shows up when printing the page -->
   <div class="print-header">
     <h1>RYU GYM &mdash; OFFICIAL MEMBERSHIP SPECIFICATIONS</h1>
     <p>Biratnagar-2 &bull; Near Chapri Mall &bull; Tel: 980-0000000 &bull; Ryugym@gmail.com</p>
   </div>
 
-  <!-- ==================== SITE HEADER & NAV ==================== -->
+  <!-- header with nav links -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
@@ -46,7 +46,7 @@
   </header>
 
   <main>
-    <!-- ==================== PAGE HERO ==================== -->
+    <!-- page hero / banner -->
     <section class="section section-tight" id="membership-hero"
       style="background-color: var(--bg-primary); color: var(--text-on-primary); border-bottom: 1px solid var(--border-strong);">
       <div class="container text-center reveal">
@@ -58,7 +58,7 @@
       </div>
     </section>
 
-    <!-- ==================== MEMBERSHIP PRICING SECTION ==================== -->
+    <!-- pricing cards section -->
     <section class="section pricing-section" id="pricing">
       <div class="container">
         <div class="section-header text-center reveal">
@@ -67,7 +67,7 @@
           <p class="section-subtitle">No signup fees. No cancellation penalties. Just honest access to premier strength facilities.</p>
         </div>
 
-        <!-- Monthly / Yearly Switcher -->
+        <!-- toggle between monthly and yearly prices -->
         <div class="pricing-toggle-wrap reveal">
           <span class="pricing-toggle-label active" id="label-monthly">Billed Monthly</span>
           <button class="toggle-switch" id="pricing-toggle" role="switch" aria-checked="false" aria-label="Toggle Monthly or Annual Billing">
@@ -76,10 +76,10 @@
           <span class="pricing-toggle-label" id="label-yearly">Billed Annually <small style="font-size: 0.75rem; border: 1px solid var(--border-strong); padding: 2px 6px; margin-left: 4px;">Save 20%</small></span>
         </div>
 
-        <!-- 3 Pricing Cards -->
+        <!-- the three plan cards -->
         <div class="pricing-grid">
 
-          <!-- Plan 1: Iron Pass -->
+          <!-- basic plan card -->
           <article class="pricing-card reveal reveal-stagger-1">
             <h3 class="plan-tier">Iron Pass</h3>
             <p class="plan-desc">For dedicated independent lifters requiring uncompromised equipment access.</p>
@@ -98,7 +98,7 @@
             <button type="button" class="btn btn-secondary btn-block btn-open-payment" data-plan="IronPass">Select Iron Pass &amp; Pay</button>
           </article>
 
-          <!-- Plan 2: Black Tier -->
+          <!-- mid plan card -->
           <article class="pricing-card featured reveal reveal-stagger-2">
             <div class="popular-badge">Most Popular</div>
             <h3 class="plan-tier">Black Tier</h3>
@@ -118,7 +118,7 @@
             <button type="button" class="btn btn-primary btn-block btn-open-payment" data-plan="BlackTier">Select Black Tier &amp; Pay</button>
           </article>
 
-          <!-- Plan 3: Elite Athlete -->
+          <!-- premium plan card -->
           <article class="pricing-card reveal reveal-stagger-3">
             <h3 class="plan-tier">Elite Athlete</h3>
             <p class="plan-desc">Comprehensive one-on-one coaching, biomechanics profiling, and nutrition.</p>
@@ -139,7 +139,7 @@
 
         </div>
 
-        <!-- Print & Retrieve -->
+        <!-- print pass button area -->
         <div class="pricing-print-cta reveal">
           <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">Need an official copy for verification, or already have an active pass?</p>
           <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
@@ -150,7 +150,7 @@
       </div>
     </section>
 
-    <!-- ==================== INLINE CHECKOUT SECTION ==================== -->
+    <!-- checkout form section -->
     <section class="section" id="checkout-section" style="background-color: var(--bg-surface); border-top: 2px solid var(--border-strong); display: none;">
       <div class="container">
         <div class="section-header text-center reveal" style="margin-bottom: 2rem;">
@@ -160,7 +160,7 @@
 
         <div style="max-width: 780px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 2rem;">
 
-          <!-- === CHECKOUT FORM VIEW === -->
+          <!-- the checkout form -->
           <div id="checkout-form-view">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle);">
               <div>
@@ -174,7 +174,7 @@
 
             <form id="membership-checkout-form" novalidate>
 
-              <!-- Tier & Interval Selector -->
+              <!-- choose plan and billing period -->
               <div class="form-group" style="margin-bottom: 1.5rem;">
                 <label class="form-label" style="font-size: 0.85rem;">Selected Membership Tier &amp; Billing</label>
                 <div class="tier-selection-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 0.75rem;">
@@ -213,7 +213,7 @@
                 </div>
               </div>
 
-              <!-- Athlete Information -->
+              <!-- personal info fields -->
               <div style="margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-subtle);">
                 <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem;">1. Athlete Information</h3>
                 <div class="form-group" style="margin-bottom: 1rem;">
@@ -240,7 +240,7 @@
                 </div>
               </div>
 
-              <!-- Payment Method -->
+              <!-- payment method tabs -->
               <div style="margin-bottom: 1.5rem;">
                 <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem;">2. Payment Method</h3>
 
@@ -265,7 +265,7 @@
                   </button>
                 </div>
 
-                <!-- Card Panel -->
+                <!-- credit card payment panel -->
                 <div class="pay-panel active" id="panel-method-card">
                   <div class="card-visual-preview" aria-hidden="true" style="margin-bottom: 1.25rem; padding: 1.25rem;">
                     <div class="card-chip"></div>
@@ -303,7 +303,7 @@
                   </div>
                 </div>
 
-                <!-- QR Panel -->
+                <!-- QR code payment panel -->
                 <div class="pay-panel" id="panel-method-qr">
                   <div class="qr-payment-box" style="padding: 1.5rem;">
                     <div class="qr-code-frame">
@@ -324,7 +324,7 @@
                   </div>
                 </div>
 
-                <!-- Cash Panel -->
+                <!-- cash payment panel -->
                 <div class="pay-panel" id="panel-method-cash">
                   <div class="cash-reservation-box" style="padding: 1.5rem;">
                     <div class="cash-notice-icon">🏛️</div>
@@ -336,7 +336,7 @@
                 </div>
               </div>
 
-              <!-- Price Summary -->
+              <!-- order summary on the right -->
               <div style="background-color: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.5rem;">
                 <div class="summary-row" style="margin-bottom: 0.5rem;">
                   <span class="summary-label">Membership Subtotal</span>
@@ -371,7 +371,7 @@
                 </div>
               </div>
 
-              <!-- Submit -->
+              <!-- submit payment button -->
               <button type="submit" class="btn btn-primary btn-block btn-lg btn-magnetic" id="btn-process-payment">
                 <span class="btn-text-default">Authorize Payment &amp; Generate Barcode Voucher</span>
                 <span class="btn-text-loading" style="display: none;">
@@ -383,7 +383,7 @@
             </form>
           </div>
 
-          <!-- === VOUCHER SUCCESS VIEW === -->
+          <!-- shown after successful payment -->
           <div id="voucher-success-view" style="display: none;">
             <div class="voucher-success-banner text-center" style="margin-bottom: 1.5rem;">
               <div class="success-check-badge" style="width: 52px; height: 52px;">
@@ -394,7 +394,7 @@
               <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Present the Barcode or QR Code at the turnstile gate for entrance clearance.</p>
             </div>
 
-            <!-- THE PASS CARD -->
+            <!-- the membership pass card -->
             <div class="official-voucher-card" id="printable-voucher-card">
               <div class="voucher-header">
                 <div class="voucher-brand">
@@ -476,7 +476,7 @@
       </div>
     </section>
 
-    <!-- Saved Pass Lookup Modal -->
+    <!-- modal to look up saved passes -->
     <div class="modal-backdrop" id="lookup-modal" aria-hidden="true">
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lookup-modal-title" style="max-width: 540px;">
         <button class="modal-close" id="close-lookup-modal" aria-label="Close Pass Lookup">&times;</button>
@@ -492,7 +492,7 @@
 
   </main>
 
-  <!-- ==================== SITE FOOTER ==================== -->
+  <!-- footer section -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">

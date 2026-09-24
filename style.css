@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    RYU GYM — FITNESS & TRAINING WEBSITE
    Style System: Strict Monochrome, Editorial Typography, Precision Physics
    Colors: Pure Black (#000000), Pure White (#ffffff), and Grays (#141414, #555555, #e5e5e5)
@@ -6,9 +6,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 
-/* --- CSS Root Variables & Theme Tokens --- */
+/* color and font variables */
 :root {
-  /* Light Theme (Default) */
+  /* light mode colors */
   --bg-primary: #ffffff;
   --bg-surface: #f7f7f7;
   --bg-card: #ffffff;
@@ -25,11 +25,11 @@
   --badge-bg: #000000;
   --badge-text: #ffffff;
   
-  /* Fonts */
+  /* font families */
   --font-heading: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
-  /* Transitions */
+  /* transition speeds */
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-long: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,7 +53,7 @@
   --badge-text: #000000;
 }
 
-/* --- Base Reset & Typography --- */
+/* basic reset and font setup */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -128,7 +128,7 @@ ul {
   list-style: none;
 }
 
-/* --- Global Layout Containers --- */
+/* layout container widths */
 .container {
   width: 100%;
   max-width: 1240px;
@@ -187,7 +187,7 @@ ul {
   margin: 0;
 }
 
-/* --- Focus States for Accessibility --- */
+/* keyboard focus ring styling */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -197,7 +197,7 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
-/* --- Buttons & Action Physics --- */
+/* button styles */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -223,12 +223,12 @@ textarea:focus-visible {
   transform: scale(0.97) !important;
 }
 
-/* Magnetic Button Base Transition */
+/* smooth movement for buttons */
 .btn-magnetic {
   will-change: transform;
 }
 
-/* --- Hero Cursor Spotlight Effect --- */
+/* spotlight that follows mouse on hero */
 .hero-section {
   position: relative;
   padding: 6.5rem 0 5.5rem;
@@ -250,7 +250,7 @@ textarea:focus-visible {
   background: radial-gradient(650px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 70%);
 }
 
-/* --- Marquee / Scrolling Slogan Ticker Strip --- */
+/* the scrolling text strip */
 .ticker-wrap {
   width: 100%;
   background-color: var(--text-primary);
@@ -295,7 +295,7 @@ textarea:focus-visible {
   100% { transform: translate3d(-50%, 0, 0); }
 }
 
-/* --- Interactive Before / After Image Comparison Slider --- */
+/* before/after comparison slider */
 .comparison-section {
   padding: 5.5rem 0;
   border-bottom: 1px solid var(--border-subtle);
@@ -356,7 +356,7 @@ textarea:focus-visible {
   pointer-events: none;
 }
 
-/* Colorful slider handle where user slides */
+/* the draggable divider handle */
 .handle-circle {
   width: 46px;
   height: 46px;
@@ -395,7 +395,7 @@ textarea:focus-visible {
 .badge-left { left: 1.25rem; }
 .badge-right { right: 1.25rem; }
 
-/* --- Tabata / Interval Clock Widget (Programs Page) --- */
+/* tabata timer widget */
 .tabata-widget {
   background-color: var(--bg-card);
   border: 2px solid var(--border-strong);
@@ -442,7 +442,7 @@ textarea:focus-visible {
   flex-wrap: wrap;
 }
 
-/* --- SVG Progress Ring for BMI Widget --- */
+/* circular ring around BMI result */
 .progress-ring-wrap {
   position: relative;
   width: 140px;
@@ -479,7 +479,7 @@ textarea:focus-visible {
   justify-content: center;
 }
 
-/* --- Toast Notification (for Keyboard Shortcut [D]) --- */
+/* small popup notification */
 .toast-notice {
   position: fixed;
   bottom: 2rem;
@@ -505,7 +505,7 @@ textarea:focus-visible {
   transform: translateY(0);
 }
 
-/* Primary Button: Black Bg / White Text -> Inverts on hover with scale */
+/* main black button */
 .btn-primary {
   background-color: var(--text-primary);
   color: var(--bg-primary);
@@ -518,7 +518,7 @@ textarea:focus-visible {
   transform: scale(1.04);
 }
 
-/* Secondary Button: Transparent Bg / Black Border -> Inverts on hover */
+/* outlined button */
 .btn-secondary {
   background-color: transparent;
   color: var(--text-primary);
@@ -531,19 +531,19 @@ textarea:focus-visible {
   transform: scale(1.04);
 }
 
-/* Small Button Variant */
+/* small size button */
 .btn-sm {
   padding: 0.6rem 1.25rem;
   font-size: 0.82rem;
   letter-spacing: 0.1em;
 }
 
-/* Block Button */
+/* full width button */
 .btn-block {
   width: 100%;
 }
 
-/* --- Signature Floating Cards --- */
+/* floating stat cards on hero */
 .card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -606,7 +606,7 @@ textarea:focus-visible {
   justify-content: space-between;
 }
 
-/* --- Header & Navigation --- */
+/* site header and navbar */
 .site-header {
   position: sticky;
   top: 0;
@@ -679,7 +679,7 @@ textarea:focus-visible {
   color: var(--text-primary);
 }
 
-/* Strictly Monochrome Underline for Active State (NO COLOR) */
+/* underline for active nav link */
 .nav-link.active {
   color: var(--text-primary);
   font-weight: 700;
@@ -701,7 +701,7 @@ textarea:focus-visible {
   gap: 1rem;
 }
 
-/* Monochrome Theme Toggle Button */
+/* dark/light mode toggle button */
 .theme-toggle-btn {
   background: transparent;
   border: 1px solid var(--border-strong);
@@ -732,7 +732,7 @@ textarea:focus-visible {
   stroke-linejoin: round;
 }
 
-/* Mobile Nav Toggle */
+/* hamburger menu button */
 .mobile-toggle-btn {
   display: none;
   background: transparent;
@@ -765,7 +765,7 @@ textarea:focus-visible {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* --- Hero Section (Home) --- */
+/* homepage hero section */
 .hero-section {
   position: relative;
   padding: 6.5rem 0 5.5rem;
@@ -861,7 +861,7 @@ textarea:focus-visible {
   text-transform: uppercase;
 }
 
-/* --- Animated Stats Counter Strip --- */
+/* stats numbers section */
 .stats-strip {
   background-color: var(--bg-card);
   border-bottom: 1px solid var(--border-subtle);
@@ -901,7 +901,7 @@ textarea:focus-visible {
   font-weight: 500;
 }
 
-/* --- Feature Grid (Why Choose Us) --- */
+/* why choose us cards */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -923,7 +923,7 @@ textarea:focus-visible {
   padding-bottom: 2px;
 }
 
-/* --- Program Previews & Program Grid --- */
+/* program cards layout */
 .program-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -948,7 +948,7 @@ textarea:focus-visible {
   border-radius: 2px;
 }
 
-/* Filter Controls (Programs Page) */
+/* filter buttons on programs page */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -983,7 +983,7 @@ textarea:focus-visible {
   border-color: var(--text-primary);
 }
 
-/* Program Card Transitions when Filtered */
+/* animation when cards are filtered */
 .program-item {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -995,7 +995,7 @@ textarea:focus-visible {
   display: none;
 }
 
-/* --- Interactive BMI Calculator Widget --- */
+/* BMI calculator widget */
 .bmi-calculator-wrapper {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-strong);
@@ -1099,7 +1099,7 @@ textarea:focus-visible {
   color: var(--text-secondary);
 }
 
-/* --- Trainers Grid & Click-to-Expand Lightbox --- */
+/* trainers section and cards */
 .trainers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1177,7 +1177,7 @@ textarea:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Lightbox Modal (Click-to-Expand) */
+/* popup that opens when you click a trainer */
 .lightbox-modal {
   position: fixed;
   inset: 0;
@@ -1323,14 +1323,14 @@ textarea:focus-visible {
   color: var(--text-primary);
 }
 
-/* --- Membership Pricing Section (About Page) --- */
+/* pricing cards section */
 .pricing-section {
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Billing Toggle Switch */
+/* monthly/yearly toggle switch */
 .pricing-toggle-wrap {
   display: flex;
   align-items: center;
@@ -1380,7 +1380,7 @@ textarea:focus-visible {
   transform: translateX(30px);
 }
 
-/* 3 Floating Pricing Cards */
+/* the three plan cards */
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1407,7 +1407,7 @@ textarea:focus-visible {
   box-shadow: var(--card-shadow-hover);
 }
 
-/* Standard / Featured Card */
+/* pricing card base style */
 .pricing-card.featured {
   border: 2px solid var(--border-strong);
   transform: translateY(-4px);
@@ -1417,7 +1417,7 @@ textarea:focus-visible {
   transform: translateY(-12px);
 }
 
-/* Most Popular Badge with Slow Pulse Animation */
+/* popular badge on middle card */
 .popular-badge {
   position: absolute;
   top: -14px;
@@ -1528,7 +1528,7 @@ textarea:focus-visible {
   margin-top: 3.5rem;
 }
 
-/* --- Facilities Grid (About Page) --- */
+/* facility cards on about page */
 .facility-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1559,7 +1559,7 @@ textarea:focus-visible {
   transform: scale(1.05);
 }
 
-/* --- Schedule / Operating Hours Table --- */
+/* opening hours table */
 .schedule-table-wrap {
   border: 1px solid var(--border-strong);
   background-color: var(--bg-card);
@@ -1595,7 +1595,7 @@ textarea:focus-visible {
   background-color: var(--bg-surface);
 }
 
-/* --- Contact Page Layout & Form Validation --- */
+/* contact page layout and form */
 .contact-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -1621,7 +1621,7 @@ textarea:focus-visible {
   font-size: 0.95rem;
 }
 
-/* Grayscale Embedded Map */
+/* the map embed */
 .map-frame-wrap {
   border: 1px solid var(--border-strong);
   overflow: hidden;
@@ -1671,7 +1671,7 @@ textarea:focus-visible {
   display: block;
 }
 
-/* Animated Confirmation Modal / Banner */
+/* thank you popup after form submit */
 .form-success-banner {
   display: none;
   background-color: var(--text-primary);
@@ -1709,7 +1709,7 @@ textarea:focus-visible {
   }
 }
 
-/* --- Scroll Reveal Animations --- */
+/* fade-in animation on scroll */
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -1726,7 +1726,7 @@ textarea:focus-visible {
 .reveal-stagger-3 { transition-delay: 0.3s; }
 .reveal-stagger-4 { transition-delay: 0.4s; }
 
-/* --- Footer --- */
+/* site footer */
 .site-footer {
   background-color: var(--bg-primary);
   border-top: 1px solid var(--border-strong);
@@ -1772,7 +1772,7 @@ textarea:focus-visible {
   text-decoration: underline;
 }
 
-/* --- Social Media Links --- */
+/* social icons in footer */
 .social-links-row {
   display: flex;
   align-items: center;
@@ -1829,7 +1829,7 @@ textarea:focus-visible {
   gap: 1rem;
 }
 
-/* --- Print Stylesheet --- */
+/* styles for when the page is printed */
 @media print {
   body {
     background-color: #ffffff !important;
@@ -1901,7 +1901,7 @@ textarea:focus-visible {
   display: none;
 }
 
-/* --- Responsive Media Queries --- */
+/* responsive styles for different screen sizes */
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -2025,7 +2025,7 @@ textarea:focus-visible {
    Monochrome luxury pass styling, interactive card, wallet QR, and barcode.
    ========================================================================== */
 
-/* Navigation Highlight for Join / Pay */
+/* highlighted nav link for membership */
 .nav-highlight-link {
   border: 1.5px solid var(--border-strong) !important;
   padding: 0.35rem 0.85rem !important;
@@ -2040,7 +2040,7 @@ textarea:focus-visible {
   color: var(--bg-primary) !important;
 }
 
-/* Checkout Banner Section */
+/* checkout page banner */
 .checkout-banner-section {
   padding: 4rem 0 2rem;
   border-bottom: 1px solid var(--border-subtle);
@@ -2051,7 +2051,7 @@ textarea:focus-visible {
   margin: 0.75rem 0 1rem;
 }
 
-/* Checkout Two-Column Grid */
+/* checkout form layout */
 .checkout-section {
   padding: 3.5rem 0 6rem;
 }
@@ -2063,7 +2063,7 @@ textarea:focus-visible {
   align-items: start;
 }
 
-/* Step Cards */
+/* the step indicator cards */
 .checkout-step-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -2125,7 +2125,7 @@ textarea:focus-visible {
   margin-top: 0.35rem;
 }
 
-/* Billing Switcher Buttons */
+/* plan switcher buttons */
 .billing-switcher-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2175,7 +2175,7 @@ textarea:focus-visible {
   border-color: var(--border-medium);
 }
 
-/* Tier Radio Selection Grid */
+/* plan selection radio buttons */
 .tier-selection-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2274,7 +2274,7 @@ textarea:focus-visible {
   color: var(--text-muted);
 }
 
-/* Payment Method Tabs */
+/* payment method tab buttons */
 .pay-method-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2329,7 +2329,7 @@ textarea:focus-visible {
   display: block;
 }
 
-/* Credit Card Visual Preview */
+/* the visual credit card display */
 .card-visual-preview {
   background: linear-gradient(135deg, #111111 0%, #1e1e1e 50%, #0d0d0d 100%);
   color: #ffffff;
@@ -2442,7 +2442,7 @@ textarea:focus-visible {
   border: 1px solid var(--border-subtle);
 }
 
-/* QR Wallet Payment Box */
+/* QR payment section */
 .qr-payment-box {
   display: flex;
   gap: 2rem;
@@ -2519,7 +2519,7 @@ textarea:focus-visible {
   letter-spacing: 0.05em;
 }
 
-/* Cash Reservation Box */
+/* cash payment section */
 .cash-reservation-box {
   display: flex;
   gap: 1.5rem;
@@ -2546,7 +2546,7 @@ textarea:focus-visible {
   margin-bottom: 0.75rem;
 }
 
-/* Submit Section */
+/* form submit button area */
 .checkout-submit-wrap {
   margin-top: 1rem;
 }
@@ -2574,7 +2574,7 @@ textarea:focus-visible {
   to { transform: rotate(360deg); }
 }
 
-/* Order Summary Column */
+/* summary on the right side */
 .order-summary-card {
   position: sticky;
   top: 100px;
@@ -2680,7 +2680,7 @@ textarea:focus-visible {
   margin-top: 2px;
 }
 
-/* Promo Code Box */
+/* promo code input */
 .promo-code-wrap {
   margin-top: 1.5rem;
   padding-top: 1.25rem;
@@ -2728,7 +2728,7 @@ textarea:focus-visible {
   font-weight: 600;
 }
 
-/* Summary Features Checklist */
+/* feature checklist in summary */
 .summary-features {
   margin-top: 1.75rem;
   padding-top: 1.25rem;
@@ -2799,7 +2799,7 @@ textarea:focus-visible {
   margin: 0.75rem 0 0.5rem;
 }
 
-/* THE PHYSICAL PASS */
+/* the membership pass card design */
 .official-voucher-card {
   background-color: var(--bg-card);
   border: 2px solid var(--border-strong);
@@ -2810,7 +2810,7 @@ textarea:focus-visible {
   margin-bottom: 2rem;
 }
 
-/* Top Voucher Header */
+/* top part of the pass */
 .voucher-header {
   background-color: var(--bg-surface);
   border-bottom: 1.5px solid var(--border-strong);
@@ -2892,7 +2892,7 @@ textarea:focus-visible {
   letter-spacing: 0.08em;
 }
 
-/* Core Voucher Body: 2 Columns */
+/* main body of the pass */
 .voucher-body {
   padding: 2.25rem 2rem;
   display: grid;
@@ -2955,7 +2955,7 @@ textarea:focus-visible {
   margin: 0.35rem 0 0;
 }
 
-/* Codes Column: Barcode & QR */
+/* barcode and QR side of the pass */
 .voucher-codes-col {
   display: flex;
   flex-direction: column;
@@ -3018,7 +3018,7 @@ textarea:focus-visible {
   margin-top: 4px;
 }
 
-/* Perforation Notch Line */
+/* the dashed tear line */
 .voucher-perforation {
   position: relative;
   height: 20px;
@@ -3053,7 +3053,7 @@ textarea:focus-visible {
   clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
 }
 
-/* Pass Footer */
+/* bottom of the pass */
 .voucher-footer {
   background-color: var(--bg-surface);
   border-top: 1px solid var(--border-subtle);
@@ -3081,7 +3081,7 @@ textarea:focus-visible {
   color: var(--text-primary);
 }
 
-/* Pass Action Bar */
+/* buttons under the pass */
 .voucher-action-bar {
   display: flex;
   justify-content: center;
@@ -3090,7 +3090,7 @@ textarea:focus-visible {
   margin-top: 2rem;
 }
 
-/* Saved Passes in Modal */
+/* list of saved passes in popup */
 .saved-pass-item {
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
@@ -3119,9 +3119,7 @@ textarea:focus-visible {
 }
 
 
-/* ==========================================================================
-   20. RESPONSIVE CHECKOUT & PRINT MEDIA STYLESHEET
-   ========================================================================== */
+
 
 @media (max-width: 960px) {
   .checkout-grid {
@@ -3179,7 +3177,7 @@ textarea:focus-visible {
   }
 }
 
-/* Modal Backdrop & Dialog System */
+/* modal overlay and dialog */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -3243,9 +3241,9 @@ textarea:focus-visible {
   transform: scale(1.1);
 }
 
-/* Dedicated Print Stylesheet */
+/* print styles for the pass */
 @media print {
-  /* Hide all website chrome, footers, headers, buttons */
+  /* hide nav and footer when printing */
   body {
     background-color: #ffffff !important;
     color: #000000 !important;
