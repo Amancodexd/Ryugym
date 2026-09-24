@@ -8,15 +8,17 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 3001
       - key: FRONTEND_ORIGIN
         value: https://amancodexd.github.io
       - key: ESEWA_PRODUCT_CODE
-        sync: false
+        value: EPAYTEST
       - key: ESEWA_SECRET_KEY
-        sync: false
+        value: "8gBm/:&EnhH.1/q"
       - key: ESEWA_PAYMENT_URL
         value: https://rc-epay.esewa.com.np/api/epay/main/v2/form
       - key: ESEWA_STATUS_URL
         value: https://rc.esewa.com.np/api/epay/transaction/status/
       - key: BACKEND_PUBLIC_URL
-        sync: false
+        value: https://ryugym-api.onrender.com
