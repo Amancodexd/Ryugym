@@ -6,11 +6,22 @@
  * ============================================================================
  */
 
-// Payment server URL — auto-detects environment so no manual changes needed
-// when opening locally via Live Server vs GitHub Pages
-const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-  ? 'http://localhost:3001'           // local development
-  : 'https://ryugym-api.onrender.com'; // deployed server on Render (update after deploy)
+// Payment server URL — auto-detects environment
+// LOCAL:  opened via VS Code Live Server (127.0.0.1:5500) or direct file://
+// REMOTE: GitHub Pages or any other public host → uses the deployed Render backend
+const _isLocal = window.location.hostname === 'localhost'
+  || window.location.hostname === '127.0.0.1'
+  || window.location.protocol === 'file:';
+
+const BACKEND_URL = _isLocal
+  ? 'http://localhost:3001'            // local backend
+  : 'https://ryugym-api.onrender.com'; // deployed backend on Render
+
+// Warn if opened via file:// — fetch to localhost may be blocked by some browsers
+if (window.location.protocol === 'file:') {
+  console.warn('[RyuGym] Opened as file:// — for full payment functionality open via VS Code Live Server (right-click membership.html → Open with Live Server).');
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
   initImagePlaceholders();
@@ -1392,7 +1403,16 @@ function initCheckoutSystem() {
           esewaForm.submit(); // user lands on eSewa's payment page
         })
         .catch(() => {
-          alert('Payment server is not running. Please start it with: cd server && npm start');
+          const isFileProto = window.location.protocol === 'file:';
+          if (isFileProto) {
+            alert(
+              'Cannot reach the payment server from file://\n\n' +
+              'Fix: In VS Code, right-click membership.html → "Open with Live Server"\n' +
+              'Then the server at localhost:3001 will connect properly.'
+            );
+          } else {
+            alert('Payment server is not running.\nPlease open a terminal in the project folder and run:\n\n  cd server\n  npm start');
+          }
           submitBtn.disabled = false;
           if (defaultText && loadingText) {
             defaultText.style.display = 'inline';
