@@ -6,6 +6,12 @@
  * ============================================================================
  */
 
+// Payment server URL — auto-detects environment so no manual changes needed
+// when opening locally via Live Server vs GitHub Pages
+const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3001'           // local development
+  : 'https://ryugym-api.onrender.com'; // deployed server on Render (update after deploy)
+
 document.addEventListener('DOMContentLoaded', () => {
   initImagePlaceholders();
   initThemeToggle();
@@ -1325,7 +1331,7 @@ function initCheckoutSystem() {
         ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
         : '0';
 
-      fetch('http://localhost:3001/api/initiate-payment', {
+      fetch(`${BACKEND_URL}/api/initiate-payment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
