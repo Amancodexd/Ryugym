@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================================
  * RYU GYM — FITNESS & TRAINING WEBSITE
  * Core Client-Side Logic (Vanilla JavaScript)
@@ -1153,7 +1153,7 @@ function initCheckoutSystem() {
         if (currentMethod === 'cash') {
           submitBtnText.textContent = 'Generate Front Desk Cashier Voucher & Barcode';
         } else if (currentMethod === 'qr') {
-          submitBtnText.textContent = 'Verify Digital Wallet & Mint Barcode Voucher';
+          submitBtnText.textContent = 'Pay with eSewa — Redirecting...';
         } else {
           submitBtnText.textContent = 'Authorize Card Payment & Generate Barcode Voucher';
         }
@@ -1228,18 +1228,12 @@ function initCheckoutSystem() {
     });
   }
 
-  // Simulate Mobile Wallet One-Click Approval
+  // eSewa QR pay button — redirects to real eSewa payment page via backend
   const simQrAuthBtn = document.getElementById('sim-qr-auth-btn');
   if (simQrAuthBtn) {
+    simQrAuthBtn.textContent = '🔁 Pay Now with eSewa';
     simQrAuthBtn.addEventListener('click', () => {
-      simQrAuthBtn.textContent = '✓ Mobile Wallet Authorized!';
-      simQrAuthBtn.style.backgroundColor = '#10b981';
-      simQrAuthBtn.style.color = '#ffffff';
-
-      // Auto trigger form submission
-      setTimeout(() => {
-        executeCheckout();
-      }, 500);
+      executeCheckout();
     });
   }
 
@@ -1320,7 +1314,70 @@ function initCheckoutSystem() {
     }
     submitBtn.disabled = true;
 
-    // Simulate Payment Processing Delay (1.2s)
+    // ---- REAL eSewa flow for QR/wallet tab ----
+    if (currentMethod === 'qr') {
+      const memberName = document.getElementById('member-name');
+      const memberEmail = document.getElementById('member-email');
+      const memberPhone = document.getElementById('member-phone');
+
+      // get the numeric amount from the summary (strip "Rs " prefix)
+      const rawAmount = summaryTotalPrice
+        ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
+        : '0';
+
+      fetch('http://localhost:3001/api/initiate-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          planKey: currentPlan,
+          amount: rawAmount,
+          cycle: currentCycle,
+          name: memberName ? memberName.value.trim() : '',
+          email: memberEmail ? memberEmail.value.trim() : '',
+          phone: memberPhone ? memberPhone.value.trim() : '',
+        }),
+      })
+        .then(r => r.json())
+        .then(({ formUrl, fields, error }) => {
+          if (error || !formUrl) {
+            alert('Could not reach the payment server. Please try again.');
+            submitBtn.disabled = false;
+            if (defaultText && loadingText) {
+              defaultText.style.display = 'inline';
+              loadingText.style.display = 'none';
+            }
+            return;
+          }
+
+          // build a hidden form and auto-submit it to eSewa
+          const esewaForm = document.createElement('form');
+          esewaForm.method = 'POST';
+          esewaForm.action = formUrl;
+
+          Object.entries(fields).forEach(([key, val]) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = val;
+            esewaForm.appendChild(input);
+          });
+
+          document.body.appendChild(esewaForm);
+          esewaForm.submit(); // user lands on eSewa's payment page
+        })
+        .catch(() => {
+          alert('Payment server is not running. Please start it with: cd server && npm start');
+          submitBtn.disabled = false;
+          if (defaultText && loadingText) {
+            defaultText.style.display = 'inline';
+            loadingText.style.display = 'none';
+          }
+        });
+
+      return; // stop here — eSewa handles the rest
+    }
+
+    // ---- Simulated flow for card and cash ----
     setTimeout(() => {
       // Generate Unique Voucher & Transaction Codes
       const randomSeed = Math.floor(100000 + Math.random() * 900000);
@@ -1704,6 +1761,95 @@ function initCheckoutSystem() {
   // If URL has ?plan=..., auto-open the payment modal on about.html
   if (paramPlan) {
     openPaymentModal(paramPlan);
+  }
+
+  // Handle eSewa redirect back to this page after payment
+  // Backend redirects to: membership.html?payment=success&txn=UUID&ref=REF&amount=AMT
+  //                     or: membership.html?payment=failed
+  //                     or: membership.html?payment=error&reason=...
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentResult = urlParams.get('payment');
+
+  if (paymentResult === 'success') {
+    const txnUuid = urlParams.get('txn') || '';
+    const esewaRef = urlParams.get('ref') || '';
+    const paidAmount = urlParams.get('amount') || '';
+
+    // open the checkout section so the voucher is visible
+    const inlineCheckout = document.getElementById('checkout-section');
+    if (inlineCheckout) inlineCheckout.style.display = 'block';
+
+    // generate a local voucher from the confirmed transaction data
+    const randomSeed = Math.floor(100000 + Math.random() * 900000);
+    const voucherCode = txnUuid ? `RYU-${txnUuid.slice(0, 8).toUpperCase()}` : `RYU-2026-X${randomSeed}`;
+    const now = new Date();
+    const issueDateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const expDate = new Date(now);
+    expDate.setDate(expDate.getDate() + 30);
+    const expDateStr = expDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    const planData = plansCatalog[currentPlan] || plansCatalog.BlackTier;
+
+    const vCodeBadge = document.getElementById('v-code-badge');
+    const vTierTitle = document.getElementById('v-tier-title');
+    const vBillingDuration = document.getElementById('v-billing-duration');
+    const vIssueDate = document.getElementById('v-issue-date');
+    const vExpiryDate = document.getElementById('v-expiry-date');
+    const vAmountPaid = document.getElementById('v-amount-paid');
+    const vPaymentMethod = document.getElementById('v-payment-method');
+    const vPrivileges = document.getElementById('v-privileges-summary');
+    const vBarcodeNum = document.getElementById('v-barcode-numeric-display');
+    const vTxnDisplay = document.getElementById('v-trans-id-display');
+
+    if (vCodeBadge) vCodeBadge.textContent = voucherCode;
+    if (vTierTitle) vTierTitle.textContent = planData.name;
+    if (vBillingDuration) vBillingDuration.textContent = 'Monthly Access (30 Days)';
+    if (vIssueDate) vIssueDate.textContent = issueDateStr;
+    if (vExpiryDate) vExpiryDate.textContent = expDateStr;
+    if (vAmountPaid) vAmountPaid.textContent = paidAmount ? `Rs ${paidAmount}` : planData.priceMonthly;
+    if (vPaymentMethod) vPaymentMethod.textContent = `eSewa (Ref: ${esewaRef || 'N/A'})`;
+    if (vPrivileges) vPrivileges.textContent = planData.privileges;
+    if (vBarcodeNum) vBarcodeNum.textContent = `RYU 2026 ${randomSeed}`;
+    if (vTxnDisplay) vTxnDisplay.textContent = txnUuid || `TXN-${randomSeed}`;
+
+    const barcodeContainer = document.getElementById('voucher-barcode-render');
+    if (barcodeContainer) {
+      barcodeContainer.innerHTML = generateCode39BarcodeSVG(voucherCode, 280, 50);
+    }
+    const qrContainer = document.getElementById('voucher-qr-render');
+    if (qrContainer) {
+      qrContainer.innerHTML = generateCrispQRSVG(`RYU-PASS:${voucherCode}:eSewa:${esewaRef}`, 120);
+    }
+
+    // switch to success view
+    const formView = document.getElementById('checkout-form-view');
+    const successView = document.getElementById('voucher-success-view');
+    if (formView && successView) {
+      formView.style.display = 'none';
+      successView.style.display = 'block';
+      setTimeout(() => successView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+
+    // clean up URL so refreshing doesn't reprocess
+    window.history.replaceState({}, '', window.location.pathname);
+
+  } else if (paymentResult === 'failed' || paymentResult === 'error') {
+    const reason = urlParams.get('reason') || '';
+    const msg = reason === 'signature_mismatch'
+      ? 'Payment verification failed (signature mismatch). Please contact support.'
+      : 'Your payment was not completed. You can try again below.';
+
+    // show a non-blocking notice at the top of the checkout section
+    const inlineCheckout = document.getElementById('checkout-section');
+    if (inlineCheckout) {
+      inlineCheckout.style.display = 'block';
+      const notice = document.createElement('div');
+      notice.style.cssText = 'background:#fee2e2;border:1px solid #ef4444;color:#991b1b;padding:1rem 1.25rem;border-radius:4px;margin-bottom:1.5rem;font-size:0.95rem;';
+      notice.textContent = `⚠ ${msg}`;
+      inlineCheckout.prepend(notice);
+      setTimeout(() => inlineCheckout.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+    window.history.replaceState({}, '', window.location.pathname);
   }
 
   // Initial Calculation on Page Load
