@@ -69,11 +69,11 @@
 
         <!-- toggle between monthly and yearly prices -->
         <div class="pricing-toggle-wrap reveal">
-          <span class="pricing-toggle-label active" id="label-monthly">Billed Monthly</span>
+          <span class="pricing-toggle-label active" id="label-monthly">Monthly Access</span>
           <button class="toggle-switch" id="pricing-toggle" role="switch" aria-checked="false" aria-label="Toggle Monthly or Annual Billing">
             <span class="toggle-switch-thumb"></span>
           </button>
-          <span class="pricing-toggle-label" id="label-yearly">Billed Annually <small style="font-size: 0.75rem; border: 1px solid var(--border-strong); padding: 2px 6px; margin-left: 4px;">Save 20%</small></span>
+          <span class="pricing-toggle-label" id="label-yearly">Annual Access <small class="pricing-save-pill">Save 20%</small></span>
         </div>
 
         <!-- the three plan cards -->
@@ -204,12 +204,12 @@
 
                 <div class="billing-switcher-wrap" style="margin-bottom: 0;">
                   <button type="button" class="billing-opt active" data-cycle="monthly" id="cycle-monthly-btn" style="padding: 0.65rem 1rem;">
-                    <span style="font-size: 0.9rem;">Monthly Rate</span>
-                    <small>Standard Billing</small>
+                    <span class="billing-opt-title" style="font-size: 0.95rem;">Monthly Access</span>
+                    <small>Standard Monthly Billing</small>
                   </button>
                   <button type="button" class="billing-opt" data-cycle="annual" id="cycle-annual-btn" style="padding: 0.65rem 1rem;">
-                    <span style="font-size: 0.9rem;">Annual Pass</span>
-                    <small class="save-badge">Save 20% on 12 Months</small>
+                    <span class="billing-opt-title" style="font-size: 0.95rem;">Annual Access <small class="save-badge">Save 20%</small></span>
+                    <small>Billed Yearly (12 Months)</small>
                   </button>
                 </div>
               </div>

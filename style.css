@@ -1348,10 +1348,28 @@ textarea:focus-visible {
   cursor: pointer;
   color: var(--text-muted);
   transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
 }
 
 .pricing-toggle-label.active {
   color: var(--text-primary);
+}
+
+.pricing-save-pill {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .toggle-switch {
@@ -2147,12 +2165,18 @@ textarea:focus-visible {
   gap: 0.25rem;
 }
 
-.billing-opt span {
+.billing-opt span,
+.billing-opt .billing-opt-title {
   font-family: var(--font-heading);
   font-size: 1.05rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .billing-opt small {
@@ -2161,8 +2185,17 @@ textarea:focus-visible {
 }
 
 .billing-opt .save-badge {
-  color: var(--text-primary);
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .billing-opt.active {
