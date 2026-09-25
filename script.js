@@ -1530,12 +1530,15 @@ function initCheckoutSystem() {
     }
   };
 
-  // Wire all .btn-open-payment buttons in about.html
+  // Wire all .btn-open-payment buttons to open Membership Checkout in a different tab
   document.querySelectorAll('.btn-open-payment').forEach(btn => {
+    if (btn.tagName === 'A' && btn.getAttribute('target') === '_blank') {
+      return; // allow native browser new tab behavior
+    }
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const plan = btn.getAttribute('data-plan') || 'BlackTier';
-      openPaymentModal(plan);
+      window.open(`checkout.html?plan=${plan}`, '_blank', 'noopener,noreferrer');
     });
   });
 
