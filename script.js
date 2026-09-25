@@ -6,22 +6,6 @@
  * ============================================================================
  */
 
-// Payment server URL — auto-detects environment
-// LOCAL:  opened via VS Code Live Server (127.0.0.1:5500) or direct file://
-// REMOTE: GitHub Pages or any other public host → uses the deployed Render backend
-const _isLocal = window.location.hostname === 'localhost'
-  || window.location.hostname === '127.0.0.1'
-  || window.location.protocol === 'file:';
-
-const BACKEND_URL = _isLocal
-  ? 'http://localhost:3001'            // local backend
-  : 'https://ryugym-api.onrender.com'; // deployed backend on Render
-
-// Warn if opened via file:// — fetch to localhost may be blocked by some browsers
-if (window.location.protocol === 'file:') {
-  console.warn('[RyuGym] Opened as file:// — for full payment functionality open via VS Code Live Server (right-click membership.html → Open with Live Server).');
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
   initImagePlaceholders();
@@ -1170,7 +1154,7 @@ function initCheckoutSystem() {
         if (currentMethod === 'cash') {
           submitBtnText.textContent = 'Generate Front Desk Cashier Voucher & Barcode';
         } else if (currentMethod === 'qr') {
-          submitBtnText.textContent = 'Pay with eSewa — Redirecting...';
+          submitBtnText.textContent = 'Confirm QR Payment & Generate Member Pass';
         } else {
           submitBtnText.textContent = 'Authorize Card Payment & Generate Barcode Voucher';
         }
@@ -1242,35 +1226,6 @@ function initCheckoutSystem() {
       if (cardPreviewExp) {
         cardPreviewExp.textContent = val || '12/28';
       }
-    });
-  }
-
-  // Wallet tab switcher — toggles between eSewa and Khalti QR panes
-  const walletTabs = document.querySelectorAll('.qr-wallet-tab');
-  if (walletTabs.length) {
-    walletTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const wallet = tab.dataset.wallet;
-
-        // update tab button styles
-        walletTabs.forEach(t => {
-          const isActive = t.dataset.wallet === wallet;
-          if (t.dataset.wallet === 'esewa') {
-            t.style.border = isActive ? '2px solid #4caf50' : '2px solid var(--border-subtle)';
-            t.style.background = isActive ? '#0d2e0d' : 'transparent';
-            t.style.color = isActive ? '#4caf50' : 'var(--text-secondary)';
-          } else {
-            t.style.border = isActive ? '2px solid #7c3aed' : '2px solid var(--border-subtle)';
-            t.style.background = isActive ? '#1a0a2e' : 'transparent';
-            t.style.color = isActive ? '#7c3aed' : 'var(--text-secondary)';
-          }
-        });
-
-        // show the matching QR pane
-        document.querySelectorAll('.qr-pane').forEach(pane => {
-          pane.style.display = pane.id === `pane-${wallet}` ? 'block' : 'none';
-        });
-      });
     });
   }
 
@@ -1351,79 +1306,7 @@ function initCheckoutSystem() {
     }
     submitBtn.disabled = true;
 
-    // ---- REAL eSewa flow for QR/wallet tab ----
-    if (currentMethod === 'qr') {
-      const memberName = document.getElementById('member-name');
-      const memberEmail = document.getElementById('member-email');
-      const memberPhone = document.getElementById('member-phone');
-
-      // get the numeric amount from the summary (strip "Rs " prefix)
-      const rawAmount = summaryTotalPrice
-        ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
-        : '0';
-
-      fetch(`${BACKEND_URL}/api/initiate-payment`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          planKey: currentPlan,
-          amount: rawAmount,
-          cycle: currentCycle,
-          name: memberName ? memberName.value.trim() : '',
-          email: memberEmail ? memberEmail.value.trim() : '',
-          phone: memberPhone ? memberPhone.value.trim() : '',
-        }),
-      })
-        .then(r => r.json())
-        .then(({ formUrl, fields, error }) => {
-          if (error || !formUrl) {
-            alert('Could not reach the payment server. Please try again.');
-            submitBtn.disabled = false;
-            if (defaultText && loadingText) {
-              defaultText.style.display = 'inline';
-              loadingText.style.display = 'none';
-            }
-            return;
-          }
-
-          // build a hidden form and auto-submit it to eSewa
-          const esewaForm = document.createElement('form');
-          esewaForm.method = 'POST';
-          esewaForm.action = formUrl;
-
-          Object.entries(fields).forEach(([key, val]) => {
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key;
-            input.value = val;
-            esewaForm.appendChild(input);
-          });
-
-          document.body.appendChild(esewaForm);
-          esewaForm.submit(); // user lands on eSewa's payment page
-        })
-        .catch(() => {
-          const isFileProto = window.location.protocol === 'file:';
-          if (isFileProto) {
-            alert(
-              'Cannot reach the payment server from file://\n\n' +
-              'Fix: In VS Code, right-click membership.html → "Open with Live Server"\n' +
-              'Then the server at localhost:3001 will connect properly.'
-            );
-          } else {
-            alert('Payment server is not running.\nPlease open a terminal in the project folder and run:\n\n  cd server\n  npm start');
-          }
-          submitBtn.disabled = false;
-          if (defaultText && loadingText) {
-            defaultText.style.display = 'inline';
-            loadingText.style.display = 'none';
-          }
-        });
-
-      return; // stop here — eSewa handles the rest
-    }
-
-    // ---- Simulated flow for card and cash ----
+    // ---- Process checkout simulation for card, QR payment, and front desk cash ----
     setTimeout(() => {
       // Generate Unique Voucher & Transaction Codes
       const randomSeed = Math.floor(100000 + Math.random() * 900000);
@@ -1449,7 +1332,7 @@ function initCheckoutSystem() {
       // Payment method descriptor
       let payMethodDesc = 'Credit Card (•••• 4242)';
       if (currentMethod === 'qr') {
-        payMethodDesc = 'Digital Mobile Wallet (Verified)';
+        payMethodDesc = 'Digital QR Pay (Aman Rouniyar - 9826320933)';
       } else if (currentMethod === 'cash') {
         payMethodDesc = 'Front Desk Cashier Voucher (Present in Person)';
       }
@@ -1807,94 +1690,6 @@ function initCheckoutSystem() {
   // If URL has ?plan=..., auto-open the payment modal on about.html
   if (paramPlan) {
     openPaymentModal(paramPlan);
-  }
-
-  // Handle eSewa redirect back to this page after payment
-  // Backend redirects to: membership.html?payment=success&txn=UUID&ref=REF&amount=AMT
-  //                     or: membership.html?payment=failed
-  //                     or: membership.html?payment=error&reason=...
-  const paymentResult = urlParams.get('payment');
-
-  if (paymentResult === 'success') {
-    const txnUuid = urlParams.get('txn') || '';
-    const esewaRef = urlParams.get('ref') || '';
-    const paidAmount = urlParams.get('amount') || '';
-
-    // open the checkout section so the voucher is visible
-    const inlineCheckout = document.getElementById('checkout-section');
-    if (inlineCheckout) inlineCheckout.style.display = 'block';
-
-    // generate a local voucher from the confirmed transaction data
-    const randomSeed = Math.floor(100000 + Math.random() * 900000);
-    const voucherCode = txnUuid ? `RYU-${txnUuid.slice(0, 8).toUpperCase()}` : `RYU-2026-X${randomSeed}`;
-    const now = new Date();
-    const issueDateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    const expDate = new Date(now);
-    expDate.setDate(expDate.getDate() + 30);
-    const expDateStr = expDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-    const planData = plansCatalog[currentPlan] || plansCatalog.BlackTier;
-
-    const vCodeBadge = document.getElementById('v-code-badge');
-    const vTierTitle = document.getElementById('v-tier-title');
-    const vBillingDuration = document.getElementById('v-billing-duration');
-    const vIssueDate = document.getElementById('v-issue-date');
-    const vExpiryDate = document.getElementById('v-expiry-date');
-    const vAmountPaid = document.getElementById('v-amount-paid');
-    const vPaymentMethod = document.getElementById('v-payment-method');
-    const vPrivileges = document.getElementById('v-privileges-summary');
-    const vBarcodeNum = document.getElementById('v-barcode-numeric-display');
-    const vTxnDisplay = document.getElementById('v-trans-id-display');
-
-    if (vCodeBadge) vCodeBadge.textContent = voucherCode;
-    if (vTierTitle) vTierTitle.textContent = planData.name;
-    if (vBillingDuration) vBillingDuration.textContent = 'Monthly Access (30 Days)';
-    if (vIssueDate) vIssueDate.textContent = issueDateStr;
-    if (vExpiryDate) vExpiryDate.textContent = expDateStr;
-    if (vAmountPaid) vAmountPaid.textContent = paidAmount ? `Rs ${paidAmount}` : planData.priceMonthly;
-    if (vPaymentMethod) vPaymentMethod.textContent = `eSewa (Ref: ${esewaRef || 'N/A'})`;
-    if (vPrivileges) vPrivileges.textContent = planData.privileges;
-    if (vBarcodeNum) vBarcodeNum.textContent = `RYU 2026 ${randomSeed}`;
-    if (vTxnDisplay) vTxnDisplay.textContent = txnUuid || `TXN-${randomSeed}`;
-
-    const barcodeContainer = document.getElementById('voucher-barcode-render');
-    if (barcodeContainer) {
-      barcodeContainer.innerHTML = generateCode39BarcodeSVG(voucherCode, 280, 50);
-    }
-    const qrContainer = document.getElementById('voucher-qr-render');
-    if (qrContainer) {
-      qrContainer.innerHTML = generateCrispQRSVG(`RYU-PASS:${voucherCode}:eSewa:${esewaRef}`, 120);
-    }
-
-    // switch to success view
-    const formView = document.getElementById('checkout-form-view');
-    const successView = document.getElementById('voucher-success-view');
-    if (formView && successView) {
-      formView.style.display = 'none';
-      successView.style.display = 'block';
-      setTimeout(() => successView.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
-
-    // clean up URL so refreshing doesn't reprocess
-    window.history.replaceState({}, '', window.location.pathname);
-
-  } else if (paymentResult === 'failed' || paymentResult === 'error') {
-    const reason = urlParams.get('reason') || '';
-    const msg = reason === 'signature_mismatch'
-      ? 'Payment verification failed (signature mismatch). Please contact support.'
-      : 'Your payment was not completed. You can try again below.';
-
-    // show a non-blocking notice at the top of the checkout section
-    const inlineCheckout = document.getElementById('checkout-section');
-    if (inlineCheckout) {
-      inlineCheckout.style.display = 'block';
-      const notice = document.createElement('div');
-      notice.style.cssText = 'background:#fee2e2;border:1px solid #ef4444;color:#991b1b;padding:1rem 1.25rem;border-radius:4px;margin-bottom:1.5rem;font-size:0.95rem;';
-      notice.textContent = `⚠ ${msg}`;
-      inlineCheckout.prepend(notice);
-      setTimeout(() => inlineCheckout.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    }
-    window.history.replaceState({}, '', window.location.pathname);
   }
 
   // Initial Calculation on Page Load

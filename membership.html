@@ -305,59 +305,30 @@
 
                 <!-- QR code payment panel -->
                 <div class="pay-panel" id="panel-method-qr">
-                  <div class="qr-payment-box" style="padding: 1.25rem 1.5rem;">
+                  <div class="qr-payment-box" style="padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;">
 
-                    <!-- wallet selector tabs -->
-                    <div class="qr-wallet-tabs" style="display:flex;gap:0.5rem;margin-bottom:1.1rem;">
-                      <button type="button" class="qr-wallet-tab active" id="tab-esewa" data-wallet="esewa"
-                        style="flex:1;display:flex;align-items:center;justify-content:center;gap:0.4rem;padding:0.45rem 0.75rem;border:2px solid #4caf50;border-radius:6px;background:#0d2e0d;color:#4caf50;font-weight:600;font-size:0.82rem;cursor:pointer;transition:all .2s;">
-                        <span style="background:#4caf50;color:#fff;border-radius:50%;width:18px;height:18px;font-size:0.7rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">e</span>
-                        eSewa
-                      </button>
-                      <button type="button" class="qr-wallet-tab" id="tab-khalti" data-wallet="khalti"
-                        style="flex:1;display:flex;align-items:center;justify-content:center;gap:0.4rem;padding:0.45rem 0.75rem;border:2px solid var(--border-subtle);border-radius:6px;background:transparent;color:var(--text-secondary);font-weight:600;font-size:0.82rem;cursor:pointer;transition:all .2s;">
-                        <span style="color:#5c2d91;font-weight:900;font-size:0.9rem;">K</span>
-                        Khalti
-                      </button>
+                    <div class="qr-code-frame" style="position: relative; display: inline-block; margin: 0 auto; background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); border: 2px solid var(--border-medium);">
+                      <img src="assets/my-qr.jpg" alt="Gym Payment QR Code — Aman Rouniyar"
+                        style="width: 190px; height: 190px; object-fit: cover; object-position: center 20%; border-radius: 8px; display: block;">
+                      <div class="qr-scan-line" aria-hidden="true" style="position: absolute; top: 12px; left: 12px; right: 12px;"></div>
                     </div>
 
-                    <!-- eSewa QR pane -->
-                    <div class="qr-pane" id="pane-esewa" style="display:block;">
-                      <div class="qr-code-frame" style="position:relative;display:inline-block;margin:0 auto 0.85rem;display:flex;justify-content:center;">
-                        <div style="background:#fff;border-radius:10px;padding:10px;box-shadow:0 4px 18px rgba(76,175,80,.25);display:inline-block;">
-                          <img src="assets/qr-esewa.jpg" alt="eSewa QR Code — Aman Rouniyar"
-                            style="width:170px;height:170px;object-fit:cover;object-position:center 20%;border-radius:4px;display:block;">
-                        </div>
-                        <div class="qr-scan-line" aria-hidden="true" style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:170px;"></div>
-                      </div>
-                      <div style="text-align:center;margin-bottom:0.75rem;">
-                        <div style="display:flex;align-items:center;justify-content:center;gap:0.4rem;margin-bottom:0.2rem;">
-                          <span style="background:#4caf50;color:#fff;border-radius:50%;width:20px;height:20px;font-size:0.75rem;font-weight:900;display:inline-flex;align-items:center;justify-content:center;">e</span>
-                          <span style="font-size:1rem;font-weight:700;color:#4caf50;letter-spacing:.5px;">eSewa</span>
-                        </div>
-                        <p style="margin:0;font-size:0.88rem;font-weight:600;color:var(--text-primary);">Aman Rouniyar</p>
-                        <p style="margin:0;font-size:0.82rem;color:var(--text-secondary);letter-spacing:1px;">9826320933</p>
-                      </div>
-                      <p style="text-align:center;font-size:0.76rem;color:var(--text-secondary);margin-bottom:0.75rem;">Open your <strong>eSewa</strong> app → Scan → Pay</p>
+                    <div class="qr-account-details" style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem 1.25rem; width: 100%; max-width: 320px;">
+                      <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem;">Recipient Account</div>
+                      <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.15rem;">Aman Rouniyar</div>
+                      <div style="font-size: 0.95rem; font-family: monospace; color: var(--text-secondary); letter-spacing: 1px;">9826320933</div>
                     </div>
 
-                    <!-- Khalti QR pane -->
-                    <div class="qr-pane" id="pane-khalti" style="display:none;">
-                      <div class="qr-code-frame" style="display:flex;justify-content:center;margin-bottom:0.85rem;">
-                        <div style="background:#fff;border-radius:10px;padding:10px;box-shadow:0 4px 18px rgba(92,45,145,.25);display:inline-block;">
-                          <img src="assets/qr-khalti.jpg" alt="Khalti QR Code — Fulchun Rouniyar"
-                            style="width:170px;height:170px;object-fit:cover;object-position:center 35%;border-radius:4px;display:block;">
-                        </div>
-                      </div>
-                      <div style="text-align:center;margin-bottom:0.75rem;">
-                        <div style="display:flex;align-items:center;justify-content:center;gap:0.4rem;margin-bottom:0.2rem;">
-                          <span style="color:#5c2d91;font-size:1rem;font-weight:900;">K</span>
-                          <span style="font-size:1rem;font-weight:700;color:#5c2d91;letter-spacing:.5px;">Khalti</span>
-                        </div>
-                        <p style="margin:0;font-size:0.88rem;font-weight:600;color:var(--text-primary);">Fulchun Rouniyar</p>
-                        <p style="margin:0;font-size:0.82rem;color:var(--text-secondary);letter-spacing:1px;">9826320933</p>
-                      </div>
-                      <p style="text-align:center;font-size:0.76rem;color:var(--text-secondary);margin-bottom:0.75rem;">Open your <strong>Khalti</strong> app → Scan → Pay</p>
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0; max-width: 360px; line-height: 1.5;">
+                      Scan the QR code using your preferred app to complete your membership fee, then click <strong>Confirm QR Payment &amp; Generate Member Pass</strong> below.
+                    </p>
+
+                    <div class="qr-wallet-badges" style="justify-content: center; margin-bottom: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                      <span class="wallet-badge">Scan &amp; Pay</span>
+                      <span class="wallet-badge">eSewa</span>
+                      <span class="wallet-badge">Khalti</span>
+                      <span class="wallet-badge">Fonepay</span>
+                      <span class="wallet-badge">Mobile Banking</span>
                     </div>
 
                   </div>
@@ -589,6 +560,6 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
