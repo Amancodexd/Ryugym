@@ -280,7 +280,7 @@
                     <label for="card-number-input" class="form-label">Card Number *</label>
                     <div class="input-with-icon">
                       <input type="text" id="card-number-input" class="form-input" placeholder="4242 &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 4242" maxlength="19" inputmode="numeric">
-                      <span class="card-type-indicator" id="card-brand-icon">💳</span>
+                      <span class="card-type-indicator" id="card-brand-icon"></span>
                     </div>
                     <span class="form-field-error">Please enter a valid 16-digit card number.</span>
                   </div>
@@ -337,7 +337,11 @@
                 <!-- cash payment panel -->
                 <div class="pay-panel" id="panel-method-cash">
                   <div class="cash-reservation-box" style="padding: 1.5rem;">
-                    <div class="cash-notice-icon">🏛️</div>
+                    <div class="cash-notice-icon" style="display: flex; align-items: center; color: var(--text-primary);">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/>
+                      </svg>
+                    </div>
                     <div class="cash-notice-text">
                       <h4 style="margin-bottom: 0.35rem;">Front Desk Cashier Voucher</h4>
                       <p style="font-size: 0.82rem; margin-bottom: 0.5rem;">Reserve your membership tier online and receive your official barcode voucher immediately. Present this barcode at our front desk (Biratnagar-2) to pay cash and enter the gym.</p>
@@ -476,8 +480,8 @@
             </div>
 
             <div class="voucher-action-bar" style="margin-top: 1.5rem;">
-              <button type="button" class="btn btn-primary" id="btn-print-voucher">🖨️ Print Voucher / Save PDF</button>
-              <button type="button" class="btn btn-secondary" id="btn-copy-voucher-code">📋 Copy Pass Code</button>
+              <button type="button" class="btn btn-primary" id="btn-print-voucher">Print Voucher / Save PDF</button>
+              <button type="button" class="btn btn-secondary" id="btn-copy-voucher-code">Copy Pass Code</button>
               <button type="button" class="btn btn-secondary" id="btn-new-checkout">&larr; Enroll Another Member</button>
             </div>
           </div>

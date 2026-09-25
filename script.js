@@ -1181,16 +1181,16 @@ function initCheckoutSystem() {
       if (cardPreviewBrand && cardBrandIcon) {
         if (val.startsWith('4')) {
           cardPreviewBrand.textContent = 'VISA';
-          cardBrandIcon.textContent = '💳 Visa';
+          cardBrandIcon.textContent = 'VISA';
         } else if (/^5[1-5]/.test(val)) {
           cardPreviewBrand.textContent = 'MASTERCARD';
-          cardBrandIcon.textContent = '💳 MC';
+          cardBrandIcon.textContent = 'MC';
         } else if (/^3[47]/.test(val)) {
           cardPreviewBrand.textContent = 'AMEX';
-          cardBrandIcon.textContent = '💳 Amex';
+          cardBrandIcon.textContent = 'AMEX';
         } else {
           cardPreviewBrand.textContent = 'VISA / MC';
-          cardBrandIcon.textContent = '💳';
+          cardBrandIcon.textContent = '';
         }
       }
     });
@@ -1427,7 +1427,7 @@ function initCheckoutSystem() {
       const vCode = document.getElementById('v-code-badge')?.textContent || 'RYU-PASS';
       navigator.clipboard.writeText(vCode).then(() => {
         const originalText = copyVoucherBtn.innerHTML;
-        copyVoucherBtn.innerHTML = '✓ Pass Code Copied!';
+        copyVoucherBtn.innerHTML = 'Pass Code Copied!';
         setTimeout(() => {
           copyVoucherBtn.innerHTML = originalText;
         }, 2200);
