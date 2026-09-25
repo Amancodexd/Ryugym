@@ -400,13 +400,73 @@
 
           <!-- shown after successful payment -->
           <div id="voucher-success-view" style="display: none;">
-            <div class="voucher-success-banner text-center" style="margin-bottom: 1.5rem;">
+
+            <!-- TEMPORARY DIGITAL KEYCARD (ONLY FOR ONLINE PAYMENT: QR / CARD) -->
+            <div id="digital-keycard-section" class="digital-keycard-section" style="display: none;">
+              <div class="keycard-wrapper">
+                <div class="digital-keycard" id="digital-turnstile-keycard">
+                  <div class="keycard-chip-row">
+                    <div class="keycard-brand">
+                      <span class="keycard-logo-txt">RYU GYM</span>
+                      <span class="keycard-sub-txt">1-Time Turnstile E-Keycard</span>
+                    </div>
+                    <div class="keycard-rfid-icon" title="NFC / Optical Turnstile Access">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 8.5a9 9 0 0 1 14 0M7.5 11.5a5.5 5.5 0 0 1 9 0M10 14.5a2 2 0 0 1 4 0"/>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div class="keycard-body-row">
+                    <div class="keycard-athlete-block">
+                      <span class="keycard-label">ATHLETE PASS HOLDER</span>
+                      <div class="keycard-name" id="keycard-athlete-name">ALEX HUNTER</div>
+                      <div class="keycard-tier-tag" id="keycard-tier-name">BLACK TIER</div>
+                    </div>
+                    <div class="keycard-qr-box" id="keycard-qr-render"></div>
+                  </div>
+
+                  <div class="keycard-footer-row">
+                    <div class="keycard-status-badge" id="keycard-usage-status">
+                      <span class="pulse-indicator"></span>
+                      <span id="keycard-usage-text">SINGLE USE &bull; 1/1 ENTRY REMAINING</span>
+                    </div>
+                    <div class="keycard-id" id="keycard-code-display">RYU-PASS-2026</div>
+                  </div>
+                </div>
+
+                <div class="keycard-actions-box" style="margin-top: 1rem; text-align: center;">
+                  <div class="keycard-policy-alert" id="keycard-policy-alert">
+                    <strong>1-Time Turnstile Entry:</strong> This digital keycard grants you <strong>1 initial turnstile entrance</strong> on arrival. <strong>After entering, present the voucher below at the front desk to claim your permanent RFID physical keycard.</strong>
+                  </div>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-simulate-turnstile" style="margin-top: 0.75rem;">
+                    Scan at Turnstile Gate (Simulate 1st Entry) &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CASHIER NOTICE (ONLY FOR DESK PAYMENT) -->
+            <div id="cash-reservation-notice-section" style="display: none; margin-bottom: 2rem;">
+              <div class="cash-reservation-alert">
+                <div class="cash-alert-header">
+                  <span class="badge-desk-reservation">UNPAID FRONT DESK RESERVATION</span>
+                  <span class="desk-status-pill">NO TURNSTILE ENTRY UNTIL PAID</span>
+                </div>
+                <h3 style="font-size: 1.15rem; margin: 0.5rem 0 0.25rem;">Present at Front Desk to Pay &amp; Collect Physical Keycard</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+                  Because you selected <strong>Front Desk Cashier Voucher</strong>, turnstile access is locked. Please present this barcode at our front desk (Biratnagar-2) to pay cash. The receptionist will activate your membership on the spot and hand you your permanent physical keycard.
+                </p>
+              </div>
+            </div>
+
+            <div class="voucher-success-banner text-center" style="margin-bottom: 1.5rem;" id="voucher-success-alert-box">
               <div class="success-check-badge" style="width: 52px; height: 52px;">
                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
               </div>
-              <span class="section-tag" style="margin-top: 0.5rem;">Payment Confirmed &bull; Pass Minted</span>
-              <h2 class="voucher-congrats-title" style="font-size: 1.6rem; margin: 0.5rem 0 0.25rem;">Official Membership Voucher</h2>
-              <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">Present the Barcode or QR Code at the turnstile gate for entrance clearance.</p>
+              <span class="section-tag" style="margin-top: 0.5rem;" id="voucher-alert-badge">Payment Confirmed &bull; Pass Minted</span>
+              <h2 class="voucher-congrats-title" style="font-size: 1.6rem; margin: 0.5rem 0 0.25rem;" id="voucher-alert-title">Official Membership Voucher</h2>
+              <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;" id="voucher-alert-subtitle">Present this barcode at the front desk to collect your permanent RFID keycard.</p>
             </div>
 
             <!-- the membership pass card -->

@@ -239,6 +239,11 @@ function initPricingToggle() {
     periodElements.forEach(el => {
       el.textContent = isYearly ? '/ Year' : '/ Month';
     });
+
+    document.querySelectorAll('.btn-open-payment').forEach(btn => {
+      const plan = btn.getAttribute('data-plan') || 'BlackTier';
+      btn.setAttribute('href', `checkout.html?plan=${plan}${isYearly ? '&cycle=annual' : ''}`);
+    });
   };
 
   const animateNumberChange = (element, targetValue) => {
@@ -1393,6 +1398,75 @@ function initCheckoutSystem() {
         txn: txnRef
       });
 
+      // Configure Temporary Keycard vs Cashier Reservation Notice
+      const digitalKeycardSection = document.getElementById('digital-keycard-section');
+      const cashReservationSection = document.getElementById('cash-reservation-notice-section');
+      const voucherAlertBadge = document.getElementById('voucher-alert-badge');
+      const voucherAlertTitle = document.getElementById('voucher-alert-title');
+      const voucherAlertSubtitle = document.getElementById('voucher-alert-subtitle');
+      const btnSimulateTurnstile = document.getElementById('btn-simulate-turnstile');
+      const keycardEl = document.getElementById('digital-turnstile-keycard');
+      const keycardUsageStatus = document.getElementById('keycard-usage-status');
+      const keycardUsageText = document.getElementById('keycard-usage-text');
+      const keycardPolicyAlert = document.getElementById('keycard-policy-alert');
+
+      if (currentMethod === 'qr' || currentMethod === 'card') {
+        // ONLINE PAYMENT: Provide Temporary Digital 1-Entry Keycard
+        if (digitalKeycardSection) digitalKeycardSection.style.display = 'block';
+        if (cashReservationSection) cashReservationSection.style.display = 'none';
+
+        if (voucherAlertBadge) voucherAlertBadge.textContent = 'Online Payment Verified \u2022 E-Pass Issued';
+        if (voucherAlertTitle) voucherAlertTitle.textContent = 'Temporary Turnstile Keycard & Membership Voucher';
+        if (voucherAlertSubtitle) voucherAlertSubtitle.textContent = 'Scan your digital keycard for initial turnstile entrance. Exchange voucher below at front desk for permanent physical card.';
+
+        // Populate digital keycard
+        const kName = document.getElementById('keycard-athlete-name');
+        const kTier = document.getElementById('keycard-tier-name');
+        const kCode = document.getElementById('keycard-code-display');
+        const kQr = document.getElementById('keycard-qr-render');
+
+        if (kName) kName.textContent = athleteName.toUpperCase();
+        if (kTier) kTier.textContent = planData.name.toUpperCase();
+        if (kCode) kCode.textContent = voucherCode;
+        if (kQr) kQr.innerHTML = generateCrispQRSVG(`RYU-TURNSTILE-TEMP:${voucherCode}:${athleteName}`, 76);
+
+        // Reset keycard scan state
+        if (keycardEl) keycardEl.classList.remove('turnstile-scanned');
+        if (keycardUsageStatus) keycardUsageStatus.classList.remove('redeemed');
+        if (keycardUsageText) keycardUsageText.innerHTML = 'SINGLE USE &bull; 1/1 ENTRY REMAINING';
+        if (keycardPolicyAlert) {
+          keycardPolicyAlert.classList.remove('redeemed');
+          keycardPolicyAlert.innerHTML = '<strong>1-Time Turnstile Entry:</strong> This digital keycard grants you <strong>1 initial turnstile entrance</strong> on arrival. <strong>After entering, present the voucher below at the front desk to claim your permanent RFID physical keycard.</strong>';
+        }
+
+        if (btnSimulateTurnstile) {
+          btnSimulateTurnstile.disabled = false;
+          btnSimulateTurnstile.innerHTML = 'Scan at Turnstile Gate (Simulate 1st Entry) &rarr;';
+          btnSimulateTurnstile.onclick = () => {
+            btnSimulateTurnstile.disabled = true;
+            btnSimulateTurnstile.innerHTML = 'Turnstile Unlocking...';
+            setTimeout(() => {
+              if (keycardEl) keycardEl.classList.add('turnstile-scanned');
+              if (keycardUsageStatus) keycardUsageStatus.classList.add('redeemed');
+              if (keycardUsageText) keycardUsageText.innerHTML = 'REDEEMED &bull; 0/1 ENTRY REMAINING';
+              if (keycardPolicyAlert) {
+                keycardPolicyAlert.classList.add('redeemed');
+                keycardPolicyAlert.innerHTML = '<strong>First Entry Redeemed:</strong> Turnstile clearance granted. Please proceed to the front desk reception with your voucher below to collect your permanent physical RFID keycard.';
+              }
+              btnSimulateTurnstile.innerHTML = 'Turnstile Clearance Used &bull; Visit Desk for Physical Card';
+            }, 600);
+          };
+        }
+      } else {
+        // DESK PAYMENT: No turnstile keycard until paid in person
+        if (digitalKeycardSection) digitalKeycardSection.style.display = 'none';
+        if (cashReservationSection) cashReservationSection.style.display = 'block';
+
+        if (voucherAlertBadge) voucherAlertBadge.textContent = 'Desk Reservation Issued \u2022 Payment Pending';
+        if (voucherAlertTitle) voucherAlertTitle.textContent = 'Front Desk Cashier Voucher';
+        if (voucherAlertSubtitle) voucherAlertSubtitle.textContent = 'Turnstile access locked until paid. Present this voucher at the desk to complete payment and collect your physical RFID keycard.';
+      }
+
       // Switch views: Hide form view, show voucher view
       const formView = document.getElementById('checkout-form-view');
       const successView = document.getElementById('voucher-success-view');
@@ -1673,6 +1747,30 @@ function initCheckoutSystem() {
     const qrContainer = document.getElementById('voucher-qr-render');
     if (qrContainer) {
       qrContainer.innerHTML = generateCrispQRSVG(`RYU-PASS:${pass.code}:${pass.name}:${pass.plan}`, 120);
+    }
+
+    const digitalKeycardSection = document.getElementById('digital-keycard-section');
+    const cashReservationSection = document.getElementById('cash-reservation-notice-section');
+    const isOnline = pass.method && (pass.method.includes('QR') || pass.method.includes('Card'));
+
+    if (digitalKeycardSection && cashReservationSection) {
+      if (isOnline) {
+        digitalKeycardSection.style.display = 'block';
+        cashReservationSection.style.display = 'none';
+
+        const kName = document.getElementById('keycard-athlete-name');
+        const kTier = document.getElementById('keycard-tier-name');
+        const kCode = document.getElementById('keycard-code-display');
+        const kQr = document.getElementById('keycard-qr-render');
+
+        if (kName) kName.textContent = (pass.name || 'ATHLETE').toUpperCase();
+        if (kTier) kTier.textContent = (pass.plan || 'MEMBERSHIP').toUpperCase();
+        if (kCode) kCode.textContent = pass.code;
+        if (kQr) kQr.innerHTML = generateCrispQRSVG(`RYU-TURNSTILE-TEMP:${pass.code}:${pass.name}`, 76);
+      } else {
+        digitalKeycardSection.style.display = 'none';
+        cashReservationSection.style.display = 'block';
+      }
     }
 
     const formView = document.getElementById('checkout-form-view');

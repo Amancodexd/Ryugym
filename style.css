@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    RYU GYM — FITNESS & TRAINING WEBSITE
    Style System: Strict Monochrome, Editorial Typography, Precision Physics
    Colors: Pure Black (#000000), Pure White (#ffffff), and Grays (#141414, #555555, #e5e5e5)
@@ -3239,6 +3239,233 @@ textarea:focus-visible {
 .modal-close:hover {
   color: var(--text-primary);
   transform: scale(1.1);
+}
+
+/* ==========================================================================
+   19. TEMPORARY DIGITAL TURNSTILE KEYCARD (ONLINE PAYMENT ONLY)
+   ========================================================================== */
+.digital-keycard-section {
+  margin-bottom: 2rem;
+}
+
+.keycard-wrapper {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.digital-keycard {
+  background: linear-gradient(135deg, #111111 0%, #1d1d1d 50%, #0c0c0c 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: all 0.3s ease;
+}
+
+.digital-keycard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -25%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.digital-keycard.turnstile-scanned {
+  border-color: #ef4444;
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.35);
+}
+
+.keycard-chip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.keycard-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.keycard-logo-txt {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.keycard-sub-txt {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #a3a3a3;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.keycard-rfid-icon {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+}
+
+.digital-keycard.turnstile-scanned .keycard-rfid-icon {
+  color: #ef4444;
+}
+
+.keycard-body-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.keycard-athlete-block {
+  flex: 1;
+}
+
+.keycard-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: #737373;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.keycard-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #f5f5f5;
+  line-height: 1.2;
+}
+
+.keycard-tier-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #10b981;
+  margin-top: 5px;
+}
+
+.keycard-qr-box {
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.keycard-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.keycard-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #10b981;
+}
+
+.keycard-status-badge.redeemed {
+  color: #ef4444;
+}
+
+.pulse-indicator {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.keycard-status-badge.redeemed .pulse-indicator {
+  background-color: #ef4444;
+  animation: none;
+}
+
+.keycard-id {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: #d4d4d4;
+}
+
+.keycard-policy-alert {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-left: 4px solid #10b981;
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.keycard-policy-alert.redeemed {
+  border-left-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.06);
+}
+
+/* Cashier reservation notice */
+.cash-reservation-alert {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-left: 4px solid #f59e0b;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+}
+
+.cash-alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge-desk-reservation {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b45309;
+  background-color: #fef3c7;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.desk-status-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #991b1b;
+  background-color: #fee2e2;
+  padding: 3px 8px;
+  border-radius: 3px;
 }
 
 /* print styles for the pass */
