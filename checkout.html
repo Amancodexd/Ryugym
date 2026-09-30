@@ -141,12 +141,6 @@
                     </svg>
                     <span>Card Payment</span>
                   </button>
-                  <button type="button" class="pay-tab" data-method="qr" role="tab" aria-selected="false" id="tab-method-qr">
-                    <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-                    </svg>
-                    <span>Digital QR Pay</span>
-                  </button>
                   <button type="button" class="pay-tab" data-method="cash" role="tab" aria-selected="false" id="tab-method-cash">
                     <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="18"/>
@@ -251,43 +245,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- QR code payment panel -->
-                <div class="pay-panel" id="panel-method-qr">
-                  <div class="qr-payment-box" style="padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;">
-                    <!-- QR wallet selector tabs -->
-                    <div class="qr-wallet-toggle" style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
-                      <button type="button" class="btn btn-sm btn-secondary qr-toggle-btn active" id="btn-qr-esewa" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; border-color: #4caf50; color: #4caf50;">eSewa QR</button>
-                      <button type="button" class="btn btn-sm btn-secondary qr-toggle-btn" id="btn-qr-khalti" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">Khalti QR</button>
-                    </div>
-
-                    <div class="qr-code-frame" style="position: relative; display: inline-block; margin: 0 auto; background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); border: 2px solid var(--border-medium);">
-                      <img src="assets/qr-esewa.jpg" id="qr-display-img" alt="Gym Payment QR Code — Aman Rouniyar"
-                        style="width: 190px; height: 190px; object-fit: cover; object-position: center 20%; border-radius: 8px; display: block;">
-                      <div class="qr-scan-line" aria-hidden="true" style="position: absolute; top: 12px; left: 12px; right: 12px;"></div>
-                    </div>
-
-                    <div class="qr-account-details" style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem 1.25rem; width: 100%; max-width: 320px;">
-                      <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.25rem;">Recipient Account</div>
-                      <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.15rem;">Aman Rouniyar</div>
-                      <div style="font-size: 0.95rem; font-family: monospace; color: var(--text-secondary); letter-spacing: 1px;">9826320933</div>
-                    </div>
-
-                    <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0; max-width: 360px; line-height: 1.5;">
-                      Scan the QR code using your preferred app to complete your membership fee, then click <strong>Confirm QR Payment &amp; Generate Member Pass</strong> below.
-                    </p>
-
-                    <div class="qr-wallet-badges" style="justify-content: center; margin-bottom: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                      <span class="wallet-badge">Scan &amp; Pay</span>
-                      <span class="wallet-badge">eSewa</span>
-                      <span class="wallet-badge">Khalti</span>
-                      <span class="wallet-badge">Fonepay</span>
-                      <span class="wallet-badge">Mobile Banking</span>
-                    </div>
-
-                  </div>
-                </div>
-
                 <!-- cash payment panel -->
                 <div class="pay-panel" id="panel-method-cash">
                   <div class="cash-reservation-box" style="padding: 1.5rem;">

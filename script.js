@@ -914,7 +914,7 @@ function initCheckoutSystem() {
   // track what the user has selected
   let currentPlan = 'IronPass';
   let currentCycle = 'monthly'; // 'monthly' | 'annual'
-  let currentMethod = 'esewa';  // 'esewa' | 'card' | 'qr' | 'cash'
+  let currentMethod = 'esewa';  // 'esewa' | 'khalti' | 'card' | 'cash'
   let appliedPromo = null;
 
   // DOM Elements
@@ -926,7 +926,6 @@ function initCheckoutSystem() {
     esewa: document.getElementById('panel-method-esewa'),
     khalti: document.getElementById('panel-method-khalti'),
     card: document.getElementById('panel-method-card'),
-    qr: document.getElementById('panel-method-qr'),
     cash: document.getElementById('panel-method-cash')
   };
 
@@ -1144,34 +1143,8 @@ function initCheckoutSystem() {
   }
 
 
-  // Personal QR Code Sub-tab Switcher (eSewa / Khalti)
-  const btnQrEsewa = document.getElementById('btn-qr-esewa');
-  const btnQrKhalti = document.getElementById('btn-qr-khalti');
-  const qrDisplayImg = document.getElementById('qr-display-img');
 
-  if (btnQrEsewa && btnQrKhalti && qrDisplayImg) {
-    btnQrEsewa.addEventListener('click', () => {
-      btnQrEsewa.classList.add('active');
-      btnQrEsewa.style.borderColor = '#4caf50';
-      btnQrEsewa.style.color = '#4caf50';
-      btnQrKhalti.classList.remove('active');
-      btnQrKhalti.style.borderColor = '';
-      btnQrKhalti.style.color = '';
-      qrDisplayImg.src = 'assets/qr-esewa.jpg';
-    });
-
-    btnQrKhalti.addEventListener('click', () => {
-      btnQrKhalti.classList.add('active');
-      btnQrKhalti.style.borderColor = '#9c60e8';
-      btnQrKhalti.style.color = '#9c60e8';
-      btnQrEsewa.classList.remove('active');
-      btnQrEsewa.style.borderColor = '';
-      btnQrEsewa.style.color = '';
-      qrDisplayImg.src = 'assets/qr-khalti.jpg';
-    });
-  }
-
-  // Payment Method Tabs
+    // Payment Method Tabs
   payTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       payTabs.forEach(t => {
@@ -1202,8 +1175,6 @@ function initCheckoutSystem() {
           submitBtnText.textContent = 'Proceed to Khalti Payment & Generate Keycard';
         } else if (currentMethod === 'cash') {
           submitBtnText.textContent = 'Generate Front Desk Cashier Voucher & Barcode';
-        } else if (currentMethod === 'qr') {
-          submitBtnText.textContent = 'Confirm QR Payment & Generate Member Pass';
         } else {
           submitBtnText.textContent = 'Authorize Card Payment & Generate Barcode Voucher';
         }
@@ -1356,62 +1327,6 @@ function initCheckoutSystem() {
     submitBtn.disabled = true;
 
 
-    // ---- REAL Khalti Online Gateway Flow ----
-    if (currentMethod === 'khalti') {
-      const rawAmount = summaryTotalPrice
-        ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
-        : '0';
-
-      const returnPath = window.location.pathname.endsWith('checkout.html')
-        ? '/checkout.html'
-        : (window.location.pathname.endsWith('membership.html') ? '/membership.html' : '/checkout.html');
-
-      fetch(`${BACKEND_URL}/api/khalti/initiate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          planKey: currentPlan,
-          amount: rawAmount,
-          cycle: currentCycle,
-          name: memberName ? memberName.value.trim() : '',
-          email: memberEmail ? memberEmail.value.trim() : '',
-          phone: memberPhone ? memberPhone.value.trim() : '',
-          origin: window.location.origin,
-          returnPage: returnPath,
-        }),
-      })
-      .then(r => r.json())
-      .then((data) => {
-        if (data.error || !data.payment_url) {
-          alert('Could not initiate Khalti transaction. Please ensure the backend server is running (cd server && npm start).');
-          submitBtn.disabled = false;
-          if (defaultText && loadingText) {
-            defaultText.style.display = 'inline';
-            loadingText.style.display = 'none';
-          }
-          return;
-        }
-
-        // Redirect to Khalti checkout portal
-        window.location.href = data.payment_url;
-      })
-      .catch((err) => {
-        console.error(err);
-        const isFile = window.location.protocol === 'file:';
-        if (isFile) {
-          alert('Cannot connect to payment backend over file:// protocol.\n\nPlease open via VS Code Live Server (e.g. http://localhost:5500) and ensure backend is running.');
-        } else {
-          alert('Payment backend server is currently unreachable.\nTo start the local server:\n  cd server\n  npm start');
-        }
-        submitBtn.disabled = false;
-        if (defaultText && loadingText) {
-          defaultText.style.display = 'inline';
-          loadingText.style.display = 'none';
-        }
-      });
-      return;
-    }
-
     // ---- REAL eSewa Online Gateway Flow ----
     if (currentMethod === 'esewa') {
       const rawAmount = summaryTotalPrice
@@ -1506,8 +1421,8 @@ function initCheckoutSystem() {
 
       // Payment method descriptor
       let payMethodDesc = 'Credit Card (•••• 4242)';
-      if (currentMethod === 'qr') {
-        payMethodDesc = 'Digital QR Pay (Aman Rouniyar - 9826320933)';
+      if (currentMethod === 'khalti') {
+        payMethodDesc = 'Khalti ePayment (Aman Rouniyar)';
       } else if (currentMethod === 'cash') {
         payMethodDesc = 'Front Desk Cashier Voucher (Present in Person)';
       }
