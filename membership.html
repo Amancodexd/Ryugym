@@ -251,6 +251,10 @@
                     <span style="background: #4caf50; color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">e</span>
                     <span>eSewa ePay</span>
                   </button>
+                  <button type="button" class="pay-tab" data-method="khalti" role="tab" aria-selected="false" id="tab-method-khalti">
+                    <span style="background: #5c2d91; color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">K</span>
+                    <span>Khalti Pay</span>
+                  </button>
                   <button type="button" class="pay-tab" data-method="card" role="tab" aria-selected="false" id="tab-method-card">
                     <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
@@ -300,6 +304,36 @@
                   </div>
                 </div>
 
+                
+                <!-- Khalti online payment panel -->
+                <div class="pay-panel" id="panel-method-khalti">
+                  <div class="khalti-gateway-box" style="padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; border: 1px solid rgba(92, 45, 145, 0.4); background: linear-gradient(180deg, rgba(92, 45, 145, 0.08) 0%, rgba(20, 10, 35, 0.02) 100%); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                      <span style="background: #5c2d91; color: #fff; border-radius: 50%; width: 28px; height: 28px; font-size: 1rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">K</span>
+                      <span style="font-size: 1.25rem; font-weight: 800; color: #9c60e8; letter-spacing: 0.5px;">Khalti Official ePayment</span>
+                    </div>
+
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1rem 1.25rem; width: 100%; max-width: 360px; text-align: left;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Gateway:</span>
+                        <strong style="color: var(--text-primary);">Khalti EPAY v2.0 (Wallet &amp; NetBanking)</strong>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Settlement:</span>
+                        <span style="color: #9c60e8; font-weight: 600;">Instant Pass &amp; Keycard Issuance</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Security:</span>
+                        <span style="color: var(--text-primary); font-family: monospace;">256-Bit TLS Secured</span>
+                      </div>
+                    </div>
+
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0; max-width: 420px; line-height: 1.5;">
+                      Clicking <strong>Proceed to Khalti Payment</strong> connects you to Khalti's payment portal. Authorize with your Khalti wallet or mobile banking to confirm, and instantly receive your verified turnstile e-keycard.
+                    </p>
+                  </div>
+                </div>
+
                 <!-- credit card payment panel -->
                 <div class="pay-panel" id="panel-method-card">
                   <div class="card-visual-preview" aria-hidden="true" style="margin-bottom: 1.25rem; padding: 1.25rem;">
@@ -341,9 +375,14 @@
                 <!-- QR code payment panel -->
                 <div class="pay-panel" id="panel-method-qr">
                   <div class="qr-payment-box" style="padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem;">
+                    <!-- QR wallet selector tabs -->
+                    <div class="qr-wallet-toggle" style="display: flex; gap: 0.5rem; margin-bottom: 0.25rem;">
+                      <button type="button" class="btn btn-sm btn-secondary qr-toggle-btn active" id="btn-qr-esewa" style="padding: 0.35rem 0.85rem; font-size: 0.8rem; border-color: #4caf50; color: #4caf50;">eSewa QR</button>
+                      <button type="button" class="btn btn-sm btn-secondary qr-toggle-btn" id="btn-qr-khalti" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">Khalti QR</button>
+                    </div>
 
                     <div class="qr-code-frame" style="position: relative; display: inline-block; margin: 0 auto; background: #fff; padding: 12px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25); border: 2px solid var(--border-medium);">
-                      <img src="assets/my-qr.jpg" alt="Gym Payment QR Code — Aman Rouniyar"
+                      <img src="assets/qr-esewa.jpg" id="qr-display-img" alt="Gym Payment QR Code — Aman Rouniyar"
                         style="width: 190px; height: 190px; object-fit: cover; object-position: center 20%; border-radius: 8px; display: block;">
                       <div class="qr-scan-line" aria-hidden="true" style="position: absolute; top: 12px; left: 12px; right: 12px;"></div>
                     </div>

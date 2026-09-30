@@ -1,4 +1,4 @@
-services:
+﻿services:
   - type: web
     name: ryugym-api
     runtime: node
@@ -20,5 +20,13 @@ services:
         value: https://rc-epay.esewa.com.np/api/epay/main/v2/form
       - key: ESEWA_STATUS_URL
         value: https://rc.esewa.com.np/api/epay/transaction/status/
+      - key: KHALTI_PUBLIC_KEY
+        value: test_public_key_dc74e0fd57cb46cd93832aee0a505e1f
+      - key: KHALTI_SECRET_KEY
+        value: test_secret_key_6d477381665a4c9eb4718ae5d233e680
+      - key: KHALTI_INITIATE_URL
+        value: https://dev.khalti.com/api/v2/epayment/initiate/
+      - key: KHALTI_LOOKUP_URL
+        value: https://dev.khalti.com/api/v2/epayment/lookup/
       - key: BACKEND_PUBLIC_URL
         value: https://ryugym-api.onrender.com
