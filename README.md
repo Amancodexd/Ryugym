@@ -1,7 +1,8 @@
 # Ryu Gym — Fitness & Training Website
 
 > **College Web Development Project — 2nd Semester**
-> Built entirely with **HTML5**, **CSS3**, and **Vanilla JavaScript** — no frameworks, no libraries, no Bootstrap.
+> Student: **Aman Rouniyar** | Biratnagar-2, Near Chapri Mall
+> Built entirely with **HTML5**, **CSS3**, **Vanilla JavaScript**, and a **Node.js/Express** backend payment server.
 
 ---
 
@@ -11,46 +12,76 @@
 2. [How to Open / Run the Website](#how-to-open--run-the-website)
 3. [File & Folder Structure](#file--folder-structure)
 4. [Page-by-Page Breakdown](#page-by-page-breakdown)
-5. [JavaScript Features Explained (script.js)](#javascript-features-explained-scriptjs)
-6. [CSS Architecture Explained (style.css)](#css-architecture-explained-stylecss)
-7. [Technologies & Concepts Used](#technologies--concepts-used)
-8. [Key Academic Concepts Demonstrated](#key-academic-concepts-demonstrated)
-9. [Browser Compatibility](#browser-compatibility)
-10. [Credits & Acknowledgements](#credits--acknowledgements)
+5. [Payment Gateway System](#payment-gateway-system)
+   - [How the Backend Server Works](#how-the-backend-server-works)
+   - [How Render Deployment Works](#how-render-deployment-works)
+   - [eSewa Integration Flow](#esewa-integration-flow)
+   - [Khalti Integration Flow](#khalti-integration-flow)
+   - [Digital Turnstile Keycard](#digital-turnstile-keycard)
+6. [JavaScript Features (script.js)](#javascript-features-scriptjs)
+7. [CSS Architecture (style.css)](#css-architecture-stylecss)
+8. [Technologies & Concepts Used](#technologies--concepts-used)
+9. [Key Academic Concepts Demonstrated](#key-academic-concepts-demonstrated)
+10. [Browser Compatibility](#browser-compatibility)
+11. [Credits & Acknowledgements](#credits--acknowledgements)
 
 ---
 
 ## Project Overview
 
-**Ryu Gym** is a fully functional, multi-page fitness and gym website designed as a college web development project. The website is themed around a fictional premium training facility called "Ryu Gym" and showcases a professional-grade, monochrome (black & white) editorial design aesthetic with accent colors (crimson red and gold) matching the official Ryu Gym brand logo.
+**Ryu Gym** is a fully functional, multi-page fitness and gym website built as a 2nd semester college web development project. The website simulates a real premium training facility with a professional monochrome (black & white) editorial design with crimson red and gold accents matching the official Ryu Gym brand logo.
 
 ### What Makes This Project Stand Out
 
 - **8 complete HTML pages** with consistent navigation and branding across all of them
-- **Official Ryu Gym logo** integrated in every page's navigation bar, footer, and digital keycard — with smooth hover micro-animations and favicon support
-- **~3,645 lines of hand-written CSS** covering responsive layouts, dark/light theming, animations, print styles, and digital keycard design
-- **~1,978 lines of Vanilla JavaScript** implementing 20+ interactive features without any external library
-- **Dark/Light mode** toggle that saves the user's preference in `localStorage`
-- **Full Membership & Checkout system** with payment forms (Card, QR/eSewa/Khalti, Cash), digital e-keycard generation, and barcode voucher
-- **Interactive widgets**: BMI Calculator, Before/After image comparison slider, Tabata workout timer, contact form with full client-side validation
-- **Fully responsive** design that adapts to mobile, tablet, and desktop screens
-- **Video integration** in trainer cards with autoplay, loop, and muted playback
-- **Custom 404 error page** with its own design
-- **Print stylesheet** so pages with official documents can be printed cleanly
+- **Official Ryu Gym logo** (barbell + wordmark) integrated in every page's nav, footer, digital keycard, and favicon
+- **~3,645 lines of hand-written CSS** — responsive layouts, dark/light theming, animations, print styles, digital keycard
+- **~2,100+ lines of Vanilla JavaScript** — 20+ interactive features with zero external libraries
+- **Real Payment Gateway Integration** — eSewa ePay v2 and Khalti EPAY v2 backend with HMAC-SHA256 signature verification
+- **Node.js/Express backend server** deployed on Render — handles secure payment initiation and verification
+- **1-Time Digital Turnstile E-Keycard** generated after verified online payment — with QR code, barcode, NFC icon, and athlete details
+- **Membership Barcode Voucher** — Code-39 barcode + QR code auto-generated after checkout
+- **Dark/Light mode** toggle saved in `localStorage`
+- **Interactive widgets**: BMI Calculator, Before/After image slider, Tabata workout timer, contact form with full validation
+- **Fully responsive** — mobile, tablet, desktop
+- **Custom 404 page**, print stylesheets, accessible ARIA markup
 
 ---
 
 ## How to Open / Run the Website
 
-This is a **static website** — it does not need a server, Node.js, or any installation.
+### Option A — Static Site Only (No Payment Backend)
+> This mode lets you view all pages. Card and Desk Cash checkout work. eSewa/Khalti gateways need the backend.
 
-### Steps:
-1. Download or clone the project folder
-2. Double-click on **`index.html`** — it will open in your default web browser
-3. Use the navigation bar at the top to visit other pages
+1. Clone or download the project folder
+2. Double-click `index.html` — opens in your browser
+3. Navigate using the top navigation bar
 
-### Alternative (Live Server in VS Code):
-Install the "Live Server" extension in VS Code, then right-click `index.html` → **"Open with Live Server"** for auto-refresh during development.
+### Option B — Live Server (Recommended for Development)
+1. Open the folder in **VS Code**
+2. Install the **"Live Server"** extension
+3. Right-click `index.html` → **"Open with Live Server"**
+4. Site runs at `http://127.0.0.1:5500`
+
+### Option C — Full Stack (with Payment Gateways)
+> Required to use eSewa and Khalti real payment gateway flows.
+
+**Step 1: Set up the backend server**
+```bash
+cd server
+cp .env.example .env       # Copy the example env file
+# Edit .env with your real eSewa and Khalti credentials
+npm install                # Install Node.js dependencies
+npm start                  # Start the payment server on port 3001
+```
+
+**Step 2: Open the frontend** via Live Server (NOT file://)
+- Frontend: `http://127.0.0.1:5500`
+- Backend API: `http://localhost:3001`
+
+**Step 3: Test a payment**
+- Go to **Membership** page → Select a plan → Click **"Proceed to eSewa Online Payment"**
+- You will be redirected to eSewa's sandbox payment portal
 
 ---
 
@@ -59,219 +90,481 @@ Install the "Live Server" extension in VS Code, then right-click `index.html` �
 ```
 Aman Rouniyar-Ryu Gym -2nd sem/
 │
-├── index.html          → Homepage (434 lines) — hero, stats, programs preview, trainers, transformation slider, trial CTA
-├── about.html          → About page (243 lines) — gym story, facilities grid, operating hours table, membership pricing cards
-├── programs.html       → Programs page (315 lines) — 6 filterable training programs, BMI calculator, Tabata timer
-├── trainers.html       → Trainers page (241 lines) — 4 trainer cards with click-to-expand lightbox dossier modal
-├── contact.html        → Contact page (257 lines) — validated form, facility info, embedded OpenStreetMap
-├── membership.html     → Membership page (638 lines) — tier selection, payment forms (Card/QR/Cash), digital e-keycard
-├── checkout.html       → Checkout page (473 lines) — full checkout flow, barcode voucher, pass lookup modal
-├── 404.html            → Custom 404 error page (156 lines)
+├── index.html          → Homepage — hero, stats, programs preview, trainers, transformation slider
+├── about.html          → About page — gym story, facilities, hours table, pricing cards
+├── programs.html       → Programs page — 6 filterable programs, BMI calculator, Tabata timer
+├── trainers.html       → Trainers page — 4 trainer cards with lightbox bio modal
+├── contact.html        → Contact page — validated form, facility info, embedded map
+├── membership.html     → Membership page — plan selection, payment (eSewa/Khalti/Card/Cash)
+├── checkout.html       → Dedicated checkout page (opens in new tab from membership)
+├── 404.html            → Custom 404 error page
 │
-├── style.css           → All CSS styles for every page (~3,645 lines, single shared stylesheet)
-├── script.js           → All JavaScript logic for every page (~1,978 lines, single shared script)
+├── style.css           → All CSS for every page (~3,645 lines, single shared stylesheet)
+├── script.js           → All JavaScript for every page (~2,100+ lines, single shared script)
+├── render.yaml         → Render.com deployment config for the backend Node.js server
 │
-└── assets/             → Media folder containing all images, videos, and logo files
-    │
-    ├── — LOGO FILES —
-    ├── ryugym logo.png             → Original Ryu Gym logo (barbell + RYU GYM text, beige background)
-    ├── ryugym-logo.png             → Clean cropped square logo badge (used in nav, footer, favicon)
-    ├── ryugym-logo-transparent.png → Transparent background variant for light backgrounds
-    ├── ryugym-logo-dark.png        → Dark-mode optimized transparent variant
-    ├── ryugym-logo.svg             → Scalable vector logo (crisp at any size)
-    │
-    ├── — IMAGES —
-    ├── gym cat.jpg                 → Hero section image on homepage
-    ├── workout.jpg                 → General gym imagery
-    ├── Cute-Cat.jpg                → Before/After slider — "Before" image
-    ├── fatcat.jpg                  → Before/After slider — "After" image
-    ├── olmpic weight room.jpg      → Facilities section — Olympic Weight Room
-    ├── heavy metal.jpg             → Facilities section — Heavy Metal Zone
-    ├── saunas.jpg                  → Facilities section — Recovery/Sauna
-    ├── combact zone.jpg            → Facilities section — Combat Zone
-    ├── cardio.jpg                  → Programs — Cardio & Fat Loss
-    ├── high ocatne hiit.jpg        → Programs — HIIT program
-    ├── hyoertrophy.jpg             → Programs — Hypertrophy/Bodybuilding
-    ├── yoga and mobility.jpg       → Programs — Yoga & Mobility
-    ├── act fight.jpg               → Programs — Combat Conditioning
-    ├── my-qr.jpg                   → QR code (general)
+├── server/             → Node.js/Express backend payment server
+│   ├── index.js            → Main Express app (CORS, routing, error handling)
+│   ├── signature.js        → HMAC-SHA256 cryptographic signature generator/verifier (eSewa)
+│   ├── db.js               → In-memory transaction store (idempotency, status tracking)
+│   ├── .env                → Local environment variables (NOT committed to Git)
+│   ├── .env.example        → Template for environment setup
+│   ├── package.json        → Node.js dependencies (express, axios, uuid, dotenv, cors)
+│   └── routes/
+│       └── payment.js      → All payment API endpoints (eSewa + Khalti initiate/callback/status)
+│
+└── assets/             → Media folder
+    ├── ryugym-logo.png             → Cropped square logo badge (nav, footer, favicon)
+    ├── ryugym-logo-transparent.png → Transparent background variant
+    ├── ryugym-logo-dark.png        → Dark-mode variant
+    ├── ryugym-logo.svg             → Scalable vector version
     ├── qr-esewa.jpg                → eSewa payment QR code
     ├── qr-khalti.jpg               → Khalti payment QR code
-    │
-    ├── — VIDEOS —
-    ├── walking.mp4                 → Trainer 1 card background video
-    ├── gym boii.mp4                → Trainer 2 card background video
-    ├── giga chad.mp4               → Trainer 3 card background video
-    ├── john wick.mp4               → Trainer 4 card background video
-    ├── andrew atte.mp4             → Trainer profile video
-    ├── deadkift.mp4                → Deadlift demonstration video
-    ├── thanos.mp4                  → Strength showcase video
-    ├── justnothing.mp4             → Background/ambient video
-    │
-    └── README.txt                  → Asset notes
+    ├── my-qr.jpg                   → General QR code (legacy)
+    └── [images, videos ...]        → Trainer videos, gym photos, program images
 ```
-
-> **Important**: The entire website uses **ONE CSS file** (`style.css`) and **ONE JavaScript file** (`script.js`). Every HTML page links to both. This keeps the project unified and easy to maintain.
 
 ---
 
 ## Page-by-Page Breakdown
 
-### 1. Homepage — `index.html` (434 lines)
+### 1. Homepage — `index.html`
+The main landing page. Users arrive here first.
 
-The main landing page with the following sections from top to bottom:
-
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Navigation Bar** | Ryu Gym logo badge + 6 page links + dark/light toggle + hamburger menu | Sticky header, logo with hover animation, mobile-responsive |
-| **Hero Section** | Large headline "Train Hard. Transform Yourself." + CTA buttons + hero image | Text scramble animation, spotlight cursor effect |
-| **Scrolling Ticker** | Horizontal auto-scrolling slogans ("NO EXCUSES", "PURE DISCIPLINE", etc.) | CSS-only infinite marquee animation |
-| **Stats Counter Strip** | 4 animated counters: 500+ Members, 10+ Years, 18+ Trainers, 99% Goal Rate | Numbers count up from 0 when scrolled into view (Intersection Observer) |
-| **Why Choose Us** | 4 feature cards with numbered index (01–04) | Scroll-reveal stagger animation |
-| **Featured Programs** | 3 program preview cards with images, badges, descriptions | Links to programs.html |
-| **Trainer Preview** | 3 trainer cards with **autoplaying video** backgrounds | `<video>` tag with autoplay, loop, muted, playsinline |
-| **Before/After Slider** | Interactive image comparison slider with draggable handle | Custom drag logic (mouse + touch), gradient handle |
-| **Trial Pass CTA** | Call-to-action to claim a free day pass | Links to contact.html |
-| **Footer** | Ryu Gym logo + navigation links, training hours, address, social icons | 4-column responsive grid, logo with hover scale |
-
----
-
-### 2. About Page — `about.html` (243 lines)
-
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Gym Story** | Origin paragraph about Ryu Gym's founding philosophy | Narrow container for readability |
-| **Facilities Grid** | 4 facility cards (Weight Room, Conditioning Floor, Boxing Arena, Recovery Suites) | Each with an image and description |
-| **Operating Hours Table** | HTML `<table>` with staffed hours for each day of the week | Proper `<thead>`, `<tbody>` usage |
-| **Membership Pricing** | 3 pricing cards: Iron Pass, Black Tier, Elite Athlete | Monthly/Yearly toggle switch that dynamically updates prices via JavaScript |
-| **Print Header** | Hidden header that only appears when the page is printed | CSS `@media print` stylesheet |
+| Section | Description | Key JS Feature |
+|---------|-------------|----------------|
+| **Navigation Bar** | Logo + 6 page links + dark/light toggle + hamburger | Sticky header, logo micro-animation |
+| **Hero Section** | Big headline + CTA buttons + hero image | Text scramble animation, spotlight cursor |
+| **Scrolling Ticker** | Auto-scrolling slogans ("NO EXCUSES", etc.) | CSS infinite marquee |
+| **Stats Counter** | 500+ Members, 10+ Years, 18+ Trainers, 99% Rate | Count-up on scroll (Intersection Observer) |
+| **Why Choose Us** | 4 feature cards (numbered 01–04) | Scroll-reveal stagger animation |
+| **Featured Programs** | 3 program preview cards | Links to programs.html |
+| **Trainer Preview** | 3 trainer cards with autoplaying video backgrounds | HTML5 `<video>` autoplay, loop, muted |
+| **Before/After Slider** | Draggable image comparison slider | Custom drag logic (mouse + touch events) |
+| **Trial CTA** | Free day pass call-to-action | Links to contact.html |
+| **Footer** | Logo + nav links + hours + address + socials | 4-column responsive grid |
 
 ---
 
-### 3. Programs Page — `programs.html` (315 lines)
+### 2. About Page — `about.html`
+Background on the gym and facilities.
 
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Filter Bar** | Buttons: All, Strength, Bodybuilding, Cardio & Fat Loss, Flexibility | JavaScript filters program cards by `data-category` attribute |
-| **Program Grid** | 6 detailed program cards with images, badges, durations, descriptions | Filterable with smooth hide/show transitions |
-| **BMI Calculator** | Height/Weight form → computes BMI → animated SVG ring result | Classifies Underweight / Normal / Overweight / Obese and recommends a program |
-| **Tabata Timer** | Functional 20s Work / 10s Rest × 8 Rounds interval timer | Start, Pause, Reset buttons with live countdown display |
-
----
-
-### 4. Trainers Page — `trainers.html` (241 lines)
-
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Trainer Grid** | 4 trainer profile cards with photo/video, name, specialty, experience | Data stored in HTML `data-*` attributes |
-| **Lightbox Modal** | Click any trainer card → full-screen overlay with detailed bio, credentials | JavaScript reads `data-name`, `data-role`, `data-bio`, `data-specs` |
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Gym Story** | Founding philosophy paragraph | Narrow readable column |
+| **Facilities Grid** | Olympic Weight Room, Conditioning Floor, Boxing Arena, Recovery Suite | Image cards |
+| **Hours Table** | `<table>` with staffed hours for each weekday | Proper thead/tbody |
+| **Pricing Cards** | Iron Pass, Black Tier, Elite Athlete plans | Monthly/Annual toggle (JavaScript price switching) |
+| **Print Header** | Only visible when page is printed | `@media print` CSS |
 
 ---
 
-### 5. Contact Page — `contact.html` (257 lines)
+### 3. Programs Page — `programs.html`
+Showcases all training programs with interactive tools.
 
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Contact Form** | Name, Email, Phone, Program dropdown, Message textarea | Full client-side validation with regex patterns and per-field error messages |
-| **Success Banner** | Animated confirmation message after valid submission | Form hides and banner slides in |
-| **Facility Info** | Address, phone, email, operating hours in plain text | Two-column responsive layout |
-| **Embedded Map** | OpenStreetMap iframe showing gym location | CSS grayscale filter applied to match monochrome theme |
-
----
-
-### 6. Membership Page — `membership.html` (638 lines)
-
-The full membership enrollment page:
-
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Tier Selection** | 3 membership tiers displayed as cards (Iron Pass, Black Tier, Elite Athlete) | Click to select; highlights chosen tier |
-| **Member Info Form** | Name, email, phone, start date collection | Client-side validation with inline error messages |
-| **Payment Section** | 3 payment method tabs: Card, QR (eSewa/Khalti), Cash | Tab switching, live card preview animation |
-| **Card Payment Form** | Card number, expiry, CVV with real-time card preview | Card type auto-detection (Visa/MC/Amex), flip animation on CVV focus |
-| **QR Payment** | eSewa and Khalti QR codes displayed for scanning | Payment confirmation flow |
-| **Cash Payment** | Walk-in cash instruction with counter visit note | Simple confirmation flow |
-| **Digital E-Keycard** | Animated digital keycard with Ryu Gym logo badge, member name, tier, QR code | 1-time use turnstile access pass, NFC/Optical icon |
-| **Barcode Voucher** | Generated barcode membership pass with member details | Printable; auto-generates unique voucher ID |
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Filter Bar** | All / Strength / Bodybuilding / Cardio / Flexibility | Filters cards by `data-category` attribute |
+| **Program Grid** | 6 detailed cards (image, badge, duration, description) | Show/hide animation on filter |
+| **BMI Calculator** | Height + Weight → BMI → animated SVG ring | Classifies and recommends a program |
+| **Tabata Timer** | 20s Work / 10s Rest × 8 Rounds | Start, Pause, Reset with live countdown |
 
 ---
 
-### 7. Checkout Page — `checkout.html` (473 lines)
+### 4. Trainers Page — `trainers.html`
+Profiles of the gym's coaching staff.
 
-The streamlined checkout and voucher issuance page:
-
-| Section | What It Shows | Key Feature |
-|---------|--------------|-------------|
-| **Minimal Header** | Ryu Gym logo + "Back to Plans" link + theme toggle | Compact checkout-specific header |
-| **Order Summary** | Selected tier, price, and member info confirmation | Pulled from membership.html via `localStorage`/URL params |
-| **Payment Processing** | Same Card/QR/Cash flow as membership.html | Unified payment UI |
-| **Digital E-Keycard** | Ryu Gym logo badge, member name, tier tag, QR access code | Shown immediately after successful online payment |
-| **Barcode Voucher** | Full membership pass with barcode, validity dates | Printable via "Print Voucher / Save PDF" button |
-| **Pass Lookup Modal** | Retrieve previously issued passes stored on this device | Uses `localStorage` to restore past vouchers |
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Trainer Grid** | 4 cards with photo/video, name, specialty, years | Video backgrounds per card |
+| **Lightbox Modal** | Click trainer → full-screen bio overlay | Reads `data-bio`, `data-role`, `data-specs` from HTML |
 
 ---
 
-### 8. Custom 404 Page — `404.html` (156 lines)
+### 5. Contact Page — `contact.html`
+How to reach Ryu Gym.
 
-Displays a large "404" error code with "Sector Out of Bounds" message, a brief explanation, and a back-to-home link. Uses inline `<style>` for page-specific layout, shares the site header and footer.
-
----
-
-## JavaScript Features Explained (`script.js`)
-
-The file contains **20+ functions** (~1,978 lines), each handling one specific feature. All are initialized on page load via `DOMContentLoaded`:
-
-| # | Function Name | What It Does | Concept Used |
-|---|--------------|-------------|--------------|
-| 0 | `initImagePlaceholders()` | If any `<img>` fails to load, replaces it with a generated SVG placeholder so the layout never breaks | `error` event listener, Data URIs |
-| 1 | `initThemeToggle()` | Toggles dark/light mode by setting `data-theme` attribute on `<html>`. Saves preference to `localStorage` | `localStorage`, DOM attribute manipulation |
-| 2 | `updateThemeIcon()` | Swaps the sun/moon SVG icon inside the toggle button based on current theme | Dynamic SVG injection via `innerHTML` |
-| 3 | `initStickyHeader()` | Adds a `.scrolled` CSS class to the header when the user scrolls past 60px, making it compact | `scroll` event, `classList.toggle()` |
-| 4 | `initMobileNav()` | Hamburger menu toggle for mobile screens. Toggles `.nav-open` class on the body | `click` event, `classList.toggle()`, `aria-expanded` |
-| 5 | `initScrollReveal()` | Elements with class `.reveal` fade/slide in when they enter the viewport | **Intersection Observer API** with threshold |
-| 6 | `initStatsCounter()` | Animates numbers counting up (e.g., 0 → 500+) when the stats section scrolls into view | Intersection Observer + `requestAnimationFrame` counter loop |
-| 7 | `initPricingToggle()` | Monthly/Yearly billing switch on the About page. Updates all prices dynamically | Toggle switch reads `data-price-monthly` and `data-price-yearly` attributes |
-| 8 | `initProgramFilter()` | Filter buttons on Programs page show/hide cards based on `data-category` attribute | `data-*` attributes, CSS display toggling |
-| 9 | `initBmiCalculator()` | Takes height (cm) and weight (kg), calculates BMI, classifies it, animates an SVG progress ring, and recommends a program | Form handling, `event.preventDefault()`, SVG `stroke-dashoffset` animation |
-| 10 | `initTrainerLightbox()` | Clicking a trainer card opens a full-screen modal with detailed bio from `data-*` attributes | DOM creation, overlay toggling, Escape key listener |
-| 11 | `initContactForm()` | Validates every field with regex (email format, phone format, min length). Shows per-field inline errors. On success hides form and shows confirmation banner | Form validation, `regex.test()`, `classList.add('field-error')` |
-| 12 | `initPrintTrigger()` | Lets users print pages as formatted documents via `window.print()` | Print API |
-| 13 | `initSpotlight()` | Creates a subtle radial spotlight following the mouse cursor on the Hero section | `mousemove` event, CSS `radial-gradient` updated dynamically |
-| 14 | `initTextScramble()` | Hero title characters scramble randomly then resolve into the correct text on page load | Character randomization loop with `setTimeout` |
-| 15 | `initMagneticButtons()` | Buttons with class `.btn-magnetic` slightly shift toward the cursor when hovered | `mousemove` on button, CSS `transform: translate()` |
-| 16 | `initBeforeAfterSlider()` | Interactive image comparison slider — drag a vertical handle to reveal before/after images | `mousedown`/`mousemove`/`mouseup` + touch events, percentage-based width calculation |
-| 17 | `initTabataTimer()` | Fully functional Tabata interval timer (20s work / 10s rest × 8 rounds) with Start, Pause, Reset | `setInterval`, state management, DOM updates |
-| 18 | `initKeyboardShortcuts()` | Press `T` to toggle theme, `Escape` to close overlays | `keydown` event listener |
-| 19 | `initMembershipFlow()` | Handles full membership tier selection, member form, payment tab switching, QR display, card preview animation, digital keycard generation, barcode voucher creation, and pass storage | Complex state machine; `localStorage`, dynamic DOM creation, `canvas` barcode generation |
-| 20 | `initCardPreview()` | Real-time animated credit card preview — number masking, card flip on CVV focus, Visa/MC/Amex type detection | Input event listeners, CSS 3D `perspective`/`rotateY` transform |
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Contact Form** | Name, Email, Phone, Program, Message | Regex validation + per-field error messages |
+| **Success Banner** | Confirmation on valid submission | Form hides, banner slides in |
+| **Facility Info** | Address, phone, email, hours | Two-column layout |
+| **Embedded Map** | OpenStreetMap iframe | CSS grayscale filter for monochrome theme |
 
 ---
 
-## CSS Architecture Explained (`style.css`)
+### 6. Membership Page — `membership.html`
+The primary membership enrollment hub.
 
-The stylesheet is approximately **3,645 lines** organized into clearly commented sections.
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Plan Selector** | Iron Pass / Black Tier / Elite Athlete / Specialized Discipline | Radio buttons highlight selected card |
+| **Billing Toggle** | Monthly / Annual (Save 20%) | JS switches prices dynamically |
+| **Plan Cards** | Feature lists, prices, "Select & Pay" buttons | Opens checkout.html in a new tab |
+| **Inline Checkout** | Backup full checkout embedded in page | Shown on eSewa/Khalti payment callback return |
+| **Payment Tabs** | eSewa ePay / Khalti Pay / Card Payment / Desk Cash | Each tab shows its own panel |
+| **Voucher Success** | Membership barcode voucher + QR code | Auto-generated Code-39 barcode and QR |
+| **Digital Keycard** | 1-Time Turnstile E-Keycard | Only shown on verified online payments |
 
-### Design System (CSS Variables)
+---
 
-All colors, fonts, and transitions are defined as CSS Custom Properties (variables) in `:root`:
+### 7. Checkout Page — `checkout.html`
+Dedicated full-screen checkout that opens in a new browser tab.
+
+| Section | Description | Key Feature |
+|---------|-------------|-------------|
+| **Plan Summary** | Shows selected plan, cycle, and running total | Reads URL params (?plan=BlackTier) |
+| **Member Details** | Name, Email, Phone fields | Validated before submission |
+| **Payment Method Tabs** | eSewa ePay / Khalti Pay / Card / Desk Cash Voucher | Each method has its own panel |
+| **eSewa Panel** | Gateway info + "Proceed to eSewa" button | Calls backend `/api/initiate-payment` |
+| **Khalti Panel** | Gateway info + "Proceed to Khalti" button | Calls backend `/api/khalti/initiate` |
+| **Card Panel** | Animated credit card preview + form | Simulated card processing |
+| **Desk Cash Panel** | Reservation notice for front desk payment | Generates cashier voucher barcode |
+| **Promo Codes** | RYU2026 (10% off), STUDENT15 (15% off) | Applied to order total |
+| **Voucher Success View** | Membership pass with Code-39 barcode + QR | Generated client-side via Canvas/SVG |
+| **Digital Keycard** | 1-Time Turnstile E-Keycard (eSewa/Khalti only) | Displayed only after verified gateway payment |
+
+---
+
+### 8. Custom 404 Page — `404.html`
+Shown when a visitor navigates to a non-existent page.
+- Styled to match the main site theme
+- Provides a "Go Home" button back to index.html
+
+---
+
+## Payment Gateway System
+
+### How the Backend Server Works
+
+The payment server lives in the `server/` folder and is a **Node.js + Express** application.
+
+```
+server/
+├── index.js        → Express app entry point
+├── signature.js    → Cryptographic signature functions
+├── db.js           → In-memory transaction database
+└── routes/
+    └── payment.js  → All API route handlers
+```
+
+#### Starting the Server
+
+```bash
+cd server
+npm install    # Install: express, cors, axios, uuid, dotenv
+npm start      # Runs on http://localhost:3001
+```
+
+#### Environment Variables (`server/.env`)
+
+```env
+NODE_ENV=development
+PORT=3001
+
+# CORS — which frontend origins are allowed
+FRONTEND_ORIGIN=http://127.0.0.1:5500,https://amancodexd.github.io
+
+# eSewa sandbox credentials
+ESEWA_PRODUCT_CODE=EPAYTEST
+ESEWA_SECRET_KEY=8gBm/:&EnhH.1/q
+ESEWA_PAYMENT_URL=https://rc-epay.esewa.com.np/api/epay/main/v2/form
+ESEWA_STATUS_URL=https://rc.esewa.com.np/api/epay/transaction/status/
+
+# Khalti sandbox credentials
+KHALTI_PUBLIC_KEY=test_public_key_dc74e0fd57cb46cd93832aee0a505e1f
+KHALTI_SECRET_KEY=test_secret_key_6d477381665a4c9eb4718ae5d233e680
+KHALTI_INITIATE_URL=https://dev.khalti.com/api/v2/epayment/initiate/
+KHALTI_LOOKUP_URL=https://dev.khalti.com/api/v2/epayment/lookup/
+
+# This server's own public URL (eSewa/Khalti redirects back here)
+BACKEND_PUBLIC_URL=http://localhost:3001
+```
+
+#### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/health` | Health check — returns `{ ok: true }` |
+| `POST` | `/api/initiate-payment` | Start an eSewa transaction — returns form URL + fields |
+| `GET` | `/api/payment/success` | eSewa redirects here after user pays |
+| `GET` | `/api/payment/failure` | eSewa redirects here if user cancels |
+| `POST` | `/api/khalti/initiate` | Start a Khalti transaction — returns `payment_url` |
+| `GET` | `/api/khalti/callback` | Khalti redirects here after user pays |
+| `GET` | `/api/payment/status/:uuid` | Query transaction status by UUID |
+
+#### Transaction Database (`db.js`)
+A simple in-memory JavaScript object stores all transactions:
+```js
+{ uuid: { planKey, amount, name, email, status, gateway, origin, returnPage, ... } }
+```
+This ensures **idempotency** — if eSewa accidentally sends the success callback twice, we only process it once.
+
+#### HMAC-SHA256 Signature (`signature.js`)
+eSewa uses cryptographic signatures to verify payment authenticity:
+```js
+// When initiating: we sign "total_amount,transaction_uuid,product_code"
+// When verifying callback: we re-verify eSewa's returned signature matches ours
+generateSignature({ totalAmount, transactionUuid, productCode, secretKey })
+verifyCallbackSignature({ decodedData, secretKey })
+```
+
+---
+
+### How Render Deployment Works
+
+**Render** is a cloud platform that hosts the Node.js backend server so it is accessible from the internet (not just `localhost`).
+
+#### `render.yaml` Configuration
+
+```yaml
+services:
+  - type: web
+    name: ryugym-api
+    runtime: node
+    rootDir: server         # Only deploy the /server folder
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_ORIGIN
+        value: https://amancodexd.github.io,https://ryugym-chi.vercel.app
+      - key: ESEWA_PRODUCT_CODE
+        value: EPAYTEST
+      # ... all other secrets set in Render dashboard
+      - key: BACKEND_PUBLIC_URL
+        value: https://ryugym-api.onrender.com
+```
+
+#### How Render Connects to the Frontend
+
+```
+GitHub (push code)
+        │
+        ▼
+   Render detects push
+        │
+        ▼
+   Runs: npm install → npm start
+        │
+        ▼
+   Backend live at: https://ryugym-api.onrender.com
+        │
+        ▼
+   Frontend (GitHub Pages / Vercel) calls backend API
+        │
+        ▼
+   CORS whitelist allows the frontend origin
+```
+
+**Why Render?**
+- Free tier for academic projects
+- Auto-deploys whenever code is pushed to GitHub
+- Provides a stable HTTPS URL that eSewa and Khalti can redirect back to
+- Environment variables are stored securely in the dashboard (not in code)
+
+---
+
+### eSewa Integration Flow
+
+eSewa uses a **server-side form POST** approach (ePay v2):
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        eSewa Payment Flow                           │
+└─────────────────────────────────────────────────────────────────────┘
+
+1. USER clicks "Proceed to eSewa Online Payment" on checkout page
+        │
+        ▼
+2. FRONTEND sends POST to backend:
+   /api/initiate-payment
+   { planKey, amount, cycle, name, email, phone, origin, returnPage }
+        │
+        ▼
+3. BACKEND (server/routes/payment.js):
+   - Generates a unique UUID (transaction ID)
+   - Computes HMAC-SHA256 signature using eSewa secret key
+   - Saves transaction to in-memory DB { status: 'PENDING' }
+   - Returns: { formUrl, fields: { amount, signature, product_code, ... } }
+        │
+        ▼
+4. FRONTEND builds a hidden HTML <form> with those fields and submits it
+   → User's browser POSTs directly to eSewa's payment portal
+        │
+        ▼
+5. USER sees eSewa's payment page, enters eSewa PIN/password
+        │
+        ▼
+6. eSewa redirects to our BACKEND:
+   GET /api/payment/success?data=BASE64_ENCODED_RESPONSE
+        │
+        ▼
+7. BACKEND decodes the response and:
+   - Step 1: Verifies eSewa's signature matches what we expect (anti-tampering)
+   - Step 2: Checks the transaction UUID exists in our DB (idempotency)
+   - Step 3: Re-verifies with eSewa's Status API (never trust redirect alone)
+   - Marks transaction as COMPLETE in DB
+        │
+        ▼
+8. BACKEND redirects user's browser back to FRONTEND:
+   /checkout.html?payment=success&gateway=esewa&txn=UUID&ref=REF&amount=AMT&name=NAME&plan=PLAN
+        │
+        ▼
+9. FRONTEND (script.js) detects ?payment=success in URL:
+   - Renders the Membership Voucher (Code-39 barcode + QR code)
+   - Shows the 1-Time Digital Turnstile Keycard
+   - Saves pass to localStorage
+   - Cleans the URL (removes query params)
+```
+
+---
+
+### Khalti Integration Flow
+
+Khalti uses a **server-to-server initiation** then redirect approach (EPAY v2):
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Khalti Payment Flow                          │
+└─────────────────────────────────────────────────────────────────────┘
+
+1. USER clicks "Proceed to Khalti Payment"
+        │
+        ▼
+2. FRONTEND sends POST to backend:
+   /api/khalti/initiate
+   { planKey, amount, cycle, name, email, phone, origin, returnPage }
+        │
+        ▼
+3. BACKEND (server/routes/payment.js):
+   - Converts amount to **paisa** (NPR × 100) as Khalti requires
+   - Generates a unique UUID as purchase_order_id
+   - Saves transaction to in-memory DB { status: 'PENDING' }
+   - Calls Khalti's API: POST https://dev.khalti.com/api/v2/epayment/initiate/
+     with Authorization: Key <KHALTI_SECRET_KEY>
+   - Khalti returns a { payment_url, pidx }
+   - Backend returns payment_url to frontend
+        │
+        ▼
+4. FRONTEND redirects: window.location.href = payment_url
+   → User sees Khalti's payment portal (wallet / mobile banking options)
+        │
+        ▼
+5. USER completes payment on Khalti
+        │
+        ▼
+6. Khalti redirects to our BACKEND:
+   GET /api/khalti/callback?pidx=...&purchase_order_id=UUID&status=Completed
+        │
+        ▼
+7. BACKEND:
+   - Looks up the UUID in our DB
+   - Calls Khalti's Lookup API to verify the pidx is genuinely COMPLETE
+   - Marks transaction as COMPLETE in DB
+        │
+        ▼
+8. BACKEND redirects user's browser back to FRONTEND:
+   /checkout.html?payment=success&gateway=khalti&txn=UUID&ref=PIDX&amount=AMT&name=NAME&plan=PLAN
+        │
+        ▼
+9. FRONTEND renders voucher + keycard (same as eSewa success flow)
+```
+
+> **Sandbox / Demo note:** In development, the Khalti sandbox API may timeout. The server gracefully falls back to an instant-verified demo redirect so the voucher and keycard flow can still be demonstrated offline.
+
+---
+
+### Digital Turnstile Keycard
+
+After a verified **online payment** (eSewa or Khalti), the member receives a **1-Time Digital Turnstile E-Keycard** instead of the standard cash reservation notice:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  ⊞  RYU GYM                              )))  NFC / Optical         │
+│     1-Time Turnstile E-Keycard                                      │
+│                                                                     │
+│  ATHLETE PASS HOLDER                     [QR CODE]                  │
+│  ALEX HUNTER                                                        │
+│  BLACK TIER MEMBERSHIP                                              │
+│                                                                     │
+│  PASS CODE: RYU-A1B2C3D4                                           │
+│  [=== BARCODE ===]                                                  │
+│                                                                     │
+│  VALID FOR: 1-TIME ENTRY ONLY            EXPIRES: Oct 30, 2026     │
+│  Present this card at the turnstile scanner or show to front desk   │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**What it contains:**
+- Athlete's full name and membership tier
+- Unique pass code (e.g. `RYU-A1B2C3D4`)
+- QR code encoding the pass code + member name
+- Code-39 barcode for turnstile scanner
+- NFC wave icon
+- 1-entry validity notice and expiry date
+- "Used" animation when the simulate-turnstile button is clicked
+
+**Why only for online payment?**
+- Card and Desk Cash payments are not immediately verified (cash is collected in person)
+- Online payments (eSewa/Khalti) are cryptographically verified by the backend before the keycard is issued
+
+---
+
+## JavaScript Features (script.js)
+
+All JavaScript lives in a **single shared file** loaded by every HTML page. It uses `DOMContentLoaded` and checks which elements exist before running — so only the relevant code runs on each page.
+
+| Function | What It Does |
+|----------|-------------|
+| `initThemeToggle()` | Dark/light mode toggle, saves to `localStorage` |
+| `initStickyHeader()` | Adds shadow/border to navbar when user scrolls past hero |
+| `initMobileNav()` | Hamburger menu open/close with ARIA attributes |
+| `initScrollReveal()` | Intersection Observer — fades elements in as you scroll |
+| `initStatsCounter()` | Animates number counters from 0 to target when visible |
+| `initPricingToggle()` | Monthly/Annual price switcher on About and Membership pages |
+| `initProgramFilter()` | Filters program cards by category on Programs page |
+| `initBmiCalculator()` | Calculates BMI, animates SVG ring, recommends program |
+| `initTabataTimer()` | Functional interval timer (20s work / 10s rest × 8 rounds) |
+| `initTrainerLightbox()` | Click trainer card → open full-bio modal overlay |
+| `initContactForm()` | Full client-side form validation with regex patterns |
+| `initBeforeAfterSlider()` | Draggable image comparison slider (mouse + touch) |
+| `initSpotlight()` | Cursor spotlight effect on hero section |
+| `initTextScramble()` | Scrambles/unscrambles hero headline letters on load |
+| `initMagneticButtons()` | Subtle magnetic pull on CTA buttons when cursor is nearby |
+| `initCheckoutSystem()` | **Full checkout engine** — plan selection, payment tabs, voucher generation, eSewa/Khalti gateway calls, keycard display |
+| `generateCode39BarcodeSVG()` | Pure JS Code-39 barcode SVG renderer |
+| `generateCrispQRSVG()` | Pure JS QR code SVG renderer (no library) |
+
+---
+
+## CSS Architecture (style.css)
+
+One single stylesheet (~3,645 lines) used by all 8 pages.
+
+### Design Tokens (CSS Variables)
 
 ```css
 :root {
-  --bg-primary: #ffffff;        /* Page background */
-  --bg-surface: #f7f7f7;        /* Surface/card background */
-  --text-primary: #000000;      /* Main text color */
-  --text-secondary: #555555;    /* Muted text */
-  --border-strong: #000000;     /* Bold borders */
-  --font-heading: 'Oswald';     /* Display/heading font (Google Fonts) */
-  --font-body: 'Inter';         /* Body text font (Google Fonts) */
+  /* Colors */
+  --bg-primary: #ffffff;
+  --bg-surface: #f7f7f7;
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --accent-primary: #c0392b;      /* Crimson red */
+  --accent-secondary: #d4a017;    /* Gold */
+  --border-strong: #000000;
+
+  /* Typography */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Transitions */
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-long: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-```
 
-Dark mode overrides all variables under `[data-theme="dark"]`:
-```css
 [data-theme="dark"] {
   --bg-primary: #0a0a0a;
   --text-primary: #ffffff;
@@ -279,29 +572,22 @@ Dark mode overrides all variables under `[data-theme="dark"]`:
 }
 ```
 
-> **Why this matters**: By changing just the CSS variables, the ENTIRE website switches between light and dark mode — no duplicate styles needed.
+### Key CSS Techniques
 
-### Key CSS Techniques Used
-
-| Technique | Where It's Used | Why |
-|-----------|----------------|-----|
-| **CSS Grid** | Trainer grid, Program grid, Pricing cards, Footer, Stats strip | Responsive multi-column layouts |
-| **Flexbox** | Navigation bar, Hero section, Card footers, CTA groups, brand logo | Alignment and spacing |
-| **CSS Custom Properties (Variables)** | Everywhere | Centralized theming, easy dark mode |
-| **`@media` Queries** | Multiple breakpoints (768px, 480px) | Mobile-first responsive design |
-| **`@media print`** | About & Membership pages | Clean printable document layout |
-| **CSS Animations (`@keyframes`)** | Ticker marquee, scroll reveal, stat counter, keycard shimmer | Smooth entrance and looping effects |
-| **CSS 3D Transforms** | Credit card flip (`perspective`, `rotateY`) | Premium card preview interaction |
-| **`aspect-ratio`** | Trainer cards (3/4), Comparison slider (16/9) | Maintain consistent proportions |
-| **`object-fit: cover`** | All images and videos | Prevents image stretching/distortion |
-| **`backdrop-filter: blur`** | Modal overlays, sticky nav | Glassmorphism frosted glass effect |
-| **Gradients (`linear-gradient`)** | Before/After slider handle, digital keycard background | Visual accent and premium card feel |
-| **`box-shadow` with color** | Card hover effects, keycard glow | Depth and focus |
-| **`data-theme` attribute selector** | Dark mode styles | Theme switching without JS-heavy class toggling |
-| **Google Fonts (`@import`)** | `Oswald` for headings, `Inter` for body text | Professional typography |
-| **`.brand-logo-img`** | Navbar logo badge with hover scale + rotate | Logo integration with micro-animation |
-| **`.keycard-logo-badge`** | E-keycard logo badge | Official branding on digital pass |
-| **`.footer-brand-logo-img`** | Footer logo beside heading | Consistent branding in footer |
+| Technique | Where Used |
+|-----------|-----------|
+| **CSS Grid** | Trainer grid, Program grid, Pricing cards, Footer, Stats strip |
+| **Flexbox** | Navigation, Hero, Card footers, CTA groups, brand logo |
+| **CSS Custom Properties** | Everywhere — enables dark mode with zero duplicate styles |
+| **`@media` Queries** | Multiple breakpoints (768px, 480px) |
+| **`@media print`** | About & Membership pages — clean printable layout |
+| **CSS `@keyframes`** | Ticker marquee, scroll reveal, stat counter, keycard shimmer |
+| **CSS 3D Transforms** | Credit card flip (`perspective`, `rotateY`) |
+| **`aspect-ratio`** | Trainer cards (3/4), Before/After slider (16/9) |
+| **`backdrop-filter: blur`** | Modal overlays, sticky nav (glassmorphism) |
+| **`linear-gradient`** | Slider handle, digital keycard background, gateway panels |
+| **`box-shadow` with color** | Hover glow on cards, keycard glow |
+| **Google Fonts (`@import`)** | Oswald (headings), Inter (body text) |
 
 ---
 
@@ -309,69 +595,80 @@ Dark mode overrides all variables under `[data-theme="dark"]`:
 
 | Technology | Purpose |
 |-----------|---------|
-| **HTML5** | Page structure, semantic elements (`<header>`, `<main>`, `<section>`, `<article>`, `<nav>`, `<footer>`) |
+| **HTML5** | Page structure — semantic elements (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`) |
 | **CSS3** | All styling, layout, responsive design, animations, dark/light theming, print styles |
-| **Vanilla JavaScript (ES6+)** | All interactivity — DOM manipulation, event handling, form validation, timers, state management |
+| **Vanilla JavaScript (ES6+)** | All interactivity — DOM manipulation, event handling, form validation, payment gateway calls |
+| **Node.js** | Backend JavaScript runtime for the payment server |
+| **Express.js** | HTTP server framework for the payment API endpoints |
+| **axios** | HTTP client on the backend for calling eSewa and Khalti status/lookup APIs |
+| **uuid** | Generates unique transaction IDs for each payment |
+| **dotenv** | Loads environment variables from `.env` file |
+| **cors** | Enables the frontend to call the backend across different origins |
 | **Google Fonts** | Oswald (headings) and Inter (body text) loaded via `@import` |
-| **OpenStreetMap** | Embedded `<iframe>` map on the Contact page |
-| **SVG** | Inline SVGs for theme toggle icons, BMI progress ring, image placeholders, and the vector logo |
-| **HTML5 `<video>`** | Autoplaying trainer preview videos |
-| **HTML5 `data-*` Attributes** | Storing trainer bios, pricing data, stat targets, and filter categories in HTML |
-| **`localStorage` Web API** | Persist dark/light mode preference and saved membership passes across sessions |
-| **PNG / SVG Logo Assets** | Official Ryu Gym branding (barbell + RYU GYM wordmark) integrated across nav, footer, keycard, and favicon |
+| **OpenStreetMap** | Embedded iframe map on the Contact page |
+| **SVG** | Inline SVGs for icons, BMI ring, barcodes, QR codes, and the vector logo |
+| **HTML5 `<video>`** | Autoplaying trainer card background videos |
+| **HTML5 `data-*` Attributes** | Trainer bios, pricing values, stat targets, program categories |
+| **`localStorage` Web API** | Persist dark/light mode preference and issued membership passes |
+| **HMAC-SHA256** | Cryptographic signature for eSewa payment verification |
+| **Render.com** | Cloud hosting for the Node.js payment backend |
+| **GitHub Pages / Vercel** | Static site hosting for the HTML/CSS/JS frontend |
 
 ---
 
 ## Key Academic Concepts Demonstrated
 
-### 1. **Semantic HTML5 Structure**
-Every page uses proper semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`. Important for accessibility and SEO.
+### 1. Semantic HTML5 Structure
+Every page uses proper semantic elements: `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`. Essential for accessibility and SEO.
 
-### 2. **Responsive Web Design (RWD)**
+### 2. Responsive Web Design (RWD)
 CSS Grid, Flexbox, and `@media` queries adapt the layout to any screen size. Navigation collapses into a hamburger menu on mobile.
 
-### 3. **CSS Custom Properties for Theming**
-All colors are stored in CSS variables. Dark/light mode works by swapping one set of variables — no duplicate CSS.
+### 3. CSS Custom Properties for Theming
+All colors are stored in CSS variables. Dark/light mode works by swapping one set of variables — no duplicate CSS needed.
 
-### 4. **DOM Manipulation**
-JavaScript reads and modifies the DOM — creating elements, changing text, toggling classes, updating styles — all without jQuery.
+### 4. DOM Manipulation
+JavaScript reads and modifies the DOM — creating elements, changing text, toggling classes, updating styles — all without jQuery or any library.
 
-### 5. **Intersection Observer API**
-Used for scroll-triggered animations (reveal on scroll, stat counter). Far more efficient than listening to raw `scroll` events.
+### 5. Intersection Observer API
+Used for scroll-triggered animations and stat counters. Far more efficient than listening to raw `scroll` events.
 
-### 6. **Client-Side Form Validation**
-Contact and membership forms validate every field using JavaScript regex patterns before allowing submission. Shows inline error messages per field.
+### 6. Client-Side Form Validation
+Contact and membership forms validate every field using JavaScript regex patterns. Shows inline error messages per field without page reload.
 
-### 7. **Event Handling**
-Uses multiple event types: `click`, `scroll`, `mousemove`, `mousedown`, `mouseup`, `touchstart`, `touchmove`, `touchend`, `keydown`, `submit`, `error`, `focus`, `blur`, `input`.
+### 7. Event Handling
+Uses multiple event types: `click`, `scroll`, `mousemove`, `mousedown`, `mouseup`, `touchstart`, `touchmove`, `touchend`, `keydown`, `submit`, `input`, `focus`, `blur`.
 
-### 8. **localStorage for Persistence**
-Dark/light mode preference and issued membership passes are saved to `localStorage` so they persist across page refreshes.
+### 8. localStorage for Persistence
+Dark/light mode preference and issued membership passes are saved to `localStorage` — persisting across page refreshes and navigation.
 
-### 9. **Accessibility (ARIA)**
+### 9. REST API Design
+The backend server exposes clean REST endpoints (`POST /api/initiate-payment`, `GET /api/payment/success`, etc.) following standard HTTP conventions.
+
+### 10. Cryptography in Web Development
+eSewa requires HMAC-SHA256 message authentication codes to ensure payment data is not tampered with between the server and payment gateway.
+
+### 11. Asynchronous JavaScript (Promises / fetch)
+All payment API calls use the `fetch()` API with `.then()/.catch()` for non-blocking server communication.
+
+### 12. Server-Side Rendering vs Client-Side Generation
+The payment gateway redirects are handled server-side (Node.js) while the voucher and barcode are generated client-side (pure JavaScript SVG/Canvas rendering).
+
+### 13. Accessibility (ARIA)
 Interactive elements use `aria-label`, `aria-expanded`, `aria-hidden`, `role`, `title` attributes for screen reader compatibility.
 
-### 10. **Print Stylesheet**
-About and Membership pages include `@media print` CSS that hides navigation, footer, and buttons — reformatting content for clean printing.
+### 14. CSS 3D Transforms
+The credit card preview uses `perspective` and `rotateY` to create a realistic card-flip animation when the CVV field is focused.
 
-### 11. **HTML5 Video Element**
-Trainer cards use `<video>` with `autoplay`, `loop`, `muted`, and `playsinline` for inline video playback without user interaction.
-
-### 12. **Data Attributes (`data-*`)**
-Used extensively for trainer bios (`data-bio`), pricing values (`data-price-monthly`), stat targets (`data-target`), and program categories (`data-category`). JavaScript reads these to dynamically generate content.
-
-### 13. **CSS 3D Transforms**
-The credit card preview in the Membership page uses `perspective` and `rotateY` to create a realistic card-flip animation when the user focuses the CVV field.
-
-### 14. **Asset Management & Branding**
-The official Ryu Gym logo (barbell graphic + RYU GYM wordmark) is provided in four formats: original PNG, cropped square PNG, transparent PNG, dark-mode PNG, and SVG vector. It is placed consistently across all pages for professional brand coherence.
+### 15. Data Attributes (`data-*`)
+Used for trainer bios (`data-bio`), pricing values (`data-price-monthly`), stat targets (`data-target`), and program categories (`data-category`). JavaScript reads these to dynamically generate content without hardcoding in JS.
 
 ---
 
 ## Browser Compatibility
 
 | Browser | Supported |
-|---------|-----------|
+|---------|----------|
 | Google Chrome (latest) | ✅ Yes |
 | Mozilla Firefox (latest) | ✅ Yes |
 | Microsoft Edge (latest) | ✅ Yes |
@@ -383,16 +680,16 @@ The official Ryu Gym logo (barbell graphic + RYU GYM wordmark) is provided in fo
 ## Credits & Acknowledgements
 
 - **Fonts**: [Google Fonts](https://fonts.google.com/) — Oswald, Inter
-- **Map**: [OpenStreetMap](https://www.openstreetmap.org/) (free, open-source map embed)
-- **Payment QR Codes**: eSewa and Khalti QR codes used for academic demonstration purposes
-- **Media**: All images and videos used are for educational/academic demonstration purposes only
+- **Map**: [OpenStreetMap](https://www.openstreetmap.org/) — free, open-source map embed
+- **Payment Gateways**: [eSewa](https://esewa.com.np) and [Khalti](https://khalti.com) — used in sandbox mode for academic demonstration
+- **Backend Hosting**: [Render.com](https://render.com) — free tier Node.js deployment
+- **Media**: All images and videos are for educational and academic demonstration purposes
 - **Logo**: Official Ryu Gym logo (barbell + wordmark) designed for this project
-- **Code**: 100% hand-written — no templates, no frameworks, no Bootstrap, no jQuery, no npm packages
-- **Built with**: VS Code text editor and a web browser
-- **Student**: Aman Rouniyar — 2nd Semester Web Development Project
+- **Code**: 100% hand-written — no templates, no Bootstrap, no jQuery, no frontend frameworks
+- **Built with**: VS Code + Node.js + npm + a web browser
 
 ---
 
-> **© 2026 Ryu Gym — College Web Development Project.**
-> Hand-built with semantic HTML5, CSS3 (~3,645 lines), and Vanilla JavaScript (~1,978 lines).
-> *Biratnagar-2, Near Chapri Mall | Ryugym@gmail.com | 980-0000000*
+> **© 2026 Ryu Gym — 2nd Semester College Web Development Project**
+> Hand-built with semantic HTML5, CSS3 (~3,645 lines), Vanilla JavaScript (~2,100+ lines), and Node.js/Express backend.
+> *Student: Aman Rouniyar | Biratnagar-2, Near Chapri Mall | Ryugym@gmail.com | 9826320933*
