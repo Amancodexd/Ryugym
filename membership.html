@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ryu Gym Membership — Join, select your tier, and pay online. Instant barcode membership voucher issued on successful payment.">
   <title>Join Ryu Gym — Membership Plans &amp; Instant Pay</title>
+  <link rel="icon" type="image/png" href="assets/ryugym-logo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
   <header class="site-header" id="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo" aria-label="Ryu Gym Homepage">
-        <span class="brand-symbol"></span>
+        <img src="assets/ryugym-logo.png" alt="Ryu Gym Logo" class="brand-logo-img">
         <span>Ryu Gym</span>
       </a>
 
@@ -246,7 +247,11 @@
                 <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem;">2. Payment Method</h3>
 
                 <div class="pay-method-tabs" role="tablist">
-                  <button type="button" class="pay-tab active" data-method="card" role="tab" aria-selected="true" id="tab-method-card">
+                  <button type="button" class="pay-tab active" data-method="esewa" role="tab" aria-selected="true" id="tab-method-esewa">
+                    <span style="background: #4caf50; color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">e</span>
+                    <span>eSewa ePay</span>
+                  </button>
+                  <button type="button" class="pay-tab" data-method="card" role="tab" aria-selected="false" id="tab-method-card">
                     <svg class="pay-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
                     </svg>
@@ -266,8 +271,37 @@
                   </button>
                 </div>
 
+                <!-- eSewa online payment panel -->
+                <div class="pay-panel active" id="panel-method-esewa">
+                  <div class="esewa-gateway-box" style="padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; border: 1px solid rgba(76, 175, 80, 0.4); background: linear-gradient(180deg, rgba(76, 175, 80, 0.08) 0%, rgba(13, 46, 13, 0.02) 100%); border-radius: 8px;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                      <span style="background: #4caf50; color: #fff; border-radius: 50%; width: 28px; height: 28px; font-size: 1rem; font-weight: 900; display: inline-flex; align-items: center; justify-content: center;">e</span>
+                      <span style="font-size: 1.25rem; font-weight: 800; color: #4caf50; letter-spacing: 0.5px;">eSewa Official ePay</span>
+                    </div>
+
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 1rem 1.25rem; width: 100%; max-width: 360px; text-align: left;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Gateway:</span>
+                        <strong style="color: var(--text-primary);">eSewa ePay v2.0 (HMAC-SHA256)</strong>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Settlement:</span>
+                        <span style="color: #4caf50; font-weight: 600;">Instant Pass &amp; Keycard Issuance</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                        <span style="color: var(--text-secondary);">Security:</span>
+                        <span style="color: var(--text-primary); font-family: monospace;">256-Bit SSL Encrypted</span>
+                      </div>
+                    </div>
+
+                    <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0; max-width: 420px; line-height: 1.5;">
+                      Clicking <strong>Proceed to eSewa Online Payment</strong> directs you to eSewa's portal. Upon successful authentication and payment, you will automatically return here with your confirmed membership voucher and 1-time turnstile keycard.
+                    </p>
+                  </div>
+                </div>
+
                 <!-- credit card payment panel -->
-                <div class="pay-panel active" id="panel-method-card">
+                <div class="pay-panel" id="panel-method-card">
                   <div class="card-visual-preview" aria-hidden="true" style="margin-bottom: 1.25rem; padding: 1.25rem;">
                     <div class="card-chip"></div>
                     <div class="card-brand-logo" id="card-preview-brand">VISA / MC</div>
@@ -388,7 +422,7 @@
 
               <!-- submit payment button -->
               <button type="submit" class="btn btn-primary btn-block btn-lg btn-magnetic" id="btn-process-payment">
-                <span class="btn-text-default">Authorize Payment &amp; Generate Barcode Voucher</span>
+                <span class="btn-text-default">Proceed to eSewa Online Payment &amp; Generate Keycard</span>
                 <span class="btn-text-loading" style="display: none;">
                   <span class="spinner-inline"></span>
                   Processing Payment &amp; Minting Pass...
@@ -407,8 +441,11 @@
                 <div class="digital-keycard" id="digital-turnstile-keycard">
                   <div class="keycard-chip-row">
                     <div class="keycard-brand">
-                      <span class="keycard-logo-txt">RYU GYM</span>
-                      <span class="keycard-sub-txt">1-Time Turnstile E-Keycard</span>
+                      <img src="assets/ryugym-logo.png" alt="Ryu Gym Logo" class="keycard-logo-badge">
+                      <div class="keycard-brand-text">
+                        <span class="keycard-logo-txt">RYU GYM</span>
+                        <span class="keycard-sub-txt">1-Time Turnstile E-Keycard</span>
+                      </div>
                     </div>
                     <div class="keycard-rfid-icon" title="NFC / Optical Turnstile Access">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -572,7 +609,10 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h2>Ryu Gym</h2>
+          <div class="footer-brand-title">
+            <img src="assets/ryugym-logo.png" alt="Ryu Gym Logo" class="footer-brand-logo-img">
+            <h2>Ryu Gym</h2>
+          </div>
           <p>Uncompromising strength, athletic conditioning, and physical discipline. Strictly monochrome, professionally crafted.</p>
         </div>
         <div class="footer-col">

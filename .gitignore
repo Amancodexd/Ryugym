@@ -1,5 +1,7 @@
+server/.env
+server/node_modules/
 .DS_Store
 Thumbs.db
 *.log
-Screen Recording*.mp4
 assets/Screen Recording*.mp4
+

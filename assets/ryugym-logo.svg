@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #f4f1ea; }
+      .bar { fill: #1c1b1a; }
+      .inner-plate { fill: #8b2522; }
+      .outer-plate { fill: #b88e39; }
+      .ryu-text { font-family: 'Oswald', 'Arial Black', sans-serif; font-weight: 800; font-style: italic; font-size: 58px; fill: #1c1b1a; letter-spacing: 0.04em; }
+      .line { fill: #8b2522; }
+      .gym-text { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; font-size: 19px; fill: #8b2522; letter-spacing: 0.58em; }
+    </style>
+  </defs>
+
+  <!-- Background with subtle rounded corners -->
+  <rect width="300" height="300" rx="20" class="bg"/>
+
+  <!-- Barbell Graphic -->
+  <g transform="translate(150, 78)">
+    <!-- Central Bar -->
+    <rect x="-85" y="-6.5" width="170" height="13" rx="4" class="bar"/>
+    
+    <!-- Left Inner Plate (Crimson) -->
+    <rect x="-106" y="-22" width="14" height="44" rx="4" class="inner-plate"/>
+    <!-- Left Outer Plate (Gold) -->
+    <rect x="-122" y="-16" width="10" height="32" rx="3" class="outer-plate"/>
+    
+    <!-- Right Inner Plate (Crimson) -->
+    <rect x="92" y="-22" width="14" height="44" rx="4" class="inner-plate"/>
+    <!-- Right Outer Plate (Gold) -->
+    <rect x="112" y="-16" width="10" height="32" rx="3" class="outer-plate"/>
+  </g>
+
+  <!-- "RYU" Text -->
+  <text x="150" y="174" text-anchor="middle" class="ryu-text">RYU</text>
+
+  <!-- Red Accent Divider Line -->
+  <rect x="68" y="196" width="164" height="8" rx="2" class="line"/>
+
+  <!-- "G Y M" Text -->
+  <text x="156" y="235" text-anchor="middle" class="gym-text">G Y M</text>
+</svg>
