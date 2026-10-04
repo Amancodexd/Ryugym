@@ -1333,9 +1333,8 @@ function initCheckoutSystem() {
         ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
         : '0';
 
-      const returnPath = window.location.pathname.endsWith('checkout.html')
-        ? '/checkout.html'
-        : (window.location.pathname.endsWith('membership.html') ? '/membership.html' : '/checkout.html');
+      // Use the full pathname to preserve the GitHub Pages subpath (e.g. /Ryugym/checkout.html)
+      const returnPath = window.location.pathname;
 
       fetch(`${BACKEND_URL}/api/initiate-payment`, {
         method: 'POST',
@@ -1386,9 +1385,8 @@ function initCheckoutSystem() {
         ? summaryTotalPrice.textContent.replace(/[^0-9.]/g, '')
         : '0';
 
-      const returnPath = window.location.pathname.endsWith('checkout.html')
-        ? '/checkout.html'
-        : (window.location.pathname.endsWith('membership.html') ? '/membership.html' : '/checkout.html');
+      // Use the full pathname to preserve the GitHub Pages subpath (e.g. /Ryugym/checkout.html)
+      const returnPath = window.location.pathname;
 
       fetch(`${BACKEND_URL}/api/khalti/initiate`, {
         method: 'POST',

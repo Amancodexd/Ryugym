@@ -1,4 +1,4 @@
-﻿const express = require('express');
+const express = require('express');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 const { generateSignature, verifyCallbackSignature } = require('../signature');
@@ -86,15 +86,17 @@ router.get('/payment/success', async (req, res) => {
     return res.redirect(getClientRedirectUrl(null, 'payment=error&reason=bad_data'));
   }
 
+  const { transaction_uuid, total_amount, transaction_code, status } = decoded;
+
+  // Load the transaction first so that error redirects use the correct origin/page
+  const existing = transaction_uuid ? getTransaction(transaction_uuid) : null;
+
   const secretKey = process.env.ESEWA_SECRET_KEY;
   const signatureValid = verifyCallbackSignature({ decodedData: decoded, secretKey });
   if (!signatureValid) {
-    return res.redirect(getClientRedirectUrl(null, 'payment=error&reason=signature_mismatch'));
+    return res.redirect(getClientRedirectUrl(existing, 'payment=error&reason=signature_mismatch'));
   }
 
-  const { transaction_uuid, total_amount, transaction_code, status } = decoded;
-
-  const existing = getTransaction(transaction_uuid);
   if (!existing) {
     return res.redirect(getClientRedirectUrl(null, 'payment=error&reason=unknown_transaction'));
   }
