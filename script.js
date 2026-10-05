@@ -622,7 +622,7 @@ function initSpotlight() {
   });
 }
 
-
+//scrable text in Index
 function initTextScramble() {
   const targets = document.querySelectorAll('.scramble-text');
   if (!targets.length) return;
