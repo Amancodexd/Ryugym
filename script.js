@@ -1,10 +1,3 @@
-/**
- * ============================================================================
- * RYU GYM — FITNESS & TRAINING WEBSITE
- * Core Client-Side Logic (Vanilla JavaScript)
- * Fully commented for academic presentation and live instructor walk-through.
- * ============================================================================
- */
 
 
 
