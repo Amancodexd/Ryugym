@@ -165,52 +165,7 @@
 
         </div>
 
-        <!-- BMI calculator section -->
-        <div class="bmi-calculator-wrapper reveal" id="bmi-widget">
-          <div class="bmi-grid">
-            <div>
-              <span class="section-tag">Interactive Analysis</span>
-              <h2 style="font-size: 2rem; margin-bottom: 0.75rem;">Body Mass Index (BMI) &amp; Training Matcher</h2>
-              <p>Calculate your current body mass index to receive an immediate programmatic recommendation tailored to your physical profile.</p>
 
-              <form id="bmi-form" class="calculator-form">
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="bmi-height" class="form-label">Height (cm)</label>
-                    <input type="number" id="bmi-height" class="form-input" placeholder="e.g. 178" min="100" max="240" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="bmi-weight" class="form-label">Weight (kg)</label>
-                    <input type="number" id="bmi-weight" class="form-input" placeholder="e.g. 75" min="30" max="250" step="0.1" required>
-                  </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary" id="calculate-bmi-btn">
-                  Compute BMI &amp; Match Program
-                </button>
-              </form>
-            </div>
-
-            <!-- result shows here after calculating -->
-            <div class="bmi-result-panel" id="bmi-result-panel">
-              <div style="font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">Calculated Result</div>
-              
-              <div class="progress-ring-wrap">
-                <svg class="progress-ring" width="140" height="140" viewBox="0 0 140 140">
-                  <circle class="progress-ring-bg" cx="70" cy="70" r="60"></circle>
-                  <circle class="progress-ring-circle" id="bmi-ring-circle" cx="70" cy="70" r="60"></circle>
-                </svg>
-                <div class="progress-ring-text">
-                  <div class="bmi-score" id="bmi-score" style="font-size: 2.2rem; margin-bottom: 0;">--.-</div>
-                  <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">Index</span>
-                </div>
-              </div>
-
-              <div class="bmi-category-badge" id="bmi-badge">Awaiting Input</div>
-              <p class="bmi-rec-text" id="bmi-recommendation">Enter your height in centimeters and weight in kilograms above, then click compute to generate your suggested training protocol.</p>
-            </div>
-          </div>
-        </div>
 
         <!-- tabata interval timer -->
         <div class="tabata-widget reveal" id="tabata-clock">

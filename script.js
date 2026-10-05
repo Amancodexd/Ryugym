@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatsCounter();
   initPricingToggle();
   initProgramFilter();
-  initBmiCalculator();
   initTrainerLightbox();
   initContactForm();
   initPrintTrigger();
